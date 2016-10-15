@@ -1,0 +1,52 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - DZNEmptyDataSet (1.8.1)
+  - GoogleMaps (2.1.0):
+    - GoogleMaps/Maps (= 2.1.0)
+  - GoogleMaps/Base (2.1.0)
+  - GoogleMaps/Maps (2.1.0):
+    - GoogleMaps/Base (= 2.1.0)
+  - GooglePlaces (2.1.0):
+    - GoogleMaps/Base (= 2.1.0)
+  - MBProgressHUD (1.0.0)
+  - SVPullToRefresh (0.4.1)
+  - UIFloatLabelTextField (1.2.5)
+  - UIFloatLabelTextView (1.0.9)
+
+DEPENDENCIES:
+  - AFNetworking
+  - DZNEmptyDataSet
+  - GoogleMaps
+  - GooglePlaces
+  - MBProgressHUD
+  - SVPullToRefresh
+  - UIFloatLabelTextField
+  - UIFloatLabelTextView
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  GoogleMaps: 06589b9a38097bce0cd6e90f0fd9b5e4b4a9344c
+  GooglePlaces: 16e96266483b8010e9f275399403647978523c86
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
+  UIFloatLabelTextField: b01b1bcea4b4fd617e80744f3cfd06e1d1b7e75e
+  UIFloatLabelTextView: 44061fe88933a055e139c58a7c0ae8ca5a26d610
+
+PODFILE CHECKSUM: 7f6ffe5d88971f6192ded25836bf69a6d14ff417
+
+COCOAPODS: 1.1.0.rc.2
