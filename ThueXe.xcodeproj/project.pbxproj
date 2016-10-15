@@ -26,6 +26,8 @@
 		3E8AB2ED1DA9F211001267C0 /* car_small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E8AB2E91DA9F211001267C0 /* car_small@3x.png */; };
 		3E8AB2EE1DA9F211001267C0 /* car_small@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E8AB2EA1DA9F211001267C0 /* car_small@4x.png */; };
 		3E8AB2F11DAA5F8C001267C0 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8AB2F01DAA5F8C001267C0 /* FilterViewController.m */; };
+		3E8AB6981DB1FD10004FD237 /* Expand.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E8AB6971DB1FD10004FD237 /* Expand.png */; };
+		3E8AB69A1DB22415004FD237 /* editUser.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E8AB6991DB22415004FD237 /* editUser.png */; };
 		3EA00F921DA0B5CA000FD90B /* ListDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA00F911DA0B5CA000FD90B /* ListDataViewController.m */; };
 		3EA00F991DA0D615000FD90B /* call_now.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA00F981DA0D615000FD90B /* call_now.png */; };
 		3EA00FA91DA0E064000FD90B /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA00FA51DA0E064000FD90B /* Car.m */; };
@@ -56,7 +58,6 @@
 		3EDFC63D1D9FAFE300EB31B0 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDFC63A1D9FAFE300EB31B0 /* RegisterViewController.m */; };
 		3EDFC63E1D9FAFE300EB31B0 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDFC63C1D9FAFE300EB31B0 /* FirstViewController.m */; };
 		3EDFC6411D9FC88700EB31B0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EDFC6401D9FC88700EB31B0 /* QuartzCore.framework */; };
-		3EE856051DAB98FC00972BD8 /* TriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE856041DAB98FC00972BD8 /* TriangleView.m */; };
 		3EE8560D1DAB9B9000972BD8 /* khoangcach.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE856071DAB9B9000972BD8 /* khoangcach.png */; };
 		3EE8560E1DAB9B9000972BD8 /* loaixe.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE856081DAB9B9000972BD8 /* loaixe.png */; };
 		3EE8560F1DAB9B9000972BD8 /* sdt.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE856091DAB9B9000972BD8 /* sdt.png */; };
@@ -111,6 +112,8 @@
 		3E8AB2EA1DA9F211001267C0 /* car_small@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car_small@4x.png"; sourceTree = "<group>"; };
 		3E8AB2EF1DAA5F8C001267C0 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
 		3E8AB2F01DAA5F8C001267C0 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
+		3E8AB6971DB1FD10004FD237 /* Expand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Expand.png; sourceTree = "<group>"; };
+		3E8AB6991DB22415004FD237 /* editUser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editUser.png; sourceTree = "<group>"; };
 		3EA00F901DA0B5CA000FD90B /* ListDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListDataViewController.h; sourceTree = "<group>"; };
 		3EA00F911DA0B5CA000FD90B /* ListDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListDataViewController.m; sourceTree = "<group>"; };
 		3EA00F981DA0D615000FD90B /* call_now.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call_now.png; sourceTree = "<group>"; };
@@ -151,8 +154,6 @@
 		3EDFC63C1D9FAFE300EB31B0 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		3EDFC63F1D9FBCD000EB31B0 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		3EDFC6401D9FC88700EB31B0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		3EE856031DAB98FC00972BD8 /* TriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleView.h; sourceTree = "<group>"; };
-		3EE856041DAB98FC00972BD8 /* TriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriangleView.m; sourceTree = "<group>"; };
 		3EE856071DAB9B9000972BD8 /* khoangcach.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = khoangcach.png; sourceTree = "<group>"; };
 		3EE856081DAB9B9000972BD8 /* loaixe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loaixe.png; sourceTree = "<group>"; };
 		3EE856091DAB9B9000972BD8 /* sdt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sdt.png; sourceTree = "<group>"; };
@@ -212,8 +213,6 @@
 		3EA00FA31DA0E064000FD90B /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				3EE856031DAB98FC00972BD8 /* TriangleView.h */,
-				3EE856041DAB98FC00972BD8 /* TriangleView.m */,
 				3EA00FA41DA0E064000FD90B /* Car.h */,
 				3EA00FA51DA0E064000FD90B /* Car.m */,
 				3EA00FA61DA0E064000FD90B /* ItemCell.h */,
@@ -282,6 +281,8 @@
 		3EDFC6251D9FA18900EB31B0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3E8AB6991DB22415004FD237 /* editUser.png */,
+				3E8AB6971DB1FD10004FD237 /* Expand.png */,
 				3EE856401DACFACB00972BD8 /* empty_data@1x.png */,
 				3EE856411DACFACB00972BD8 /* empty_data@2x.png */,
 				3EE856421DACFACB00972BD8 /* empty_data@3x.png */,
@@ -506,10 +507,12 @@
 				3E4268991DA3B38A0018B76E /* car@2x.png in Resources */,
 				3EE856451DACFACB00972BD8 /* empty_data@2x.png in Resources */,
 				3E4268911DA3B38A0018B76E /* image_2@4x.png in Resources */,
+				3E8AB6981DB1FD10004FD237 /* Expand.png in Resources */,
 				3EAD9F051DA2753600B122AD /* buttons_03.png in Resources */,
 				3EDFC62C1D9FA68200EB31B0 /* driver.png in Resources */,
 				3E4268961DA3B38A0018B76E /* car@4x.png in Resources */,
 				3EAD9F061DA2753600B122AD /* background_02.png in Resources */,
+				3E8AB69A1DB22415004FD237 /* editUser.png in Resources */,
 				3EAD9F0E1DA27B0300B122AD /* filter_clear.png in Resources */,
 				3E4268931DA3B38A0018B76E /* image_2@2x.png in Resources */,
 				3E8AB2EC1DA9F211001267C0 /* car_small@2x.png in Resources */,
@@ -586,7 +589,6 @@
 				3EA00F921DA0B5CA000FD90B /* ListDataViewController.m in Sources */,
 				3EDFC63E1D9FAFE300EB31B0 /* FirstViewController.m in Sources */,
 				3EDFC60E1D9F87F700EB31B0 /* main.m in Sources */,
-				3EE856051DAB98FC00972BD8 /* TriangleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

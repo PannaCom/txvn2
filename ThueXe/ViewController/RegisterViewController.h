@@ -12,5 +12,6 @@
 @interface RegisterViewController : UIViewController
 
 @property USER_TYPE userType;
+@property BOOL isEdit;
 
 @end

@@ -44,19 +44,20 @@
 
 +(void)setUserData:(NSDictionary*)userData{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    [userDefault setObject:userData forKey:@"userData"];
+    [userDefault setObject:userData forKey:@"userInfo"];
     [userDefault synchronize];
 }
 
 +(NSDictionary*)getUserData{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    return [userDefault dictionaryForKey:@"userData"];
+    return [userDefault dictionaryForKey:@"userInfo"];
 }
 
 +(void)clearUserData{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     [userDefault removeObjectForKey:@"filterData"];
-    [userDefault removeObjectForKey:@"userData"];
+    [userDefault removeObjectForKey:@"userInfo"];
+    
     [userDefault synchronize];
 }
 

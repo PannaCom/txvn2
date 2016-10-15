@@ -13,6 +13,7 @@
 #import "FilterViewController.h"
 #import "ListDataViewController.h"
 #import "MapPassengerViewController.h"
+#import "FirstViewController.h"
 
 @import GoogleMaps;
 
@@ -60,6 +61,11 @@
             }
                 break;
             default:
+            {
+                UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+                FirstViewController *controller = (FirstViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"firstViewControllerStoryboardId"];
+                _window.rootViewController = controller;
+            }
                 break;
         }
     }

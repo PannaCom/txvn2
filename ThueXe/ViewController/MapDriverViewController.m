@@ -123,6 +123,7 @@
 - (IBAction)backBtnClick:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RegisterViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"registerStoryboardId"];
+    vc.isEdit = YES;
     [self presentViewController:vc animated:YES completion:nil];
 }
 
