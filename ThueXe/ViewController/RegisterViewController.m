@@ -64,7 +64,7 @@
             carTypeTf.text = [userData objectForKey:@"car_type"];
             carYearTf.text = [userData objectForKey:@"car_year"];
             carPriceTf.text = [userData objectForKey:@"car_price"];
-    
+            phoneTf.enabled = NO;
         }
     }
     carMadeSelected = carModelSelected = carTypeSelected = carSizeSelected = carYearSelected = carPriceSelected = -1;
