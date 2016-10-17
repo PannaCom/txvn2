@@ -26,7 +26,7 @@
 @end
 
 @implementation MapPassengerViewController
-
+#pragma mark - LifeCycle View Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -74,6 +74,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Data Methods
 -(void)getListOnline{
     CLLocationCoordinate2D currCoordinate = _currentLocation.coordinate;
     NSString *lon = [NSString stringWithFormat:@"%f", currCoordinate.longitude];
@@ -84,7 +85,7 @@
     }
     [DataHelper GET:API_GET_LIST_ONLINE params:@{@"lon":lon, @"lat":lat, @"car_made":[_filterData objectForKey:@"car_made"], @"car_model":[_filterData objectForKey:@"car_model"], @"car_size":carSize, @"car_type":[_filterData objectForKey:@"car_type"]} completion:^(BOOL success, id responseObject, NSError *error){
         if (success) {
-            NSLog(@"list online: %@", responseObject);
+//            NSLog(@"list online: %@", responseObject);
             _cars = [Car getDataFromJson:responseObject];
             [self drawCars];
         }
@@ -93,11 +94,34 @@
         }
     }];
 }
+
 -(void)filterData:(NSNotification *)noti{
     _filterData = [[noti userInfo] objectForKey:@"filterData"];
     [self getListOnline];
 }
 
+-(void)drawCars{
+    [_mapView clear];
+    for (Car *car in _cars) {
+        float d = car.distance;
+        
+        currentMarker.position = _currentLocation.coordinate;
+        currentMarker.map = _mapView;
+        
+        float lon = car.location.coordinate.longitude;
+        float lat = car.location.coordinate.latitude;
+        
+        NSString *distance = (d < 1) ? [NSString stringWithFormat:@"%d m", (int)(1000*d)] : [NSString stringWithFormat:@"%.3f km", d] ;
+        // Creates a marker in the center of the map.
+        GMSMarker *carMaker = [[GMSMarker alloc] init];
+        carMaker.position = CLLocationCoordinate2DMake(lat, lon);
+        carMaker.icon = [UIImage imageNamed:@"car_small.png"];
+        carMaker.title = distance;
+        carMaker.map = _mapView;
+    }
+}
+
+#pragma mark - Events
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
     _currentLocation = locations.firstObject;
     //    NSLog(@"%@", _currentLocation);
@@ -129,27 +153,6 @@
     [menu addAction:changeUser];
     [menu addAction:cancel];
     [self presentViewController:menu animated:YES completion:nil];
-}
-
--(void)drawCars{
-    [_mapView clear];
-    for (Car *car in _cars) {
-        float d = car.distance;
-        
-        currentMarker.position = _currentLocation.coordinate;
-        currentMarker.map = _mapView;
-        
-        float lon = car.location.coordinate.longitude;
-        float lat = car.location.coordinate.latitude;
-        
-        NSString *distance = (d < 1) ? [NSString stringWithFormat:@"%d m", (int)(1000*d)] : [NSString stringWithFormat:@"%.3f km", d] ;
-        // Creates a marker in the center of the map.
-        GMSMarker *carMaker = [[GMSMarker alloc] init];
-        carMaker.position = CLLocationCoordinate2DMake(lat, lon);
-        carMaker.icon = [UIImage imageNamed:@"car_small.png"];
-        carMaker.title = distance;
-        carMaker.map = _mapView;
-    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

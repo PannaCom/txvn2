@@ -29,7 +29,7 @@
     IBOutlet UIScrollView *_scrollView;
     BOOL keyboardIsShow;
     NSArray *carMade;
-    NSArray *carModel;
+    NSMutableArray *carModel;
     NSMutableArray *carYear;
     long carMadeSelected, carModelSelected, carTypeSelected, carSizeSelected, carYearSelected, carPriceSelected;
     NSArray *dataTableView;
@@ -42,14 +42,16 @@
     NSMutableArray *carPrice;
     NSDictionary *userData;
     UITableView *tableViewSearch;
+    IBOutlet UIButton *backBtn;
 }
 @end
 
 @implementation RegisterViewController
-
+#pragma mark - LifeCycle View Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (_isEdit) {
+        backBtn.hidden = NO;
         titleController.text = @"Sửa thông tin";
         [registerBtn setTitle:@"Lưu" forState:UIControlStateNormal];
         userData = [NSDictionary new];
@@ -91,7 +93,7 @@
     keyboardIsShow = NO;
     
     carMade = [NSArray new];
-    carModel = [NSArray new];
+    carModel = [NSMutableArray new];
 
     carMade = [CAR_MADE_MODEL valueForKey:@"car_made"];
 
@@ -130,12 +132,26 @@
 -(void)textFieldDidChange:(NSNotification*)noti{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@", carModelTf.text];
     dataTableView = [carModel filteredArrayUsingPredicate:predicate];
-    NSLog(@"ContentOfset:%f", _scrollView.contentOffset.y);
+//    NSLog(@"ContentOfset:%f", _scrollView.contentOffset.y);
     CGRect rect = carModelTf.frame;
-    [tableViewSearch setFrame:CGRectMake(rect.origin.x, rect.origin.y + rect.size.height+70-_scrollView.contentOffset.y, rect.size.width, MIN(70*carModel.count, 150))];
+    
+    [_scrollView setContentOffset:CGPointMake(0, rect.origin.y - 10) animated:NO];
+    rect = carModelTf.frame;
+    if (_scrollView.contentOffset.y != rect.origin.y - 10) {
+        [tableViewSearch setFrame:CGRectMake(rect.origin.x, rect.size.height + 80, rect.size.width, MIN(70*carModel.count, 150))];
+    }
+    else{
+        [tableViewSearch setFrame:CGRectMake(rect.origin.x, rect.origin.y + rect.size.height+70-_scrollView.contentOffset.y, rect.size.width, MIN(70*carModel.count, 150))];
+    }
+    
     [tableViewSearch setHidden:NO];
     
     [tableViewSearch reloadData];
+}
+
+-(BOOL)textFieldShouldClear:(UITextField *)textField{
+    [tableViewSearch setHidden:YES];
+    return YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -143,6 +159,17 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO
                                             withAnimation:UIStatusBarAnimationFade];
     [self.navigationController setNavigationBarHidden:YES];
+    
+    NSInteger index = [carMade indexOfObject:carMadeTf.text];
+    if (index != NSNotFound) {
+        carModel = [[CAR_MADE_MODEL objectAtIndex:index] objectForKey:@"car_model"];
+    }
+    else{
+        carModel = [NSMutableArray new];
+        for (NSDictionary *car in CAR_MADE_MODEL) {
+            [carModel addObjectsFromArray:[car objectForKey:@"car_model"]];
+        }
+    }
 }
 
 
@@ -211,6 +238,9 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView == _scrollView) {
         float y = scrollView.contentOffset.y;
+//        NSLog(@"ContentOfset:%f - %f", _scrollView.contentOffset.y, carModelTf.frame.origin.y);
+//        CGRect rect = tableViewSearch.frame;
+//        [tableViewSearch setFrame:CGRectMake(rect.origin.x, rect.origin.y + 70 - _scrollView.contentOffset.y, rect.size.width, rect.size.height)];
         if (keyboardIsShow) {
             return;
         }
@@ -220,12 +250,10 @@
         if (y < 0) {
             [_scrollView setContentOffset:CGPointMake(0, 0)];
         }
-        
-        CGRect rect = tableViewSearch.frame;
-        [tableViewSearch setFrame:CGRectMake(rect.origin.x, rect.origin.y + 70 - _scrollView.contentOffset.y, rect.size.width, rect.size.height)];
     }
 }
 
+#pragma mark - UITextFieldDelegate Methods
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
     if (textField == carMadeTf /*|| textField == carModelTf*/ || textField == carTypeTf || textField == carSizeTf || textField == carYearTf || textField == carPriceTf) {
@@ -332,7 +360,7 @@
 }
 
 
-#pragma mark -UITableViewDelegate Methods
+#pragma mark - UITableViewDelegate Methods
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return dataTableView.count;
 }
@@ -342,9 +370,6 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (tableView == tableViewSearch) {
-        return 30.;
-    }
     return 40.;
 }
 
@@ -366,11 +391,6 @@
         return cell;
     }
 }
-
-//-(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    [tableView cellForRowAtIndexPath:[tableView indexPathForSelectedRow]].accessoryType = UITableViewCellAccessoryNone;
-//    return indexPath;
-//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == tableViewSearch) {
@@ -422,6 +442,7 @@
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
 }
 
+#pragma mark - Events
 - (IBAction)backBtnClick:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }

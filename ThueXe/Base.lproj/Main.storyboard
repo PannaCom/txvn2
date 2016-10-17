@@ -86,13 +86,13 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="0OB-no-yXd" firstAttribute="leading" secondItem="CJF-PG-SE0" secondAttribute="leadingMargin" constant="19" id="497-2k-w6j"/>
+                                            <constraint firstItem="0OB-no-yXd" firstAttribute="leading" secondItem="CJF-PG-SE0" secondAttribute="leadingMargin" constant="10" id="497-2k-w6j"/>
                                             <constraint firstItem="g8I-OW-0JC" firstAttribute="height" secondItem="0OB-no-yXd" secondAttribute="height" multiplier="3:2" id="954-Ic-Ik5"/>
                                             <constraint firstItem="dP5-bY-bmp" firstAttribute="height" secondItem="g8I-OW-0JC" secondAttribute="height" id="E6d-io-Ecw"/>
                                             <constraint firstAttribute="bottom" secondItem="dP5-bY-bmp" secondAttribute="bottom" id="E8Z-E6-iRx"/>
                                             <constraint firstItem="dP5-bY-bmp" firstAttribute="leading" secondItem="g8I-OW-0JC" secondAttribute="leading" id="EBJ-9f-8F5"/>
                                             <constraint firstItem="x5r-aI-qzA" firstAttribute="height" secondItem="dP5-bY-bmp" secondAttribute="height" multiplier="2/3" id="MWa-FL-FBP"/>
-                                            <constraint firstItem="x5r-aI-qzA" firstAttribute="leading" secondItem="CJF-PG-SE0" secondAttribute="leadingMargin" constant="19" id="SxJ-Vs-nVG"/>
+                                            <constraint firstItem="x5r-aI-qzA" firstAttribute="leading" secondItem="CJF-PG-SE0" secondAttribute="leadingMargin" constant="10" id="SxJ-Vs-nVG"/>
                                             <constraint firstItem="dP5-bY-bmp" firstAttribute="top" secondItem="g8I-OW-0JC" secondAttribute="bottom" constant="10" id="WhN-IW-f6R"/>
                                             <constraint firstItem="dP5-bY-bmp" firstAttribute="centerY" secondItem="x5r-aI-qzA" secondAttribute="centerY" id="XCK-HO-DXk"/>
                                             <constraint firstItem="g8I-OW-0JC" firstAttribute="top" secondItem="CJF-PG-SE0" secondAttribute="top" id="ZC9-v1-lUY"/>
@@ -375,6 +375,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="_scrollView" destination="aXq-ar-WEr" id="qch-r1-jSs"/>
+                        <outlet property="backBtn" destination="aLT-9x-gVC" id="yic-wC-oXG"/>
                         <outlet property="carMadeTf" destination="vdT-e1-wRH" id="tJg-zZ-ibT"/>
                         <outlet property="carModelTf" destination="1KH-Av-VIa" id="YBg-hC-O2T"/>
                         <outlet property="carNumberTf" destination="5hU-4a-dCL" id="wg1-gh-Qic"/>
@@ -857,7 +858,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gVU-Wi-YbA" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bfn-ys-M0x">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bfn-ys-M0x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -872,20 +873,20 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Expand.png" width="100" height="100"/>
-        <image name="back.png" width="1024" height="1024"/>
-        <image name="car.png" width="417" height="224"/>
-        <image name="driver.png" width="114" height="114"/>
-        <image name="editUser.png" width="100" height="100"/>
-        <image name="filter.png" width="201" height="201"/>
-        <image name="filter_clear.png" width="201" height="201"/>
-        <image name="image_1.png" width="1077" height="306"/>
-        <image name="image_2.png" width="1080" height="306"/>
+        <image name="Expand.png" width="33" height="33"/>
+        <image name="back.png" width="50" height="50"/>
+        <image name="car.png" width="170" height="91"/>
+        <image name="driver.png" width="40" height="40"/>
+        <image name="editUser.png" width="50" height="50"/>
+        <image name="filter.png" width="50" height="50"/>
+        <image name="filter_clear.png" width="50" height="50"/>
+        <image name="image_1.png" width="320" height="91"/>
+        <image name="image_2.png" width="320" height="90"/>
         <image name="list_deselect.png" width="25" height="25"/>
         <image name="list_selected.png" width="25" height="25"/>
         <image name="map_deselect.png" width="25" height="25"/>
         <image name="map_selected.png" width="25" height="25"/>
-        <image name="menu.png" width="200" height="200"/>
-        <image name="passenger.png" width="114" height="114"/>
+        <image name="menu.png" width="50" height="50"/>
+        <image name="passenger.png" width="40" height="40"/>
     </resources>
 </document>

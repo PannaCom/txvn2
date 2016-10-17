@@ -46,6 +46,8 @@ typedef NS_ENUM(int, CAR_STATUS){
                         @"car_model":@[@"BMW 118i",@"BMW 218i Active Tourer",@"BMW 218i Gran Tourer",@"BMW M2",@"BMW 320i",@"BMW 330i",@"BMW 320i GT",@"BMW 328i GT",@"BMW M3",@"BMW 420i",@"BMW 420i Cabriolet",@"BMW 428i Grand Coupé",@"BMW M4 Coupé",@"BMW M4 Cabriolet",@"BMW 520i",@"BMW 528i",@"BMW 528i GT",@"BMW 535i",@"BMW 640i Grand Coupé",@"BMW 730Li",@"BMW 740Li",@"BMW 750Li",@"BMW X1 sDrive 18i",@"BMW X1 sDrive 20i",@"BMW X3 xDrive 20i",@"BMW X3 xDrive 28i",@"BMW X4 xDrive 28i",@"BMW X5 xDrive 30i",@"BMW X5 xDrive 35i",@"BMW X6 xDrive 35i",@"BMW X6 xDrive 30d",@"BMW Z4 sDrive 20i"]},\
                     @{@"car_made":@"Chevrolet",\
                         @"car_model":@[@"Aveo LT",@"Aveo LTZ",@"Spark Dou (van)",@"Spark Dou LS",@"Spark Dou LT",@"Orlando LTZ",@"Cruze LT",@"Cruze LTZ",@"Captiva LTZ",@"Colorado LT 4x2",@"Colorado LT 4x4",@"Colorado LTZ",@"Colorado Hight Country"]},\
+                    @{@"car_made":@"Das Auto",\
+                        @"car_model":@[@"Polo sedan 2014",@"Polo sedan 2015",@"Polo sedan GP 2015",@"Polo hatchback 2015",@"Polo hatchback 2016",@"Passat S 2016",@"Passat E 2016",@"Passat GP 2016",@"Tiguan 2015",@"Touareg 2015",@"Touareg GP 2015"]},\
                     @{@"car_made":@"Ford",\
                         @"car_model":@[@"Ecosport Trend",@"Ecosport Trend+",@"Ecosport Titanium",@"Everest 4x2 Trend",@"Everest 4x2 Titanium",@"Everest 4x4 Titanium",@"Fiesta Sport",@"Fiesta Titanium",@"Fiesta Fox Sport",@"Focus Ecoboost",@"Ranger XL 4x4",@"Ranger XLS 4x2",@"Ranger XLT 4x4",@"Ranger 4x2 Wildtrak",@"Ranger 4x4 Wildtrak"]},\
                     @{@"car_made":@"Honda",\
@@ -79,9 +81,7 @@ typedef NS_ENUM(int, CAR_STATUS){
                     @{@"car_made":@"Suzuki",\
                         @"car_model":@[@"Swift",@"Swift Special",@"Ertiga",@"Vitara"]},\
                     @{@"car_made":@"Toyota",\
-                        @"car_model":@[@"Yaris E",@"Yaris G",@"Vios E",@"Vios G CVT",@"Vios G 6MT",@"Altis G",@"Altis V",@"Camry E",@"Camry G",@"Camry Q",@"Innova E",@"Innova G",@"Innova V",@"Fortuner G",@"Fortuner V 4x2",@"Fortuner V 4x4",@"Fortuner TRD 4x2",@"Fortuner TRD 4x4",@"Land Cruiser Prado",@"Land Cruiser",@"Hilux E",@"Hilux G 4x4"]},\
-                    @{@"car_made":@"Das Auto",\
-                        @"car_model":@[@"Polo sedan 2014",@"Polo sedan 2015",@"Polo sedan GP 2015",@"Polo hatchback 2015",@"Polo hatchback 2016",@"Passat S 2016",@"Passat E 2016",@"Passat GP 2016",@"Tiguan 2015",@"Touareg 2015",@"Touareg GP 2015"]}]
+                        @"car_model":@[@"Yaris E",@"Yaris G",@"Vios E",@"Vios G CVT",@"Vios G 6MT",@"Altis G",@"Altis V",@"Camry E",@"Camry G",@"Camry Q",@"Innova E",@"Innova G",@"Innova V",@"Fortuner G",@"Fortuner V 4x2",@"Fortuner V 4x4",@"Fortuner TRD 4x2",@"Fortuner TRD 4x4",@"Land Cruiser Prado",@"Land Cruiser",@"Hilux E",@"Hilux G 4x4"]}]
 
 #define CAR_SIZE @[@"4 chỗ", @"5 chỗ", @"7 chỗ", @"12 chỗ", @"16 chỗ", @"24 chỗ", @"40 chỗ", @"50 chỗ"]
 #define CAR_TYPE @[@"Xe tự do", @"Xe taxi", @"Xe cưới", @"Xe hợp đồng", @"Xe tự lái", @"Xe tải chở hàng", @"Xe container"]

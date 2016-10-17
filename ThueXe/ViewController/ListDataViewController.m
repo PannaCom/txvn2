@@ -16,9 +16,8 @@
 #import "FilterViewController.h"
 #import "MapPassengerViewController.h"
 #import "UIScrollView+SVPullToRefresh.h"
-#import "UIScrollView+EmptyDataSet.h"
 
-@interface ListDataViewController ()<CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+@interface ListDataViewController ()<CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate>
 {
     CLLocationManager *locationManager;
     
@@ -31,7 +30,7 @@
 @end
 
 @implementation ListDataViewController
-
+#pragma mark - LifeCycle View Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
     // init location manager
@@ -80,7 +79,7 @@
         [DataHelper GET:API_GET_LIST_ONLINE params:@{@"lon":lon, @"lat":lat, @"car_made":[weakSelf.filterData objectForKey:@"car_made"], @"car_model":[weakSelf.filterData objectForKey:@"car_model"], @"car_size":carSize, @"car_type":[weakSelf.filterData objectForKey:@"car_type"]} completion:^(BOOL success, id responseObject, NSError *error){
             [weakTableView.pullToRefreshView stopAnimating];
             if (success) {
-                NSLog(@"list online: %@", responseObject);
+//                NSLog(@"list online: %@", responseObject);
                 _cars = [Car getDataFromJson:responseObject];
                 [weakTableView reloadData];
             }
@@ -104,59 +103,13 @@
 
 }
 
-
-
--(void)getListOnline{
-    CLLocationCoordinate2D currCoordinate = _currentLocation.coordinate;
-    NSString *lon = [NSString stringWithFormat:@"%f", currCoordinate.longitude];
-    NSString *lat = [NSString stringWithFormat:@"%f", currCoordinate.latitude];
-    NSString *carSize = [_filterData objectForKey:@"car_size"];
-    if (carSize.length > 1) {
-        carSize = [carSize substringToIndex:[carSize rangeOfString:@" "].location];
-    }
-    [DataHelper GET:API_GET_LIST_ONLINE params:@{@"lon":lon, @"lat":lat, @"car_made":[_filterData objectForKey:@"car_made"], @"car_model":[_filterData objectForKey:@"car_model"], @"car_size":carSize, @"car_type":[_filterData objectForKey:@"car_type"]} completion:^(BOOL success, id responseObject, NSError *error){
-        if (success) {
-            NSLog(@"list online: %@", responseObject);
-            _cars = [Car getDataFromJson:responseObject];
-            [_tableView reloadData];
-        }
-        else{
-            NSLog(@"error: %@, response %@", error, responseObject);
-        }
-    }];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)menuBtnClick:(id)sender {
-    UIAlertController *menu = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *changeUser = [UIAlertAction actionWithTitle:@"Đổi vai trò" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        [DataHelper clearUserData];
-        FirstViewController *firstViewController = (FirstViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"firstViewControllerStoryboardId"];
-        
-        [self presentViewController:firstViewController animated:YES completion:nil];
-    }];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Hủy" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
-        [menu dismissViewControllerAnimated:YES completion:nil];
-    }];
-    [menu addAction:changeUser];
-    [menu addAction:cancel];
-    [self presentViewController:menu animated:YES completion:nil];
-}
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
-    _currentLocation = locations.firstObject;
-    if (getListOnlineNow) {
-        getListOnlineNow = NO;
-        [self getListOnline];
-    }
-}
-
-#pragma mark -UITableViewDelegate Methods
+#pragma mark - UITableViewDelegate Methods
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
@@ -191,6 +144,7 @@
     return 0;
 }
 
+#pragma mark - UITabbarViewDelegate Methods
 -(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
     if ([viewController isKindOfClass:[MapPassengerViewController class]]) {
         MapPassengerViewController *controller = (MapPassengerViewController*)viewController;
@@ -200,16 +154,7 @@
     return YES;
 }
 
-- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
-{
-    return [UIImage imageNamed:@"empty_data.png"];
-}
-
-- (void)emptyDataSet:(UIScrollView *)scrollView didTapView:(UIView *)view
-{
-    [self getListOnline];
-}
-
+#pragma mark - Events
 - (IBAction)filterBtnClick:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     FilterViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"filterDataStoryboardId"];
@@ -217,5 +162,48 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
+-(void)getListOnline{
+    CLLocationCoordinate2D currCoordinate = _currentLocation.coordinate;
+    NSString *lon = [NSString stringWithFormat:@"%f", currCoordinate.longitude];
+    NSString *lat = [NSString stringWithFormat:@"%f", currCoordinate.latitude];
+    NSString *carSize = [_filterData objectForKey:@"car_size"];
+    if (carSize.length > 1) {
+        carSize = [carSize substringToIndex:[carSize rangeOfString:@" "].location];
+    }
+    [DataHelper GET:API_GET_LIST_ONLINE params:@{@"lon":lon, @"lat":lat, @"car_made":[_filterData objectForKey:@"car_made"], @"car_model":[_filterData objectForKey:@"car_model"], @"car_size":carSize, @"car_type":[_filterData objectForKey:@"car_type"]} completion:^(BOOL success, id responseObject, NSError *error){
+        if (success) {
+//            NSLog(@"list online: %@", responseObject);
+            _cars = [Car getDataFromJson:responseObject];
+            [_tableView reloadData];
+        }
+        else{
+            NSLog(@"error: %@, response %@", error, responseObject);
+        }
+    }];
+}
 
+- (IBAction)menuBtnClick:(id)sender {
+    UIAlertController *menu = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *changeUser = [UIAlertAction actionWithTitle:@"Đổi vai trò" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        [DataHelper clearUserData];
+        FirstViewController *firstViewController = (FirstViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"firstViewControllerStoryboardId"];
+        
+        [self presentViewController:firstViewController animated:YES completion:nil];
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Hủy" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
+        [menu dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [menu addAction:changeUser];
+    [menu addAction:cancel];
+    [self presentViewController:menu animated:YES completion:nil];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    _currentLocation = locations.firstObject;
+    if (getListOnlineNow) {
+        getListOnlineNow = NO;
+        [self getListOnline];
+    }
+}
 @end

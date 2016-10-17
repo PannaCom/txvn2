@@ -32,7 +32,7 @@
 @end
 
 @implementation MapDriverViewController
-
+#pragma mark - LifeCycle View Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -76,6 +76,11 @@
                                             withAnimation:UIStatusBarAnimationFade];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+#pragma mark - Events
 -(void)updateLocation{
     NSDictionary *userInfo = [[[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"] objectForKey:@"data"];
     
@@ -89,17 +94,18 @@
         [_mapView clear];
         for (NSDictionary *car in otherCars) {
             float d = [[car objectForKey:@"D"] floatValue];
-            NSString *dateString = [car objectForKey:@"date_time"];
-            dateString = [NSString stringWithFormat:@"%@ %@", [dateString substringToIndex:10], [dateString substringFromIndex:11]];
-            NSDateFormatter *dateFormat = [NSDateFormatter new];
-            dateFormat.dateFormat = @"yyyy-MM-dd HH:mm:ss.SSS";
-            NSDate *date = [dateFormat dateFromString:dateString];
-            NSTimeInterval time = -[date timeIntervalSinceNow];
+            
+//            NSString *dateString = [car objectForKey:@"date_time"];
+//            dateString = [NSString stringWithFormat:@"%@ %@", [dateString substringToIndex:10], [dateString substringFromIndex:11]];
+//            NSDateFormatter *dateFormat = [NSDateFormatter new];
+//            dateFormat.dateFormat = @"yyyy-MM-dd HH:mm:ss.SSS";
+//            NSDate *date = [dateFormat dateFromString:dateString];
+//            NSTimeInterval time = -[date timeIntervalSinceNow];
             
             currentMarker.position = currentLocation.coordinate;
             currentMarker.map = _mapView;
             
-            if (d > 0 && d < DISTANCE_MAX_GET_AROUND && time < TIME_LIMIT_GET_AROUND) {
+            if (d > 0/* && d < DISTANCE_MAX_GET_AROUND && time < TIME_LIMIT_GET_AROUND*/) {
                 float lon = [[car objectForKey:@"lon"] floatValue];
                 float lat = [[car objectForKey:@"lat"] floatValue];
                 
@@ -115,10 +121,6 @@
     }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (IBAction)backBtnClick:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

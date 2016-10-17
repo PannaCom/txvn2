@@ -16,21 +16,10 @@
 @end
 
 @implementation FirstViewController
-
+#pragma mark - LifeCycle View Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 44)];
-////    label.backgroundColor = [UIColor clearColor];
-//    label.numberOfLines = 2;
-//    label.font = [UIFont boldSystemFontOfSize: 16.0f];
-//    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-//    label.textAlignment = NSTextAlignmentCenter;
-//    label.textColor = [UIColor whiteColor];
-//    label.text = @"Lần đầu sử dụng.\nHãy chọn vai trò của bạn";
-//    self.navigationItem.titleView = label;
 }
-
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

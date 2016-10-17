@@ -38,7 +38,7 @@
 @end
 
 @implementation FilterViewController
-
+#pragma mark - LifeCycle View Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
     carMadeSelected = carModelSelected = carTypeSelected = carSizeSelected = carYearSelected = -1;
@@ -97,17 +97,6 @@
     carModelTf.autocorrectionType = UITextAutocorrectionTypeNo;
 }
 
--(void)textFieldDidChange:(NSNotification*)noti{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@", carModelTf.text];
-    carModel = [carModelAll filteredArrayUsingPredicate:predicate];
-
-    CGRect rect = carModelTf.frame;
-    [tableViewSearch setFrame:CGRectMake(rect.origin.x, rect.origin.y + rect.size.height + 2, rect.size.width, MIN(70*carModel.count, 150))];
-    [tableViewSearch setHidden:NO];
-    
-    [tableViewSearch reloadData];
-}
-
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:NO
@@ -131,7 +120,6 @@
             if (done == 2) {
                 [progressHudView hideAnimated:YES];
             }
-            NSLog(@"Done: %d", done);
 //            NSLog(@"%@", responseObject);
             carMade = [responseObject valueForKey:@"name"];
 //            NSLog(@"%@", carMade);
@@ -144,8 +132,7 @@
             if (done == 2) {
                 [progressHudView hideAnimated:YES];
             }
-            NSLog(@"Done: %d", done);
-//            NSLog(@"%@", responseObject);
+            //            NSLog(@"%@", responseObject);
             carModelAll = [responseObject valueForKey:@"name"];
 //            NSLog(@"%@", carModel);
         }
@@ -164,129 +151,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)backBtnClick:(id)sender {
-    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_9_0) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-    else {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    
-}
-- (IBAction)clearBtnClick:(id)sender {
-    carMadeTf.text = TEXT_ALL;
-    carModelTf.text = TEXT_ALL;
-    carSizeTf.text = TEXT_ALL;
-    carTypeTf.text = TEXT_ALL;
-    carYearTf.text = TEXT_ALL;
-    carMadeSelected = carModelSelected = carTypeSelected = carSizeSelected = carYearSelected = -1;
-    _filterData = [NSMutableDictionary dictionaryWithDictionary:@{@"car_made":@"", @"car_model":@"", @"car_size":@"", @"car_type":@""}];
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([[segue identifier] isEqualToString:@"showListCarSegueId"]) {
-        [DataHelper setFilterData:_filterData];
-        
-        UITabBarController *tabbar = [segue destinationViewController];
-        ListDataViewController *listController = [tabbar.viewControllers objectAtIndex:0];
-        listController.filterData = _filterData;
-        [tabbar setSelectedIndex:0];
-    }
-}
-
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    
-    if (textField == carMadeTf /*|| textField == carModelTf */|| textField == carTypeTf || textField == carSizeTf || textField == carYearTf) {
-        [self.view endEditing:YES];
-        UIViewController *controller = [[UIViewController alloc]init];
-        UITableView *alertTableView;
-        CGRect rect;
-        
-        NSString *title = @"";
-        if (textField == carMadeTf) {
-            dataTableView = carMade;
-            title = @"Chọn hãng xe";
-            textFieldSelected = TEXT_FIELD_CAR_MADE;
-            rowSelected = carMadeSelected;
-        }
-        else{
-//            if (textField == carModelTf) {
-//                dataTableView = carModel;
-//                title = @"Chọn mẫu xe";
-//                textFieldSelected = TEXT_FIELD_CAR_MODEL;
-//                rowSelected = carModelSelected;
-//            }
-//            else{
-                if (textField == carTypeTf) {
-                    dataTableView = CAR_TYPE;
-                    title = @"Chọn loại xe";
-                    textFieldSelected = TEXT_FIELD_CAR_TYPE;
-                    rowSelected = carTypeSelected;
-                }
-                else{
-                    if (textField == carSizeTf) {
-                        dataTableView = CAR_SIZE;
-                        title = @"Chọn số chỗ";
-                        textFieldSelected = TEXT_FIELD_CAR_SIZE;
-                        rowSelected = carSizeSelected;
-                    }
-                    else{
-                        if (textField == carYearTf) {
-                            dataTableView = carYear;
-                            title = @"Chọn năm sản xuất xe";
-                            textFieldSelected = TEXT_FIELD_CAR_YEAR;
-                            rowSelected = carYearSelected;
-                        }
-                    }
-                }
-//            }
-        }
-        
-        float heightRect = MIN(HEIGHT_SCREEN*2/3, 40.*dataTableView.count);
-        rect = CGRectMake(0, 0, WIDTH_SCREEN*3/4, heightRect);
-        [controller setPreferredContentSize:rect.size];
-        
-        alertTableView  = [[UITableView alloc]initWithFrame:rect];
-        alertTableView.delegate = self;
-        alertTableView.dataSource = self;
-        alertTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
-        [alertTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-        [alertTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellSelectId"];
-        [alertTableView reloadData];
-        
-        [controller.view addSubview:alertTableView];
-        [controller.view bringSubviewToFront:alertTableView];
-        [controller.view setUserInteractionEnabled:YES];
-        [alertTableView setUserInteractionEnabled:YES];
-        [alertTableView setAllowsSelection:YES];
-        alertController = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleAlert];
-        [alertController setValue:controller forKey:@"contentViewController"];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-            [alertController dismissViewControllerAnimated:YES completion:nil];
-        }];
-        [alertController addAction:cancelAction];
-        [self presentViewController:alertController animated:YES completion:nil];
-        return NO;
-    }
-    return YES;
-}
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    if (textField == carModelTf) {
-        [textField resignFirstResponder];
-        [tableViewSearch setHidden:YES];
-    }
-    return YES;
-}
-
--(void)textFieldDidEndEditing:(UITextField *)textField{
-    if (textField == carModelTf) {
-        [tableViewSearch setHidden:YES];
-    }
-}
-
-
-#pragma mark -UITableViewDelegate Methods
+#pragma mark - UITableViewDelegate Methods
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == tableViewSearch) {
         return carModel.count;
@@ -299,9 +164,6 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (tableView == tableViewSearch) {
-        return 30;
-    }
     return 40.;
 }
 
@@ -343,6 +205,7 @@
                 if (carMadeSelected != indexPath.row) {
                     carModelTf.text = TEXT_ALL;
                     carModelSelected = -1;
+                    [_filterData setObject:@"" forKey:@"car_model"];
                 }
                 carMadeSelected = indexPath.row-1;
                 if (carMadeSelected > -1) {
@@ -355,6 +218,7 @@
                     carMadeTf.text = TEXT_ALL;
                     carModelTf.text = TEXT_ALL;
                     [_filterData setObject:@"" forKey:@"car_made"];
+                    [_filterData setObject:@"" forKey:@"car_model"];
                 }
                 
                 break;
@@ -416,6 +280,142 @@
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
+}
+
+#pragma mark - UITextFieldDelegate Methods
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    if (textField == carMadeTf /*|| textField == carModelTf */|| textField == carTypeTf || textField == carSizeTf || textField == carYearTf) {
+        [self.view endEditing:YES];
+        UIViewController *controller = [[UIViewController alloc]init];
+        UITableView *alertTableView;
+        CGRect rect;
+        
+        NSString *title = @"";
+        if (textField == carMadeTf) {
+            dataTableView = carMade;
+            title = @"Chọn hãng xe";
+            textFieldSelected = TEXT_FIELD_CAR_MADE;
+            rowSelected = carMadeSelected;
+        }
+        else{
+            //            if (textField == carModelTf) {
+            //                dataTableView = carModel;
+            //                title = @"Chọn mẫu xe";
+            //                textFieldSelected = TEXT_FIELD_CAR_MODEL;
+            //                rowSelected = carModelSelected;
+            //            }
+            //            else{
+            if (textField == carTypeTf) {
+                dataTableView = CAR_TYPE;
+                title = @"Chọn loại xe";
+                textFieldSelected = TEXT_FIELD_CAR_TYPE;
+                rowSelected = carTypeSelected;
+            }
+            else{
+                if (textField == carSizeTf) {
+                    dataTableView = CAR_SIZE;
+                    title = @"Chọn số chỗ";
+                    textFieldSelected = TEXT_FIELD_CAR_SIZE;
+                    rowSelected = carSizeSelected;
+                }
+                else{
+                    if (textField == carYearTf) {
+                        dataTableView = carYear;
+                        title = @"Chọn năm sản xuất xe";
+                        textFieldSelected = TEXT_FIELD_CAR_YEAR;
+                        rowSelected = carYearSelected;
+                    }
+                }
+            }
+            //            }
+        }
+        
+        float heightRect = MIN(HEIGHT_SCREEN*2/3, 40.*dataTableView.count);
+        rect = CGRectMake(0, 0, WIDTH_SCREEN*3/4, heightRect);
+        [controller setPreferredContentSize:rect.size];
+        
+        alertTableView  = [[UITableView alloc]initWithFrame:rect];
+        alertTableView.delegate = self;
+        alertTableView.dataSource = self;
+        alertTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+        [alertTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+        [alertTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellSelectId"];
+        [alertTableView reloadData];
+        
+        [controller.view addSubview:alertTableView];
+        [controller.view bringSubviewToFront:alertTableView];
+        [controller.view setUserInteractionEnabled:YES];
+        [alertTableView setUserInteractionEnabled:YES];
+        [alertTableView setAllowsSelection:YES];
+        alertController = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController setValue:controller forKey:@"contentViewController"];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            [alertController dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (textField == carModelTf) {
+        [textField resignFirstResponder];
+        [tableViewSearch setHidden:YES];
+    }
+    return YES;
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if (textField == carModelTf) {
+        [_filterData setObject:carModelTf.text forKey:@"car_model"];
+        [tableViewSearch setHidden:YES];
+    }
+}
+
+#pragma mark - Events
+-(void)textFieldDidChange:(NSNotification*)noti{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@", carModelTf.text];
+    carModel = [carModelAll filteredArrayUsingPredicate:predicate];
+    
+    CGRect rect = carModelTf.frame;
+    [tableViewSearch setFrame:CGRectMake(rect.origin.x, rect.origin.y + rect.size.height + 2, rect.size.width, MIN(70*carModel.count, 150))];
+    [tableViewSearch setHidden:NO];
+    
+    [tableViewSearch reloadData];
+}
+
+- (IBAction)backBtnClick:(id)sender {
+    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_9_0) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+}
+- (IBAction)clearBtnClick:(id)sender {
+    carMadeTf.text = TEXT_ALL;
+    carModelTf.text = TEXT_ALL;
+    carSizeTf.text = TEXT_ALL;
+    carTypeTf.text = TEXT_ALL;
+    carYearTf.text = TEXT_ALL;
+    carMadeSelected = carModelSelected = carTypeSelected = carSizeSelected = carYearSelected = -1;
+    _filterData = [NSMutableDictionary dictionaryWithDictionary:@{@"car_made":@"", @"car_model":@"", @"car_size":@"", @"car_type":@""}];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue identifier] isEqualToString:@"showListCarSegueId"]) {
+        [DataHelper setFilterData:_filterData];
+        
+        UITabBarController *tabbar = [segue destinationViewController];
+        ListDataViewController *listController = [tabbar.viewControllers objectAtIndex:0];
+        listController.filterData = _filterData;
+        [tabbar setSelectedIndex:0];
+    }
 }
 
 @end
