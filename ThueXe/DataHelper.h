@@ -17,5 +17,5 @@
 +(void)setUserData:(NSDictionary*)userData;
 +(NSDictionary*)getUserData;
 +(void)clearUserData;
-
++(void)activeUser;
 @end

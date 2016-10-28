@@ -62,7 +62,7 @@
     // Creates a marker in the center of the map.
     currentMarker = [[GMSMarker alloc] init];
     currentMarker.position = CLLocationCoordinate2DMake(20.982879, 105.92552);
-    currentMarker.title = @"Vị trí hiện tại";
+    currentMarker.title = LocalizedString(@"MAP_CURRENT_LOCATION");
     currentMarker.map = _mapView;
     
     timerUpdateLocation = [NSTimer scheduledTimerWithTimeInterval:TIME_UPDATE_LOCATE target:self selector:@selector(updateLocation) userInfo:nil repeats:YES];
@@ -74,6 +74,16 @@
     getAroundNow = YES;
     [[UIApplication sharedApplication] setStatusBarHidden:NO
                                             withAnimation:UIStatusBarAnimationFade];
+    
+    if (!timerUpdateLocation) {
+        timerUpdateLocation = [NSTimer scheduledTimerWithTimeInterval:TIME_UPDATE_LOCATE target:self selector:@selector(updateLocation) userInfo:nil repeats:YES];
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [timerUpdateLocation invalidate];
+    timerUpdateLocation = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,7 +93,9 @@
 #pragma mark - Events
 -(void)updateLocation{
     NSDictionary *userInfo = [[[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"] objectForKey:@"data"];
-    
+    if (!userInfo) {
+        return;
+    }
     [DataHelper POST:API_LOCATE params:@{@"car_number":[userInfo objectForKey:@"car_number"], @"lon":[NSString stringWithFormat:@"%f", currentLocation.coordinate.longitude], @"lat":[NSString stringWithFormat:@"%f", currentLocation.coordinate.latitude], @"phone":[userInfo objectForKey:@"phone"], @"status":[NSString stringWithFormat:@"%d",carStatus]} completion:^(BOOL success, id responseObject, NSError *error){
         NSLog(@"locate: success: %d, response: %@", success, responseObject);
     }];
@@ -161,7 +173,7 @@
 
 - (IBAction)menuBtnClick:(id)sender {
     UIAlertController *menu = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *changeUser = [UIAlertAction actionWithTitle:@"Đổi vai trò" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+    UIAlertAction *changeUser = [UIAlertAction actionWithTitle:LocalizedString(@"CHANGE_USER") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         carStatus = CAR_STATUS_DISABLE;
         [timerUpdateLocation invalidate];
@@ -172,7 +184,7 @@
         
         [self presentViewController:firstViewController animated:YES completion:nil];
     }];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Hủy" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:LocalizedString(@"CANCEL") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
         [menu dismissViewControllerAnimated:YES completion:nil];
     }];
     [menu addAction:changeUser];

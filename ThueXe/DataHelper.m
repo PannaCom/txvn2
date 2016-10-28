@@ -61,4 +61,12 @@
     [userDefault synchronize];
 }
 
++(void)activeUser{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:[userDefault dictionaryForKey:@"userInfo"]];
+    [userInfo setObject:@"YES" forKey:@"wasActived"];
+    [userDefault setObject:userInfo forKey:@"userInfo"];
+    [userDefault synchronize];
+}
+
 @end

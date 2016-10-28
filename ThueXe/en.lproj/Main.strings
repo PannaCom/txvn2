@@ -1,0 +1,200 @@
+//
+///* Class = "UILabel"; text = "Xe xung quanh"; ObjectID = "04s-vJ-xOR"; */
+//"04s-vJ-xOR.text" = "Car Around";
+//
+///* Class = "UITextField"; placeholder = "Mẫu xe"; ObjectID = "1KH-Av-VIa"; */
+//"1KH-Av-VIa.placeholder" = "Car Model";
+//
+///* Class = "UITextField"; placeholder = "Hãng xe"; ObjectID = "27i-g2-fcq"; */
+//"27i-g2-fcq.placeholder" = "Car Made";
+//
+///* Class = "UIButton"; normalTitle = "Xác nhận"; ObjectID = "3u8-sR-R85"; */
+//"3u8-sR-R85.normalTitle" = "Confirm";
+//
+///* Class = "UITextField"; placeholder = "Biển số xe"; ObjectID = "5hU-4a-dCL"; */
+//"5hU-4a-dCL.placeholder" = "Car number";
+//
+///* Class = "UILabel"; text = "Đăng ký lái xe"; ObjectID = "64j-hk-oZn"; */
+//"64j-hk-oZn.text" = "Register Driver";
+//
+///* Class = "UITextField"; placeholder = "Mẫu xe"; ObjectID = "8xe-kx-oma"; */
+//"8xe-kx-oma.placeholder" = "Car Model";
+//
+///* Class = "UILabel"; text = "Xe xung quanh"; ObjectID = "9uo-pl-Xgm"; */
+//"9uo-pl-Xgm.text" = "Car Around";
+//
+///* Class = "UITextField"; placeholder = "Năm sản xuất"; ObjectID = "AMx-v6-T1A"; */
+//"AMx-v6-T1A.placeholder" = "Manufacture year";
+//
+///* Class = "UITextField"; placeholder = "Họ tên"; ObjectID = "FDT-pt-Pwo"; */
+//"FDT-pt-Pwo.placeholder" = "Full Name";
+//
+///* Class = "UITextField"; placeholder = "Loại xe"; ObjectID = "JaI-em-VBD"; */
+//"JaI-em-VBD.placeholder" = "Car Type";
+//
+///* Class = "UITextField"; placeholder = "Số chỗ"; ObjectID = "QhW-Gv-wOu"; */
+//"QhW-Gv-wOu.placeholder" = "Number of Seat";
+//
+///* Class = "UILabel"; text = "Nhập mã xác nhận trong tin nhắn sms từ số điện thoại bạn đã đăng ký"; ObjectID = "SGL-2Z-gRO"; */
+//"SGL-2Z-gRO.text" = "Enter active code in message from your phone number.";
+//
+///* Class = "UITextField"; placeholder = "Mức giá (đồng/km)"; ObjectID = "TmD-nf-qIP"; */
+//"TmD-nf-qIP.placeholder" = "Price";
+//
+///* Class = "UILabel"; text = "Nhập mã xác nhận"; ObjectID = "U5H-YY-lhm"; */
+//"U5H-YY-lhm.text" = "Enter active code";
+//
+///* Class = "UITextField"; placeholder = "Số điện thoại"; ObjectID = "WYE-hH-bRy"; */
+//"WYE-hH-bRy.placeholder" = "Phone";
+//
+///* Class = "UINavigationItem"; title = "Lần đầu sử dụng. Hãy chọn vai trò của bạn"; ObjectID = "X28-Wl-8Ob"; */
+//"X28-Wl-8Ob.title" = "Lần đầu sử dụng. Hãy chọn vai trò của bạn";
+//
+///* Class = "UILabel"; text = "Điều kiện lọc"; ObjectID = "Y5W-C3-sEZ"; */
+//"Y5W-C3-sEZ.text" = "Filter";
+//
+///* Class = "UITextField"; placeholder = "Số chỗ"; ObjectID = "bcM-Lr-Wab"; */
+//"bcM-Lr-Wab.placeholder" = "Number Seat";
+//
+///* Class = "UINavigationItem"; title = "Đăng nhập"; ObjectID = "bmq-LO-EwF"; */
+//"bmq-LO-EwF.title" = "Login";
+//
+///* Class = "UIButton"; normalTitle = "Lái xe"; ObjectID = "dP5-bY-bmp"; */
+//"dP5-bY-bmp.normalTitle" = "Driver";
+//
+///* Class = "UITextField"; placeholder = "Loại xe"; ObjectID = "fnV-eq-hPa"; */
+//"fnV-eq-hPa.placeholder" = "Car Type";
+//
+///* Class = "UIButton"; normalTitle = "Hành khách"; ObjectID = "g8I-OW-0JC"; */
+//"g8I-OW-0JC.normalTitle" = "Passenger";
+//
+///* Class = "UIButton"; normalTitle = "Đăng ký"; ObjectID = "gid-PL-VZE"; */
+//"gid-PL-VZE.normalTitle" = "Register";
+//
+///* Class = "UIBarButtonItem"; title = "Next"; ObjectID = "mLv-Jj-OTw"; */
+//"mLv-Jj-OTw.title" = "Next";
+//
+///* Class = "UITabBarItem"; title = "List"; ObjectID = "nCj-Az-YWQ"; */
+//"nCj-Az-YWQ.title" = "List";
+//
+///* Class = "UITextField"; placeholder = "Năm sản xuất"; ObjectID = "v5f-uq-Wjb"; */
+//"v5f-uq-Wjb.placeholder" = "Manufacture year";
+//
+///* Class = "UITabBarItem"; title = "Map"; ObjectID = "vKA-nB-gc0"; */
+//"vKA-nB-gc0.title" = "Map";
+//
+///* Class = "UITextField"; placeholder = "Hãng xe"; ObjectID = "vdT-e1-wRH"; */
+//"vdT-e1-wRH.placeholder" = "Car Made";
+//
+///* Class = "UILabel"; text = "Xe xung quanh"; ObjectID = "xxq-hd-cKd"; */
+//"xxq-hd-cKd.text" = "Car Around";
+//
+///* Class = "UISegmentedControl"; ywL-fx-XBC.segmentTitles[0] = "Chờ khách"; ObjectID = "ywL-fx-XBC"; */
+//"ywL-fx-XBC.segmentTitles[0]" = "Wait Passenger";
+//
+///* Class = "UISegmentedControl"; ywL-fx-XBC.segmentTitles[1] = "Bận"; ObjectID = "ywL-fx-XBC"; */
+//"ywL-fx-XBC.segmentTitles[1]" = "Busy";
+//
+///* Class = "UIButton"; normalTitle = "Tìm xe quanh đây"; ObjectID = "zuW-pC-AoY"; */
+//"zuW-pC-AoY.normalTitle" = "Find car arround";
+
+
+
+/* Class = "UILabel"; text = "Xe xung quanh"; ObjectID = "04s-vJ-xOR"; */
+"04s-vJ-xOR.text" = "Xe xung quanh";
+
+/* Class = "UITextField"; placeholder = "Mẫu xe"; ObjectID = "1KH-Av-VIa"; */
+"1KH-Av-VIa.placeholder" = "Mẫu xe";
+
+/* Class = "UITextField"; placeholder = "Hãng xe"; ObjectID = "27i-g2-fcq"; */
+"27i-g2-fcq.placeholder" = "Hãng xe";
+
+/* Class = "UIButton"; normalTitle = "Xác nhận"; ObjectID = "3u8-sR-R85"; */
+"3u8-sR-R85.normalTitle" = "Xác nhận";
+
+/* Class = "UITextField"; placeholder = "Biển số xe"; ObjectID = "5hU-4a-dCL"; */
+"5hU-4a-dCL.placeholder" = "Biển số xe";
+
+/* Class = "UILabel"; text = "Đăng ký lái xe"; ObjectID = "64j-hk-oZn"; */
+"64j-hk-oZn.text" = "Đăng ký lái xe";
+
+/* Class = "UITextField"; placeholder = "Mẫu xe"; ObjectID = "8xe-kx-oma"; */
+"8xe-kx-oma.placeholder" = "Mẫu xe";
+
+/* Class = "UILabel"; text = "Xe xung quanh"; ObjectID = "9uo-pl-Xgm"; */
+"9uo-pl-Xgm.text" = "Xe xung quanh";
+
+/* Class = "UITextField"; placeholder = "Năm sản xuất"; ObjectID = "AMx-v6-T1A"; */
+"AMx-v6-T1A.placeholder" = "Năm sản xuất";
+
+/* Class = "UITextField"; placeholder = "Họ tên"; ObjectID = "FDT-pt-Pwo"; */
+"FDT-pt-Pwo.placeholder" = "Họ tên";
+
+/* Class = "UITextField"; placeholder = "Loại xe"; ObjectID = "JaI-em-VBD"; */
+"JaI-em-VBD.placeholder" = "Loại xe";
+
+/* Class = "UITextField"; placeholder = "Số chỗ"; ObjectID = "QhW-Gv-wOu"; */
+"QhW-Gv-wOu.placeholder" = "Số chỗ";
+
+/* Class = "UILabel"; text = "Nhập mã xác nhận trong tin nhắn sms từ số điện thoại bạn đã đăng ký"; ObjectID = "SGL-2Z-gRO"; */
+"SGL-2Z-gRO.text" = "Nhập mã xác nhận trong tin nhắn sms từ số điện thoại bạn đã đăng ký";
+
+/* Class = "UITextField"; placeholder = "Mức giá (đồng/km)"; ObjectID = "TmD-nf-qIP"; */
+"TmD-nf-qIP.placeholder" = "Mức giá (đồng/km)";
+
+/* Class = "UILabel"; text = "Nhập mã xác nhận"; ObjectID = "U5H-YY-lhm"; */
+"U5H-YY-lhm.text" = "Nhập mã xác nhận";
+
+/* Class = "UITextField"; placeholder = "Số điện thoại"; ObjectID = "WYE-hH-bRy"; */
+"WYE-hH-bRy.placeholder" = "Số điện thoại";
+
+/* Class = "UINavigationItem"; title = "Lần đầu sử dụng. Hãy chọn vai trò của bạn"; ObjectID = "X28-Wl-8Ob"; */
+"X28-Wl-8Ob.title" = "Lần đầu sử dụng. Hãy chọn vai trò của bạn";
+
+/* Class = "UILabel"; text = "Điều kiện lọc"; ObjectID = "Y5W-C3-sEZ"; */
+"Y5W-C3-sEZ.text" = "Điều kiện lọc";
+
+/* Class = "UITextField"; placeholder = "Số chỗ"; ObjectID = "bcM-Lr-Wab"; */
+"bcM-Lr-Wab.placeholder" = "Số chỗ";
+
+/* Class = "UINavigationItem"; title = "Đăng nhập"; ObjectID = "bmq-LO-EwF"; */
+"bmq-LO-EwF.title" = "Đăng nhập";
+
+/* Class = "UIButton"; normalTitle = "Lái xe"; ObjectID = "dP5-bY-bmp"; */
+"dP5-bY-bmp.normalTitle" = "Lái xe";
+
+/* Class = "UITextField"; placeholder = "Loại xe"; ObjectID = "fnV-eq-hPa"; */
+"fnV-eq-hPa.placeholder" = "Loại xe";
+
+/* Class = "UIButton"; normalTitle = "Hành khách"; ObjectID = "g8I-OW-0JC"; */
+"g8I-OW-0JC.normalTitle" = "Hành khách";
+
+/* Class = "UIButton"; normalTitle = "Đăng ký"; ObjectID = "gid-PL-VZE"; */
+"gid-PL-VZE.normalTitle" = "Đăng ký";
+
+/* Class = "UIBarButtonItem"; title = "Next"; ObjectID = "mLv-Jj-OTw"; */
+"mLv-Jj-OTw.title" = "Next";
+
+/* Class = "UITabBarItem"; title = "List"; ObjectID = "nCj-Az-YWQ"; */
+"nCj-Az-YWQ.title" = "List";
+
+/* Class = "UITextField"; placeholder = "Năm sản xuất"; ObjectID = "v5f-uq-Wjb"; */
+"v5f-uq-Wjb.placeholder" = "Năm sản xuất";
+
+/* Class = "UITabBarItem"; title = "Map"; ObjectID = "vKA-nB-gc0"; */
+"vKA-nB-gc0.title" = "Map";
+
+/* Class = "UITextField"; placeholder = "Hãng xe"; ObjectID = "vdT-e1-wRH"; */
+"vdT-e1-wRH.placeholder" = "Hãng xe";
+
+/* Class = "UILabel"; text = "Xe xung quanh"; ObjectID = "xxq-hd-cKd"; */
+"xxq-hd-cKd.text" = "Xe xung quanh";
+
+/* Class = "UISegmentedControl"; ywL-fx-XBC.segmentTitles[0] = "Chờ khách"; ObjectID = "ywL-fx-XBC"; */
+"ywL-fx-XBC.segmentTitles[0]" = "Chờ khách";
+
+/* Class = "UISegmentedControl"; ywL-fx-XBC.segmentTitles[1] = "Bận"; ObjectID = "ywL-fx-XBC"; */
+"ywL-fx-XBC.segmentTitles[1]" = "Bận";
+
+/* Class = "UIButton"; normalTitle = "Tìm xe quanh đây"; ObjectID = "zuW-pC-AoY"; */
+"zuW-pC-AoY.normalTitle" = "Tìm xe quanh đây";

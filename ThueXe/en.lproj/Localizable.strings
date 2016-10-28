@@ -1,0 +1,134 @@
+///*
+// Localizable.strings
+// ThueXe
+// 
+// Created by VMio69 on 10/21/16.
+// Copyright © 2016 VMio69. All rights reserved.
+// */
+//
+//// LOCALIZE ---- ENGLISH
+//
+//"TEXT_ALL" = "All";
+//// RegisterView
+//"REGISTER_TITLE_EDIT" = "Edit Info";
+//"REGISTER_SAVE_BUTTON" = "Save";
+//"REGISTER_CAR_SIZE" = "%@ seats";
+//"REGISTER_CAR_PRICE_CUSTOM" = "Concurrent";
+//"REGISTER_ERROR" = "Register success";
+//
+//"REGISTER_TITLE_SELECT_CAR_MADE" = "Select Car made";
+//"REGISTER_TITLE_SELECT_CAR_TYPE" = "Select Car model";
+//"REGISTER_TITLE_SELECT_CAR_SIZE" = "Select number of seat";
+//"REGISTER_TITLE_SELECT_CAR_YEAR" = "Select Manufacture year";
+//"REGISTER_TITLE_SELECT_CAR_PRICE" = "Select Price ($/km)";
+//
+//"REGISTER_ERROR_NAME" = "Name can't blank";
+//"REGISTER_ERROR_PHONE" = "Phone can't blank";
+//"REGISTER_ERROR_CAR_NUMBER" = "Car number can't blank";
+//"REGISTER_ERROR_CAR_MADE" = "Car made can't blank";
+//"REGISTER_ERROR_CAR_MODEL" = "Car model can't blank";
+//"REGISTER_ERROR_CAR_SIZE" = "Number of seat can't blank";
+//"REGISTER_ERROR_CAR_YEAR" = "Manufacture year can't blank";
+//"REGISTER_ERROR_CAR_TYPE" = "Car type can't blank";
+//"REGISTER_ERROR_CAR_PRICE" = "Price can't blank";
+//
+//
+//// Active View
+//"ACTIVE_ERROR_TITLE" = "Error";
+//"ACTIVE_ERROR_INPUT" = "Enter 5 numbers";
+//"ACTIVE_ERROR_ACTIVE_FAIL" = "Can't active. Check your ative code.";
+//
+//// Driver Map
+//"MAP_CURRENT_LOCATION" = "Current location";
+//"CHANGE_USER" = "Change user";
+//"CANCEL" = "Cancel";
+//
+//// Filter View
+//"FILTER_LOADING" = "Loading";
+//
+//// Listdata View
+//"LISTDATA_EMTY" = "Not found";
+//"PULL_TO_REFRESH" = "Pull to refresh";
+//"RELEASE_TO_REFRESH" = "Release to refresh";
+//"PULL_TO_REFRESH_LOADING" = "Loading";
+//
+//"CAR_SIZE_4" = "4 seats";
+//"CAR_SIZE_5" = "5 seats";
+//"CAR_SIZE_7" = "7 seats";
+//"CAR_SIZE_12" = "12 seats";
+//"CAR_SIZE_16" = "16 seats";
+//"CAR_SIZE_24" = "24 seats";
+//"CAR_SIZE_40" = "40 seats";
+//"CAR_SIZE_50" = "50 seats";
+//// -------------
+
+/*
+ Localizable.strings
+ ThueXe
+ 
+ Created by VMio69 on 10/21/16.
+ Copyright © 2016 VMio69. All rights reserved.
+ */
+
+
+
+// LOCALIZE ---- VIETNAMESE
+
+"TEXT_ALL" = "Tất cả";
+// RegisterView
+"REGISTER_TITLE_EDIT" = "Sửa thông tin";
+"REGISTER_SAVE_BUTTON" = "Lưu";
+"REGISTER_CAR_SIZE" = "%@ chỗ";
+"REGISTER_CAR_PRICE_CUSTOM" = "Tự thỏa thuận";
+"REGISTER_ERROR" = "Đăng ký không thành công";
+
+"REGISTER_TITLE_SELECT_CAR_MADE" = "Chọn hãng xe";
+"REGISTER_TITLE_SELECT_CAR_TYPE" = "Chọn loại xe";
+"REGISTER_TITLE_SELECT_CAR_SIZE" = "Chọn số chỗ";
+"REGISTER_TITLE_SELECT_CAR_YEAR" = "Chọn năm sản xuất xe";
+"REGISTER_TITLE_SELECT_CAR_PRICE" = "Chọn mức giá (đồng/km)";
+
+"REGISTER_ERROR_NAME" = "Chưa nhập Họ tên";
+"REGISTER_ERROR_PHONE" = "Chưa nhập Số điện thoại";
+"REGISTER_ERROR_CAR_NUMBER" = "Chưa nhập Biển số xe";
+"REGISTER_ERROR_CAR_MADE" = "Chưa chọn Hãng xe";
+"REGISTER_ERROR_CAR_MODEL" = "Chưa nhập Mẫu xe";
+"REGISTER_ERROR_CAR_SIZE" = "Chưa chọn Số chỗ";
+"REGISTER_ERROR_CAR_YEAR" = "Chưa chọn Năm sản xuất";
+"REGISTER_ERROR_CAR_TYPE" = "Chưa chọn Loại xe";
+"REGISTER_ERROR_CAR_PRICE" = "Chưa chọn Mức giá";
+
+
+// Active View
+"ACTIVE_ERROR_TITLE" = "Lỗi";
+"ACTIVE_ERROR_INPUT" = "Hãy nhập đủ 5 số";
+"ACTIVE_ERROR_ACTIVE_FAIL" = "Hãy kiểm tra lại mã xác nhận";
+
+// Driver Map
+"MAP_CURRENT_LOCATION" = "Vị trí hiện tại";
+"CHANGE_USER" = "Đổi vai trò";
+"CANCEL" = "Hủy";
+
+// Filter View
+"FILTER_LOADING" = "Đang tải dữ liệu";
+
+// Listdata View
+"LISTDATA_EMTY" = "Chưa tìm được xe nào";
+"PULL_TO_REFRESH" = "Kéo để cập nhật";
+"RELEASE_TO_REFRESH" = "Thả ra để cập nhật";
+"PULL_TO_REFRESH_LOADING" = "Đang cập nhật";
+
+"CAR_SIZE_4" = "4 chỗ";
+"CAR_SIZE_5" = "5 chỗ";
+"CAR_SIZE_7" = "7 chỗ";
+"CAR_SIZE_12" = "12 chỗ";
+"CAR_SIZE_16" = "16 chỗ";
+"CAR_SIZE_24" = "24 chỗ";
+"CAR_SIZE_40" = "40 chỗ";
+"CAR_SIZE_50" = "50 chỗ";
+
+
+//
+#define CAR_SIZE @[@"4 chỗ", @"5 chỗ", @"7 chỗ", @"12 chỗ", @"16 chỗ", @"24 chỗ", @"40 chỗ", @"50 chỗ"]
+#define CAR_TYPE @[@"Xe tự do", @"Xe taxi", @"Xe cưới", @"Xe hợp đồng", @"Xe tự lái", @"Xe tải chở hàng", @"Xe container"]
+// -------------

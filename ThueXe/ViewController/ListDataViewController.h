@@ -10,7 +10,7 @@
 
 @interface ListDataViewController : UIViewController
 
-@property (strong, nonatomic) NSDictionary *filterData;
+@property (strong, nonatomic) NSMutableDictionary *filterData;
 @property (strong, nonatomic) NSArray *cars;
  
 @end

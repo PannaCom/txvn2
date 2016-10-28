@@ -15,5 +15,6 @@ pod 'GooglePlaces'
 pod 'SVPullToRefresh'
 pod 'DZNEmptyDataSet'
 pod 'MBProgressHUD'
+pod 'SlideMenuControllerOC'
 
 end

@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SlideMenuControllerOC.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>UIFloatLabelTextField.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,7 +47,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>38CCBDACFE9D49AA58BEEA52375CED80</key>
+		<key>2CC5931D1E8F279343AAC8E8FBC210F8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4EAB4BCC3125FE88C449FB1590D25696</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>711151D235ED4502C5372988907AC999</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,17 +72,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B77EB42CAE6BF5215A04179CBA4A331B</key>
+		<key>BC7A05D49685BA493376BF7E0EB0B5EF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BAEAEF56BA281F1F043137E53291A643</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C4CCFFE8D5B3064968C080E9047B0E40</key>
+		<key>C447290C9C279E60E424C37D422EEA69</key>
 		<dict>
 			<key>primary</key>
 			<true/>

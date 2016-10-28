@@ -14,6 +14,7 @@
 #import "ListDataViewController.h"
 #import "MapPassengerViewController.h"
 #import "FirstViewController.h"
+#import "ActiveViewController.h"
 
 @import GoogleMaps;
 
@@ -37,27 +38,47 @@
             case USER_TYPE_DRIVER:
             {
                 UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-                MapDriverViewController *controller = (MapDriverViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"mapDriverStoryboardId"];
+                if ([[userInfo objectForKey:@"wasActived"] boolValue]) {
+                    MapDriverViewController *controller = (MapDriverViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"mapDriverStoryboardId"];
+                    
+                    _window.rootViewController = controller;
+                }
+                else{
+                    ActiveViewController *controller = (ActiveViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"activeStoryboardId"];
+                    _window.rootViewController = controller;
+                }
                 
-                _window.rootViewController = controller;
+                
             }
                 break;
             case USER_TYPE_PASSENGER:
             {
                 UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
                 NSDictionary *filterData = [DataHelper getFilterData];
-                if (filterData) {
-                    UITabBarController *tabbar = [mainStoryboard instantiateViewControllerWithIdentifier: @"listCarStoryboardId"];
-                    ListDataViewController *listController = [tabbar.viewControllers objectAtIndex:0];
-                    listController.filterData = filterData;
-                    [tabbar setSelectedIndex:0];
-                    _window.rootViewController = tabbar;
+                
+//                if (filterData) {
+//                    UITabBarController *tabbar = [mainStoryboard instantiateViewControllerWithIdentifier: @"listCarStoryboardId"];
+//                    ListDataViewController *listController = [tabbar.viewControllers objectAtIndex:0];
+//                    listController.filterData = filterData;
+//                    [tabbar setSelectedIndex:0];
+//                    _window.rootViewController = tabbar;
+//                }
+//                else{
+//                    FilterViewController *controller = (FilterViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"filterDataStoryboardId"];
+//                    controller.filterData = [NSMutableDictionary dictionaryWithDictionary:@{@"car_made":@"", @"car_model":@"", @"car_size":@"", @"car_type":@""}];
+//                    _window.rootViewController = controller;
+//                }
+                
+                
+                if (!filterData) {
+                    filterData = @{@"car_made":@"", @"car_model":@"", @"car_size":@"", @"car_type":@""};
                 }
-                else{
-                    FilterViewController *controller = (FilterViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"filterDataStoryboardId"];
-                    controller.filterData = [NSMutableDictionary dictionaryWithDictionary:@{@"car_made":@"", @"car_model":@"", @"car_size":@"", @"car_type":@""}];
-                    _window.rootViewController = controller;
-                }
+               
+                UITabBarController *tabbar = [mainStoryboard instantiateViewControllerWithIdentifier: @"listCarStoryboardId"];
+                ListDataViewController *listController = [tabbar.viewControllers objectAtIndex:0];
+                listController.filterData = [filterData mutableCopy];
+                [tabbar setSelectedIndex:0];
+                _window.rootViewController = tabbar;
             }
                 break;
             default:

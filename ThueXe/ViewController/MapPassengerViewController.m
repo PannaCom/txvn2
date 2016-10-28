@@ -54,7 +54,7 @@
     // Creates a marker in the center of the map.
     currentMarker = [[GMSMarker alloc] init];
     currentMarker.position = CLLocationCoordinate2DMake(20.982879, 105.92552);
-    currentMarker.title = @"Vị trí hiện tại";
+    currentMarker.title = LocalizedString(@"MAP_CURRENT_LOCATION");
     currentMarker.map = _mapView;
     
     self.tabBarController.delegate = self;
@@ -83,7 +83,7 @@
     if (carSize.length > 1) {
         carSize = [carSize substringToIndex:[carSize rangeOfString:@" "].location];
     }
-    [DataHelper GET:API_GET_LIST_ONLINE params:@{@"lon":lon, @"lat":lat, @"car_made":[_filterData objectForKey:@"car_made"], @"car_model":[_filterData objectForKey:@"car_model"], @"car_size":carSize, @"car_type":[_filterData objectForKey:@"car_type"]} completion:^(BOOL success, id responseObject, NSError *error){
+    [DataHelper GET:API_GET_LIST_ONLINE params:@{@"lon":lon, @"lat":lat, @"car_made":[_filterData objectForKey:@"car_made"], @"car_model":[_filterData objectForKey:@"car_model"], @"car_size":carSize, @"car_type":[_filterData objectForKey:@"car_type"], @"order":@"0"} completion:^(BOOL success, id responseObject, NSError *error){
         if (success) {
 //            NSLog(@"list online: %@", responseObject);
             _cars = [Car getDataFromJson:responseObject];
@@ -139,7 +139,7 @@
 
 - (IBAction)menuBtnClick:(id)sender {
     UIAlertController *menu = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *changeUser = [UIAlertAction actionWithTitle:@"Đổi vai trò" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+    UIAlertAction *changeUser = [UIAlertAction actionWithTitle:LocalizedString(@"CHANGE_USER") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
        
         [DataHelper clearUserData];
@@ -147,7 +147,7 @@
         
         [self presentViewController:firstViewController animated:YES completion:nil];
     }];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Hủy" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:LocalizedString(@"CANCEL") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
         [menu dismissViewControllerAnimated:YES completion:nil];
     }];
     [menu addAction:changeUser];

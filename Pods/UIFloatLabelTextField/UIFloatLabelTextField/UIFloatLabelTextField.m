@@ -92,20 +92,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(textDidChange:)
                                                  name:UITextFieldTextDidChangeNotification object:nil];
-    
-    UIToolbar* keyboardToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 50)];
-    keyboardToolbar.barStyle = UIBarStyleDefault;
-    keyboardToolbar.items = [NSArray arrayWithObjects:
-                             [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                             [[UIBarButtonItem alloc]initWithTitle:@"Xong" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyboard)],
-                             nil];
-    [keyboardToolbar sizeToFit];
-    self.inputAccessoryView = keyboardToolbar;
-    
-}
-
--(void)dismissKeyboard{
-    [self resignFirstResponder];
 }
 
 - (void)setupClearTextFieldButton
@@ -139,7 +125,7 @@
     // floatLabel
     _floatLabel = [UILabel new];
     _floatLabel.textColor = [UIColor blackColor];
-    _floatLabel.font = [UIFont boldSystemFontOfSize:12.0f];
+    _floatLabel.font =[UIFont boldSystemFontOfSize:12.0f];
     _floatLabel.alpha = 0.0f;
     [_floatLabel setCenter:CGPointMake(_xOrigin, 0.0f)];
     [self addSubview:_floatLabel];
@@ -348,18 +334,6 @@
     } else if ([self.text length]) {
         [self toggleFloatLabelProperties:UIFloatLabelAnimationTypeShow];
     }
-    
-//    CGFloat borderWidth = 1;
-//    CALayer *border = [CALayer layer];
-//    border.borderColor = [UIColor grayColor].CGColor;
-//    border.frame = CGRectMake(0, self.frame.size.height - borderWidth, self.frame.size.width, self.frame.size.height);
-//    border.borderWidth = borderWidth;
-//    [self.layer addSublayer:border];
-//    self.layer.masksToBounds = YES;
-
-    [self.layer setBorderColor:[UIColor colorWithRed:1/255. green:156/255. blue:160/255. alpha:1.].CGColor];
-    [self.layer setBorderWidth:1];
-    [self.layer setCornerRadius:10];
 }
 
 #pragma mark - UIResponder (Override)

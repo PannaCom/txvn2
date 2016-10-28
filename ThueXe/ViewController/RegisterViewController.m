@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DataHelper.h"
 #import "FirstViewController.h"
+#import "ActiveViewController.h"
 
 @interface RegisterViewController ()<UITextFieldDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 {
@@ -31,6 +32,7 @@
     NSArray *carMade;
     NSMutableArray *carModel;
     NSMutableArray *carYear;
+    NSArray *carTypes;
     long carMadeSelected, carModelSelected, carTypeSelected, carSizeSelected, carYearSelected, carPriceSelected;
     NSArray *dataTableView;
     
@@ -52,23 +54,27 @@
     [super viewDidLoad];
     if (_isEdit) {
         backBtn.hidden = NO;
-        titleController.text = @"Sửa thông tin";
-        [registerBtn setTitle:@"Lưu" forState:UIControlStateNormal];
-        userData = [NSDictionary new];
-        userData = [[DataHelper getUserData] objectForKey:@"data"];
-        if (userData) {
-            userNameTf.text = [userData objectForKey:@"name"];
-            phoneTf.text = [userData objectForKey:@"phone"];
-            carNumberTf.text = [userData objectForKey:@"car_number"];
-            carMadeTf.text = [userData objectForKey:@"car_made"];
-            carModelTf.text = [userData objectForKey:@"car_model"];
-            carSizeTf.text = [NSString stringWithFormat:@"%@ chỗ", [userData objectForKey:@"car_size"]];
-            carTypeTf.text = [userData objectForKey:@"car_type"];
-            carYearTf.text = [userData objectForKey:@"car_year"];
-            carPriceTf.text = [userData objectForKey:@"car_price"];
-            phoneTf.enabled = NO;
-        }
+        titleController.text = LocalizedString(@"REGISTER_TITLE_EDIT");
+        [registerBtn setTitle:LocalizedString(@"REGISTER_SAVE_BUTTON") forState:UIControlStateNormal];
+        
     }
+    carTypes = [NSArray new];
+    
+    userData = [NSDictionary new];
+    userData = [[DataHelper getUserData] objectForKey:@"data"];
+    if (userData) {
+        userNameTf.text = [userData objectForKey:@"name"];
+        phoneTf.text = [userData objectForKey:@"phone"];
+        carNumberTf.text = [userData objectForKey:@"car_number"];
+        carMadeTf.text = [userData objectForKey:@"car_made"];
+        carModelTf.text = [userData objectForKey:@"car_model"];
+        carSizeTf.text = [NSString stringWithFormat:LocalizedString(@"REGISTER_CAR_SIZE"), [userData objectForKey:@"car_size"]];
+        carTypeTf.text = [userData objectForKey:@"car_type"];
+        carYearTf.text = [userData objectForKey:@"car_year"];
+        carPriceTf.text = [userData objectForKey:@"car_price"];
+        phoneTf.enabled = NO;
+    }
+    
     carMadeSelected = carModelSelected = carTypeSelected = carSizeSelected = carYearSelected = carPriceSelected = -1;
     
     userNameTf.delegate = self;
@@ -95,7 +101,7 @@
     carMade = [NSArray new];
     carModel = [NSMutableArray new];
 
-    carMade = [CAR_MADE_MODEL valueForKey:@"car_made"];
+//    carMade = [CAR_MADE_MODEL valueForKey:@"car_made"];
 
     //Get Current Year
     NSDateFormatter* formatter = [NSDateFormatter new];
@@ -110,7 +116,7 @@
     }
     dataTableView = [NSArray new];
     carPrice = [NSMutableArray new];
-    [carPrice addObject:@"Tự thỏa thuận"];
+    [carPrice addObject:LocalizedString(@"REGISTER_CAR_PRICE_CUSTOM")];
     for (int i = 6000; i <= 15000; i += 500) {
         [carPrice addObject:[NSString stringWithFormat:@"%d", i]];
     }
@@ -127,6 +133,37 @@
     [carModelTf addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     carModelTf.inputAccessoryView = nil;
     carModelTf.autocorrectionType = UITextAutocorrectionTypeNo;
+    userNameTf.autocorrectionType = UITextAutocorrectionTypeNo;
+    carNumberTf.autocorrectionType = UITextAutocorrectionTypeNo;
+    
+    [self getInfoCarFromServer];
+}
+
+-(void)getInfoCarFromServer{
+    
+    [DataHelper GET:API_GET_ALL_MADE_LIST params:@{} completion:^(BOOL success, id responseObject, NSError *error){
+        if (success) {
+            //            NSLog(@"%@", responseObject);
+            carMade = [responseObject valueForKey:@"name"];
+            //            NSLog(@"%@", carMade);
+        }
+    }];
+    
+    [DataHelper GET:API_GET_MODEL_LIST params:@{} completion:^(BOOL success, id responseObject, NSError *error){
+        if (success) {
+            //            NSLog(@"%@", responseObject);
+            carModel = [responseObject valueForKey:@"name"];
+            //            NSLog(@"%@", carModel);
+        }
+    }];
+    
+    [DataHelper GET:API_GET_TYPE_LIST params:@{} completion:^(BOOL success, id responseObject, NSError *error){
+        if (success) {
+            //            NSLog(@"%@", responseObject);
+            carTypes = [responseObject valueForKey:@"name"];
+            //            NSLog(@"%@", carTypes);
+        }
+    }];
 }
 
 -(void)textFieldDidChange:(NSNotification*)noti{
@@ -160,16 +197,16 @@
                                             withAnimation:UIStatusBarAnimationFade];
     [self.navigationController setNavigationBarHidden:YES];
     
-    NSInteger index = [carMade indexOfObject:carMadeTf.text];
-    if (index != NSNotFound) {
-        carModel = [[CAR_MADE_MODEL objectAtIndex:index] objectForKey:@"car_model"];
-    }
-    else{
-        carModel = [NSMutableArray new];
-        for (NSDictionary *car in CAR_MADE_MODEL) {
-            [carModel addObjectsFromArray:[car objectForKey:@"car_model"]];
-        }
-    }
+//    NSInteger index = [carMade indexOfObject:carMadeTf.text];
+//    if (index != NSNotFound) {
+//        carModel = [[CAR_MADE_MODEL objectAtIndex:index] objectForKey:@"car_model"];
+//    }
+//    else{
+//        carModel = [NSMutableArray new];
+//        for (NSDictionary *car in CAR_MADE_MODEL) {
+//            [carModel addObjectsFromArray:[car objectForKey:@"car_model"]];
+//        }
+//    }
 }
 
 
@@ -208,7 +245,7 @@
 }
 - (IBAction)registerBtnClick:(id)sender {
     if ([self checkInputDataTextField]) {
-        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"name":userNameTf.text, @"phone":phoneTf.text, @"car_number":carNumberTf.text, @"car_made":carMadeTf.text, @"car_model":carModelTf.text, @"car_size":[carSizeTf.text substringToIndex:[carSizeTf.text rangeOfString:@" "].location], @"car_type":carTypeTf.text, @"car_year":carYearTf.text, @"car_price":carPriceTf.text}];
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"name":userNameTf.text, @"phone":phoneTf.text, @"car_number":carNumberTf.text, @"car_made":carMadeTf.text, @"car_model":carModelTf.text, @"car_size":[carSizeTf.text substringToIndex:[carSizeTf.text rangeOfString:@" "].location], @"car_type":carTypeTf.text, @"car_year":carYearTf.text, @"car_price":([carPriceTf.text isEqualToString:LocalizedString(@"REGISTER_CAR_PRICE_CUSTOM")] ? @"-1" : carPriceTf.text)}];
         if (_isEdit) {
             [params setValue:[userData objectForKey:@"id"] forKey:@"id"];
         }
@@ -220,10 +257,18 @@
                     [[NSUserDefaults standardUserDefaults] setObject:@{@"data":params, @"userType":[NSString stringWithFormat:@"%d", USER_TYPE_DRIVER]} forKey:@"userInfo"];
                     
                     [[NSUserDefaults standardUserDefaults] synchronize];
-                    [self performSegueWithIdentifier:@"goToMapDriveSegueId" sender:self];
+                    if (_isEdit) {
+                        [self performSegueWithIdentifier:@"goToMapDriveSegueId" sender:self];
+                        
+                    }
+                    else{
+                        ActiveViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"activeStoryboardId"];
+                        [self presentViewController:vc animated:YES completion:nil];
+                    }
+                    
                 }
                 else{
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Đăng ký không thành công" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalizedString(@"REGISTER_ERROR") message:@"" preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                         [alert dismissViewControllerAnimated:YES completion:nil];
                     }];
@@ -265,7 +310,7 @@
         NSString *title = @"";
         if (textField == carMadeTf) {
             dataTableView = carMade;
-            title = @"Chọn hãng xe";
+            title = LocalizedString(@"REGISTER_TITLE_SELECT_CAR_MADE");
             textFieldSelected = TEXT_FIELD_CAR_MADE;
             rowSelected = carMadeSelected;
         }
@@ -285,27 +330,27 @@
 //            rowSelected = carModelSelected;
 //        }
         if (textField == carTypeTf) {
-            dataTableView = CAR_TYPE;
-            title = @"Chọn loại xe";
+            dataTableView = carTypes;
+            title = LocalizedString(@"REGISTER_TITLE_SELECT_CAR_TYPE");
             textFieldSelected = TEXT_FIELD_CAR_TYPE;
             rowSelected = carTypeSelected;
         }
         if (textField == carSizeTf) {
             dataTableView = CAR_SIZE;
-            title = @"Chọn số chỗ";
+            title = LocalizedString(@"REGISTER_TITLE_SELECT_CAR_SIZE");
             textFieldSelected = TEXT_FIELD_CAR_SIZE;
             rowSelected = carSizeSelected;
         }
         if (textField == carYearTf) {
             dataTableView = carYear;
-            title = @"Chọn năm sản xuất xe";
+            title = LocalizedString(@"REGISTER_TITLE_SELECT_CAR_YEAR");
             textFieldSelected = TEXT_FIELD_CAR_YEAR;
             rowSelected = carYearSelected;
         }
         
         if (textField == carPriceTf) {
             dataTableView = carPrice;
-            title = @"Chọn mức giá (đồng/km)";
+            title = LocalizedString(@"REGISTER_TITLE_SELECT_CAR_PRICE");
             textFieldSelected = TEXT_FIELD_CAR_PRICE;
             rowSelected = carPriceSelected;
         }
@@ -346,10 +391,10 @@
 
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    if (textField == carModelTf) {
+//    if (textField == carModelTf) {
         [textField resignFirstResponder];
         [tableViewSearch setHidden:YES];
-    }
+//    }
     return YES;
 }
 
@@ -406,7 +451,7 @@
                     carModelSelected = -1;
                 }
                 carMadeSelected = indexPath.row;
-                carModel = [[CAR_MADE_MODEL objectAtIndex:carMadeSelected] objectForKey:@"car_model"];
+//                carModel = [[CAR_MADE_MODEL objectAtIndex:carMadeSelected] objectForKey:@"car_model"];
                 carMadeTf.text = [carMade objectAtIndex:carMadeSelected];
                 break;
             case TEXT_FIELD_CAR_MODEL:
@@ -419,7 +464,7 @@
                 break;
             case TEXT_FIELD_CAR_TYPE:
                 carTypeSelected = indexPath.row;
-                carTypeTf.text = [CAR_TYPE objectAtIndex:carTypeSelected];
+                carTypeTf.text = [carTypes objectAtIndex:carTypeSelected];
                 break;
             case TEXT_FIELD_CAR_YEAR:
                 carYearSelected = indexPath.row;
@@ -444,12 +489,17 @@
 
 #pragma mark - Events
 - (IBAction)backBtnClick:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_9_0) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (IBAction)menuBtnClick:(id)sender {
     UIAlertController *menu = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *changeUser = [UIAlertAction actionWithTitle:@"Đổi vai trò" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+    UIAlertAction *changeUser = [UIAlertAction actionWithTitle:LocalizedString(@"CHANGE_USER") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userInfo"];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -464,42 +514,50 @@
     [menu addAction:cancel];
     [self presentViewController:menu animated:YES completion:nil];
 }
+/*
+
+  = "Chưa nhập Mẫu xe";
+  = "Chưa chọn Số chỗ"
+  = "Chưa chọn Năm sản xuất";
+  = "Chưa chọn Loại xe";
+  = "Chưa chọn Mức giá";
+ */
 
 -(BOOL)checkInputDataTextField{
     if (userNameTf.text.length == 0) {
-        [self showAlertWithString:@"Chưa nhập Họ tên"];
+        [self showAlertWithString:LocalizedString(@"REGISTER_ERROR_NAME")];
         return NO;
     }
     if (phoneTf.text.length == 0) {
-        [self showAlertWithString:@"Chưa nhập Số điện thoại"];
+        [self showAlertWithString:LocalizedString(@"REGISTER_ERROR_PHONE")];
         return NO;
     }
     if (carNumberTf.text.length == 0) {
-        [self showAlertWithString:@"Chưa nhập Biển số xe"];
+        [self showAlertWithString:LocalizedString(@"REGISTER_ERROR_CAR_NUMBER")];
         return NO;
     }
     if (carMadeTf.text.length == 0) {
-        [self showAlertWithString:@"Chưa chọn Hãng xe"];
+        [self showAlertWithString:LocalizedString(@"REGISTER_ERROR_CAR_MADE")];
         return NO;
     }
     if (carModelTf.text.length == 0) {
-        [self showAlertWithString:@"Chưa nhập Mẫu xe"];
+        [self showAlertWithString:LocalizedString(@"REGISTER_ERROR_CAR_MODEL")];
         return NO;
     }
 //    if (carSizeTf.text.length == 0) {
-//        [self showAlertWithString:@"Chưa chọn số chỗ"];
+//        [self showAlertWithString:LocalizedString(@"REGISTER_ERROR_CAR_SIZE")];
 //        return NO;
 //    }
     if (carYearTf.text.length == 0) {
-        [self showAlertWithString:@"Chưa chọn Năm sản xuất"];
+        [self showAlertWithString:LocalizedString(@"REGISTER_ERROR_CAR_YEAR")];
         return NO;
     }
     if (carTypeTf.text.length == 0) {
-        [self showAlertWithString:@"Chưa chọn Loại xe"];
+        [self showAlertWithString:LocalizedString(@"REGISTER_ERROR_CAR_TYPE")];
         return NO;
     }
     if (carPriceTf.text.length == 0) {
-        [self showAlertWithString:@"Chưa chọn Mức giá"];
+        [self showAlertWithString:LocalizedString(@"REGISTER_ERROR_CAR_PRICE")];
         return NO;
     }
 
