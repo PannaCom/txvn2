@@ -56,7 +56,7 @@
         backBtn.hidden = NO;
         titleController.text = LocalizedString(@"REGISTER_TITLE_EDIT");
         [registerBtn setTitle:LocalizedString(@"REGISTER_SAVE_BUTTON") forState:UIControlStateNormal];
-        
+        phoneTf.enabled = NO;
     }
     carTypes = [NSArray new];
     
@@ -72,7 +72,7 @@
         carTypeTf.text = [userData objectForKey:@"car_type"];
         carYearTf.text = [userData objectForKey:@"car_year"];
         carPriceTf.text = [userData objectForKey:@"car_price"];
-        phoneTf.enabled = NO;
+        
     }
     
     carMadeSelected = carModelSelected = carTypeSelected = carSizeSelected = carYearSelected = carPriceSelected = -1;
@@ -244,6 +244,7 @@
     _scrollView.scrollIndicatorInsets = contentInsets;
 }
 - (IBAction)registerBtnClick:(id)sender {
+    [registerBtn setHidden:YES];
     if ([self checkInputDataTextField]) {
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"name":userNameTf.text, @"phone":phoneTf.text, @"car_number":carNumberTf.text, @"car_made":carMadeTf.text, @"car_model":carModelTf.text, @"car_size":[carSizeTf.text substringToIndex:[carSizeTf.text rangeOfString:@" "].location], @"car_type":carTypeTf.text, @"car_year":carYearTf.text, @"car_price":([carPriceTf.text isEqualToString:LocalizedString(@"REGISTER_CAR_PRICE_CUSTOM")] ? @"-1" : carPriceTf.text)}];
         if (_isEdit) {
@@ -271,12 +272,16 @@
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalizedString(@"REGISTER_ERROR") message:@"" preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                         [alert dismissViewControllerAnimated:YES completion:nil];
+                        [registerBtn setHidden:NO];
                     }];
                     [alert addAction:ok];
                     [self presentViewController:alert animated:YES completion:nil];
                 }
             }
         }];
+    }
+    else{
+        [registerBtn setHidden:NO];
     }
 }
 

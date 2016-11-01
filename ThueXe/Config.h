@@ -98,7 +98,7 @@ typedef NS_ENUM(int, CAR_STATUS){
 #define TIME_UPDATE_LOCATE 30 //seconds
 #define DISTANCE_MAX_GET_AROUND 100 // kilomet
 #define TIME_LIMIT_GET_AROUND 3600 // seconds
-#define TIME_LIMIT_RESEND_CODE 30 // seconds
+#define TIME_LIMIT_RESEND_CODE 60 // seconds
 
 //#define TEXT_ALL @"Tất cả"
 //

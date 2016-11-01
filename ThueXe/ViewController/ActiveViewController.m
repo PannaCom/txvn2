@@ -18,6 +18,7 @@
     IBOutlet UITextView *resendTextView;
     IBOutlet UITextView *reRegisterTextView;
     NSDictionary *userInfo;
+    BOOL wasSend;
 }
 @end
 
@@ -26,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     userInfo = [[DataHelper getUserData] objectForKey:@"data"];
-    
+    wasSend = NO;
     [activeCode becomeFirstResponder];
 }
 
@@ -37,13 +38,16 @@
 
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView{
     if (textView == resendTextView) {
-        if ([self canResendActiveCode]) {
+        [resendTextView setUserInteractionEnabled:NO];
+        if ([self canResendActiveCode] && !wasSend) {
+            wasSend = YES;
+
             [DataHelper POST:API_RESEND_ACTIVE params:@{@"idtaixe":[userInfo objectForKey:@"id"]} completion:^(BOOL success, id responseObject, NSError *error){
                 if (success && [responseObject isEqualToString:@"1"]) {
                     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
                     [userDefault setObject:[NSDate date] forKey:@"lastSend"];
                     [userDefault synchronize];
-                    
+                    wasSend = NO;
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Mã kích hoạt đã được gửi đến số điện thoại của bạn." message:@"" preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                         [alert dismissViewControllerAnimated:YES completion:^(){
@@ -52,6 +56,9 @@
                     }];
                     [alert addAction:ok];
                     [self presentViewController:alert animated:YES completion:nil];
+                }
+                else{
+                    
                 }
                 NSLog(@"%@", responseObject);
             }];
@@ -105,7 +112,7 @@
         [DataHelper POST:API_ACTIVE params:@{@"idtaixe":[userInfo objectForKey:@"id"], @"code":activeCode.text} completion:^(BOOL success, id responseObject, NSError *error){
             NSLog(@"%@", responseObject);
             if (success) {
-                [sendBtn setEnabled:YES];
+               
                 if ([responseObject isEqualToString:@"1"]) {
                     [DataHelper activeUser];
                     MapDriverViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDriverStoryboardId"];
@@ -113,9 +120,11 @@
                     [self presentViewController:controller animated:YES completion:nil];
                 }
                 else{
+                    [sendBtn setEnabled:YES];
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalizedString(@"ACTIVE_ERROR_TITLE") message:LocalizedString(@"ACTIVE_ERROR_ACTIVE_FAIL") preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                         [alert dismissViewControllerAnimated:YES completion:^(){
+                            
                             [activeCode becomeFirstResponder];
                         }];
                     }];

@@ -98,41 +98,41 @@
     }
     [DataHelper POST:API_LOCATE params:@{@"car_number":[userInfo objectForKey:@"car_number"], @"lon":[NSString stringWithFormat:@"%f", currentLocation.coordinate.longitude], @"lat":[NSString stringWithFormat:@"%f", currentLocation.coordinate.latitude], @"phone":[userInfo objectForKey:@"phone"], @"status":[NSString stringWithFormat:@"%d",carStatus]} completion:^(BOOL success, id responseObject, NSError *error){
         NSLog(@"locate: success: %d, response: %@", success, responseObject);
-    }];
-    
-    [DataHelper GET:API_GET_AROUND params:@{@"lon":[NSString stringWithFormat:@"%f", currentLocation.coordinate.longitude], @"lat":[NSString stringWithFormat:@"%f", currentLocation.coordinate.latitude]} completion:^(BOOL success, id responseObject, NSError *error){
-        NSLog(@"get around: success: %d, response: %@", success, responseObject);
-        NSArray *otherCars = responseObject;
-        [_mapView clear];
-        for (NSDictionary *car in otherCars) {
-            float d = [[car objectForKey:@"D"] floatValue];
-            
-//            NSString *dateString = [car objectForKey:@"date_time"];
-//            dateString = [NSString stringWithFormat:@"%@ %@", [dateString substringToIndex:10], [dateString substringFromIndex:11]];
-//            NSDateFormatter *dateFormat = [NSDateFormatter new];
-//            dateFormat.dateFormat = @"yyyy-MM-dd HH:mm:ss.SSS";
-//            NSDate *date = [dateFormat dateFromString:dateString];
-//            NSTimeInterval time = -[date timeIntervalSinceNow];
-            
-            currentMarker.position = currentLocation.coordinate;
-            currentMarker.map = _mapView;
-            
-            if (d > 0/* && d < DISTANCE_MAX_GET_AROUND && time < TIME_LIMIT_GET_AROUND*/) {
-                float lon = [[car objectForKey:@"lon"] floatValue];
-                float lat = [[car objectForKey:@"lat"] floatValue];
-                
-                NSString *distance = (d < 1) ? [NSString stringWithFormat:@"%d m", (int)(1000*d)] : [NSString stringWithFormat:@"%.3f km", d] ;
-                // Creates a marker in the center of the map.
-                GMSMarker *carMaker = [[GMSMarker alloc] init];
-                carMaker.position = CLLocationCoordinate2DMake(lat, lon);
-                carMaker.icon = [UIImage imageNamed:@"car_small.png"];
-                carMaker.title = distance;
-                carMaker.map = _mapView;
-            }
+        if (success) {
+            [DataHelper GET:API_GET_AROUND params:@{@"lon":[NSString stringWithFormat:@"%f", currentLocation.coordinate.longitude], @"lat":[NSString stringWithFormat:@"%f", currentLocation.coordinate.latitude]} completion:^(BOOL success, id responseObject, NSError *error){
+                NSLog(@"get around: success: %d, response: %@", success, responseObject);
+                NSArray *otherCars = responseObject;
+                [_mapView clear];
+                for (NSDictionary *car in otherCars) {
+                    float d = [[car objectForKey:@"D"] floatValue];
+                    
+                    //            NSString *dateString = [car objectForKey:@"date_time"];
+                    //            dateString = [NSString stringWithFormat:@"%@ %@", [dateString substringToIndex:10], [dateString substringFromIndex:11]];
+                    //            NSDateFormatter *dateFormat = [NSDateFormatter new];
+                    //            dateFormat.dateFormat = @"yyyy-MM-dd HH:mm:ss.SSS";
+                    //            NSDate *date = [dateFormat dateFromString:dateString];
+                    //            NSTimeInterval time = -[date timeIntervalSinceNow];
+                    
+                    currentMarker.position = currentLocation.coordinate;
+                    currentMarker.map = _mapView;
+                    
+                    if (d > 0/* && d < DISTANCE_MAX_GET_AROUND && time < TIME_LIMIT_GET_AROUND*/) {
+                        float lon = [[car objectForKey:@"lon"] floatValue];
+                        float lat = [[car objectForKey:@"lat"] floatValue];
+                        
+                        NSString *distance = (d < 1) ? [NSString stringWithFormat:@"%d m", (int)(1000*d)] : [NSString stringWithFormat:@"%.3f km", d] ;
+                        // Creates a marker in the center of the map.
+                        GMSMarker *carMaker = [[GMSMarker alloc] init];
+                        carMaker.position = CLLocationCoordinate2DMake(lat, lon);
+                        carMaker.icon = [UIImage imageNamed:@"car_small.png"];
+                        carMaker.title = distance;
+                        carMaker.map = _mapView;
+                    }
+                }
+            }];
         }
     }];
 }
-
 
 - (IBAction)backBtnClick:(id)sender {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
