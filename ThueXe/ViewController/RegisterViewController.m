@@ -515,18 +515,22 @@
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Hủy" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
         [menu dismissViewControllerAnimated:YES completion:nil];
     }];
+    
+    UIAlertAction *share = [UIAlertAction actionWithTitle:@"Chia sẻ ứng dụng" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại http://thuexevn.com";
+        NSURL *myWebsite = [NSURL URLWithString:@"http://thuexevn.com"];
+        
+        NSArray *objectsToShare = @[textToShare, myWebsite];
+        
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+        
+        [self presentViewController:activityVC animated:YES completion:nil];
+    }];
+    [menu addAction:share];
     [menu addAction:changeUser];
     [menu addAction:cancel];
     [self presentViewController:menu animated:YES completion:nil];
 }
-/*
-
-  = "Chưa nhập Mẫu xe";
-  = "Chưa chọn Số chỗ"
-  = "Chưa chọn Năm sản xuất";
-  = "Chưa chọn Loại xe";
-  = "Chưa chọn Mức giá";
- */
 
 -(BOOL)checkInputDataTextField{
     if (userNameTf.text.length == 0) {

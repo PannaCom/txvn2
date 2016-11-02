@@ -438,7 +438,7 @@
                   moduleName = "ThueXe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vmio69/Desktop/AnhHT/txvn2/ThueXe/ViewController/MapDriverViewController.m"
-                  timestampString = "499678083.743642"
+                  timestampString = "499766106.530011"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "99"
@@ -453,7 +453,7 @@
                   moduleName = "ThueXe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vmio69/Desktop/AnhHT/txvn2/ThueXe/ViewController/MapDriverViewController.m"
-                  timestampString = "499678083.745658"
+                  timestampString = "499766106.532031"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "100"
@@ -475,7 +475,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
             endingLineNumber = "96"
-            landmarkName = "-sendBtnClick:"
+            landmarkName = "-textField:shouldChangeCharactersInRange:replacementString:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -493,6 +493,38 @@
             endingLineNumber = "125"
             landmarkName = "-sendBtnClick:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__37-[ActiveViewController sendBtnClick:]_block_invoke.115"
+                  moduleName = "ThueXe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vmio69/Desktop/AnhHT/txvn2/ThueXe/ViewController/ActiveViewController.m"
+                  timestampString = "499766106.540908"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "125"
+                  endingLineNumber = "125"
+                  offsetFromSymbolStart = "832">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__37-[ActiveViewController sendBtnClick:]_block_invoke_2.122"
+                  moduleName = "ThueXe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vmio69/Desktop/AnhHT/txvn2/ThueXe/ViewController/ActiveViewController.m"
+                  timestampString = "499766106.542937"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "125"
+                  endingLineNumber = "125"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

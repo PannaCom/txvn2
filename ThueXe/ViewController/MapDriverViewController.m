@@ -105,18 +105,11 @@
                 [_mapView clear];
                 for (NSDictionary *car in otherCars) {
                     float d = [[car objectForKey:@"D"] floatValue];
-                    
-                    //            NSString *dateString = [car objectForKey:@"date_time"];
-                    //            dateString = [NSString stringWithFormat:@"%@ %@", [dateString substringToIndex:10], [dateString substringFromIndex:11]];
-                    //            NSDateFormatter *dateFormat = [NSDateFormatter new];
-                    //            dateFormat.dateFormat = @"yyyy-MM-dd HH:mm:ss.SSS";
-                    //            NSDate *date = [dateFormat dateFromString:dateString];
-                    //            NSTimeInterval time = -[date timeIntervalSinceNow];
-                    
+
                     currentMarker.position = currentLocation.coordinate;
                     currentMarker.map = _mapView;
                     
-                    if (d > 0/* && d < DISTANCE_MAX_GET_AROUND && time < TIME_LIMIT_GET_AROUND*/) {
+                    if (d > 0) {
                         float lon = [[car objectForKey:@"lon"] floatValue];
                         float lat = [[car objectForKey:@"lat"] floatValue];
                         
@@ -187,7 +180,20 @@
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:LocalizedString(@"CANCEL") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
         [menu dismissViewControllerAnimated:YES completion:nil];
     }];
-    [menu addAction:changeUser];
+//    [menu addAction:changeUser];
+    
+    UIAlertAction *share = [UIAlertAction actionWithTitle:@"Chia sẻ ứng dụng" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại http://thuexevn.com";
+        NSURL *myWebsite = [NSURL URLWithString:@"http://thuexevn.com"];
+        
+        NSArray *objectsToShare = @[textToShare, myWebsite];
+        
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+        
+        [self presentViewController:activityVC animated:YES completion:nil];
+    }];
+    [menu addAction:share];
+    
     [menu addAction:cancel];
     [self presentViewController:menu animated:YES completion:nil];
 }
