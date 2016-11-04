@@ -122,7 +122,7 @@
     progressHudView.label.text = LocalizedString(@"FILTER_LOADING");
     
     __block int done = 0;
-    [DataHelper GET:API_GET_MADE_LIST params:@{} completion:^(BOOL success, id responseObject, NSError *error){
+    [DataHelper GET:API_GET_MADE_LIST params:@{} completion:^(BOOL success, id responseObject){
         if (success) {
             done ++;
             if (done == 3) {
@@ -132,9 +132,12 @@
             carMade = [responseObject valueForKey:@"name"];
 //            NSLog(@"%@", carMade);
         }
+        else{
+            [self showAlert];
+        }
     }];
     
-    [DataHelper GET:API_GET_MODEL_LIST params:@{} completion:^(BOOL success, id responseObject, NSError *error){
+    [DataHelper GET:API_GET_MODEL_LIST params:@{} completion:^(BOOL success, id responseObject){
         if (success) {
             done ++;
             if (done == 3) {
@@ -144,9 +147,12 @@
             carModelAll = [responseObject valueForKey:@"name"];
 //            NSLog(@"%@", carModel);
         }
+        else{
+            [self showAlert];
+        }
     }];
     
-    [DataHelper GET:API_GET_TYPE_LIST params:@{} completion:^(BOOL success, id responseObject, NSError *error){
+    [DataHelper GET:API_GET_TYPE_LIST params:@{} completion:^(BOOL success, id responseObject){
         if (success) {
             done ++;
             if (done == 3) {
@@ -156,7 +162,23 @@
             carTypes = [responseObject valueForKey:@"name"];
             //            NSLog(@"%@", carTypes);
         }
+        else{
+            [self showAlert];
+        }
     }];
+}
+
+-(void)showAlert{
+    [progressHudView hideAnimated:YES];
+    if (!self.presentedViewController) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Lỗi kết nối" message:@"Hãy kiểm tra kết nối Internet." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    
 }
 
 -(NSString *)checkIsAll:(NSString *)input{

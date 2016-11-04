@@ -10,8 +10,8 @@
 
 @interface DataHelper : NSObject
 
-+(void)POST:(NSString*)url params:(NSDictionary*)params completion:(void(^)(BOOL success, id responseObject, NSError *error))completionHandler;
-+(void)GET:(NSString*)url params:(NSDictionary*)params completion:(void(^)(BOOL success, id responseObject, NSError *error))completionHandler;
++(void)POST:(NSString*)url params:(NSDictionary*)params completion:(void(^)(BOOL success, id responseObject))completionHandler;
++(void)GET:(NSString*)url params:(NSDictionary*)params completion:(void(^)(BOOL success, id responseObject))completionHandler;
 +(void)setFilterData:(NSDictionary*)filterData;
 +(NSDictionary*)getFilterData;
 +(void)setUserData:(NSDictionary*)userData;

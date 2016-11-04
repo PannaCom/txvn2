@@ -11,23 +11,35 @@
 
 @implementation DataHelper
 
-+(void)POST:(NSString*)url params:(NSDictionary*)params completion:(void(^)(BOOL success, id responseObject, NSError *error))completionHandler{
++(void)POST:(NSString*)url params:(NSDictionary*)params completion:(void(^)(BOOL success, id responseObject))completionHandler{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager POST:url parameters:params progress:nil success:^(NSURLSessionDataTask *task, id responseObject){
         NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        completionHandler(YES, string, nil);
+        completionHandler(YES, string);
     }failure:^(NSURLSessionDataTask *task, NSError *error){
-        completionHandler(NO, nil, error);
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Lỗi kết nối" message:@"Hãy kiểm tra kết nối Internet." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alert addAction:ok];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+        completionHandler(NO, error);
     }];
 }
 
-+(void)GET:(NSString*)url params:(NSDictionary*)params completion:(void(^)(BOOL success, id responseObject, NSError *error))completionHandler{
++(void)GET:(NSString*)url params:(NSDictionary*)params completion:(void(^)(BOOL success, id responseObject))completionHandler{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:url parameters:params progress:nil success:^(NSURLSessionDataTask *task, id responseObject){
-         completionHandler(YES, responseObject, nil);
+         completionHandler(YES, responseObject);
     }failure:^(NSURLSessionDataTask *task, NSError *error){
-        completionHandler(NO, nil, error);
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Lỗi kết nối" message:@"Hãy kiểm tra kết nối Internet." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alert addAction:ok];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+        completionHandler(NO, error);
     }];
 }
 

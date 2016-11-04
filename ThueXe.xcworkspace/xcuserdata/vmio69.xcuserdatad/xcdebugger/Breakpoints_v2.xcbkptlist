@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ThueXe/ViewController/FilterViewController.m"
-            timestampString = "499342350.846444"
+            timestampString = "499941298.963874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "-checkIsAll:"
             landmarkType = "7">
          </BreakpointContent>
@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ThueXe/AppDelegate.m"
-            timestampString = "499063824.758029"
+            timestampString = "499936400.549224"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "-application:didFinishLaunchingWithOptions:"
             landmarkType = "7">
          </BreakpointContent>
@@ -182,11 +182,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ThueXe/ViewController/FilterViewController.m"
-            timestampString = "499342350.846444"
+            timestampString = "499941298.963874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -406,12 +406,12 @@
                   moduleName = "ThueXe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vmio69/Desktop/AnhHT/txvn2/ThueXe/ViewController/MapDriverViewController.m"
-                  timestampString = "499934130.116567"
+                  timestampString = "499939694.967944"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "99"
                   endingLineNumber = "99"
-                  offsetFromSymbolStart = "249">
+                  offsetFromSymbolStart = "292">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -421,12 +421,12 @@
                   moduleName = "ThueXe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vmio69/Desktop/AnhHT/txvn2/ThueXe/ViewController/MapDriverViewController.m"
-                  timestampString = "499934130.118617"
+                  timestampString = "499939694.970114"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "100"
                   endingLineNumber = "100"
-                  offsetFromSymbolStart = "122">
+                  offsetFromSymbolStart = "88">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -470,12 +470,12 @@
                   moduleName = "ThueXe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vmio69/Desktop/AnhHT/txvn2/ThueXe/ViewController/ActiveViewController.m"
-                  timestampString = "499934130.127483"
+                  timestampString = "499939694.977954"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "125"
                   endingLineNumber = "125"
-                  offsetFromSymbolStart = "748">
+                  offsetFromSymbolStart = "832">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -485,12 +485,12 @@
                   moduleName = "ThueXe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vmio69/Desktop/AnhHT/txvn2/ThueXe/ViewController/ActiveViewController.m"
-                  timestampString = "499934130.129647"
+                  timestampString = "499939694.980006"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "125"
                   endingLineNumber = "125"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "12">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -502,11 +502,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ThueXe/AppDelegate.m"
-            timestampString = "499923953.50398"
+            timestampString = "499936400.549224"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "-application:didFinishLaunchingWithOptions:"
             landmarkType = "7">
          </BreakpointContent>
@@ -524,6 +524,22 @@
             startingLineNumber = "313"
             endingLineNumber = "313"
             landmarkName = "-scrollViewDidScroll:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ThueXe/AppDelegate.m"
+            timestampString = "499939608.503267"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "-updateVersionApp"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

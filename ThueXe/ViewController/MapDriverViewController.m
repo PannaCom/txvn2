@@ -96,10 +96,10 @@
     if (!userInfo) {
         return;
     }
-    [DataHelper POST:API_LOCATE params:@{@"car_number":[userInfo objectForKey:@"car_number"], @"lon":[NSString stringWithFormat:@"%f", currentLocation.coordinate.longitude], @"lat":[NSString stringWithFormat:@"%f", currentLocation.coordinate.latitude], @"phone":[userInfo objectForKey:@"phone"], @"status":[NSString stringWithFormat:@"%d",carStatus]} completion:^(BOOL success, id responseObject, NSError *error){
+    [DataHelper POST:API_LOCATE params:@{@"car_number":[userInfo objectForKey:@"car_number"], @"lon":[NSString stringWithFormat:@"%f", currentLocation.coordinate.longitude], @"lat":[NSString stringWithFormat:@"%f", currentLocation.coordinate.latitude], @"phone":[userInfo objectForKey:@"phone"], @"status":[NSString stringWithFormat:@"%d",carStatus]} completion:^(BOOL success, id responseObject){
         NSLog(@"locate: success: %d, response: %@", success, responseObject);
         if (success) {
-            [DataHelper GET:API_GET_AROUND params:@{@"lon":[NSString stringWithFormat:@"%f", currentLocation.coordinate.longitude], @"lat":[NSString stringWithFormat:@"%f", currentLocation.coordinate.latitude]} completion:^(BOOL success, id responseObject, NSError *error){
+            [DataHelper GET:API_GET_AROUND params:@{@"lon":[NSString stringWithFormat:@"%f", currentLocation.coordinate.longitude], @"lat":[NSString stringWithFormat:@"%f", currentLocation.coordinate.latitude]} completion:^(BOOL success, id responseObject){
                 NSLog(@"get around: success: %d, response: %@", success, responseObject);
                 NSArray *otherCars = responseObject;
                 [_mapView clear];

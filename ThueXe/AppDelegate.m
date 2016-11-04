@@ -28,6 +28,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [GMSServices provideAPIKey:@"AIzaSyArIGsr8eBKOuQTGwQn8ekDujQpAA_Murg"];
 //    [GMSPlacesClient provideAPIKey:@"AIzaSyArIGsr8eBKOuQTGwQn8ekDujQpAA_Murg"];
+    [self updateVersionApp];
     NSDictionary *userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
     NSLog(@"%@", userInfo);
     if (!userInfo) {
@@ -124,5 +125,24 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+-(void) updateVersionApp{
+    NSDictionary* infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    
+    [DataHelper GET:LINK_CHECK_VERSION params:nil completion:^(BOOL success, id responseObject){
+        if (success && [responseObject[@"resultCount"] integerValue] == 1){
+            NSString* appStoreVersion = responseObject[@"results"][0][@"version"];
+            NSString* currentVersion = infoDictionary[@"CFBundleShortVersionString"];
+            if (![appStoreVersion isEqualToString:currentVersion]){
+                NSLog(@"Need to update [%@ != %@]", appStoreVersion, currentVersion);
+                UIAlertController *alertUpdate = [UIAlertController alertControllerWithTitle:@"Ứng dụng đã có phiên bản mới hơn" message:@"Cập nhật ứng dụng ngay." preferredStyle:UIAlertControllerStyleAlert];
+                [alertUpdate addAction:[UIAlertAction actionWithTitle:@"Cập nhật" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:LINK_APP_STORE]];
+                    exit(0);
+                }]];
+                [self.window.rootViewController presentViewController:alertUpdate animated:YES completion:nil];
+            }
+        }
+    }];
+}
 
 @end

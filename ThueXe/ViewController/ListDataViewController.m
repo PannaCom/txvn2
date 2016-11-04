@@ -84,7 +84,7 @@
         if (carSize.length > 1) {
             carSize = [carSize substringToIndex:[carSize rangeOfString:@" "].location];
         }
-        [DataHelper GET:API_GET_LIST_ONLINE params:@{@"lon":lon, @"lat":lat, @"car_made":[weakSelf.filterData objectForKey:@"car_made"], @"car_model":[weakSelf.filterData objectForKey:@"car_model"], @"car_size":carSize, @"car_type":[weakSelf.filterData objectForKey:@"car_type"], @"order":@"0"} completion:^(BOOL success, id responseObject, NSError *error){
+        [DataHelper GET:API_GET_LIST_ONLINE params:@{@"lon":lon, @"lat":lat, @"car_made":[weakSelf.filterData objectForKey:@"car_made"], @"car_model":[weakSelf.filterData objectForKey:@"car_model"], @"car_size":carSize, @"car_type":[weakSelf.filterData objectForKey:@"car_type"], @"order":@"0"} completion:^(BOOL success, id responseObject){
             [weakTableView.pullToRefreshView stopAnimating];
             if (success) {
 //                NSLog(@"list online: %@", responseObject);
@@ -92,7 +92,7 @@
                 [weakTableView reloadData];
             }
             else{
-                NSLog(@"error: %@, response %@", error, responseObject);
+                NSLog(@"Error: %@", responseObject);
             }
         }];
     }];
@@ -102,7 +102,7 @@
     
     [carTypeCollectionView setAllowsMultipleSelection:NO];
     NSString *carType = [_filterData objectForKey:@"car_type"];
-    [DataHelper GET:API_GET_TYPE_LIST params:@{} completion:^(BOOL success, id responseObject, NSError *error){
+    [DataHelper GET:API_GET_TYPE_LIST params:@{} completion:^(BOOL success, id responseObject){
         if (success) {
             //            NSLog(@"%@", responseObject);
             carTypes = [responseObject valueForKey:@"name"];
@@ -200,14 +200,14 @@
     if (carSize.length > 1) {
         carSize = [carSize substringToIndex:[carSize rangeOfString:@" "].location];
     }
-    [DataHelper GET:API_GET_LIST_ONLINE params:@{@"lon":lon, @"lat":lat, @"car_made":[_filterData objectForKey:@"car_made"], @"car_model":[_filterData objectForKey:@"car_model"], @"car_size":carSize, @"car_type":[_filterData objectForKey:@"car_type"], @"order":@"0"} completion:^(BOOL success, id responseObject, NSError *error){
+    [DataHelper GET:API_GET_LIST_ONLINE params:@{@"lon":lon, @"lat":lat, @"car_made":[_filterData objectForKey:@"car_made"], @"car_model":[_filterData objectForKey:@"car_model"], @"car_size":carSize, @"car_type":[_filterData objectForKey:@"car_type"], @"order":@"0"} completion:^(BOOL success, id responseObject){
         if (success) {
 //            NSLog(@"list online: %@", responseObject);
             _cars = [Car getDataFromJson:responseObject];
             [_tableView reloadData];
         }
         else{
-            NSLog(@"error: %@, response %@", error, responseObject);
+            NSLog(@"error: %@", responseObject);
         }
     }];
 }

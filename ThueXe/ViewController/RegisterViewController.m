@@ -141,7 +141,7 @@
 
 -(void)getInfoCarFromServer{
     
-    [DataHelper GET:API_GET_ALL_MADE_LIST params:@{} completion:^(BOOL success, id responseObject, NSError *error){
+    [DataHelper GET:API_GET_ALL_MADE_LIST params:@{} completion:^(BOOL success, id responseObject){
         if (success) {
             //            NSLog(@"%@", responseObject);
             carMade = [responseObject valueForKey:@"name"];
@@ -149,7 +149,7 @@
         }
     }];
     
-    [DataHelper GET:API_GET_MODEL_LIST params:@{} completion:^(BOOL success, id responseObject, NSError *error){
+    [DataHelper GET:API_GET_MODEL_LIST params:@{} completion:^(BOOL success, id responseObject){
         if (success) {
             //            NSLog(@"%@", responseObject);
             carModel = [responseObject valueForKey:@"name"];
@@ -157,7 +157,7 @@
         }
     }];
     
-    [DataHelper GET:API_GET_TYPE_LIST params:@{} completion:^(BOOL success, id responseObject, NSError *error){
+    [DataHelper GET:API_GET_TYPE_LIST params:@{} completion:^(BOOL success, id responseObject){
         if (success) {
             //            NSLog(@"%@", responseObject);
             carTypes = [responseObject valueForKey:@"name"];
@@ -250,7 +250,7 @@
         if (_isEdit) {
             [params setValue:[userData objectForKey:@"id"] forKey:@"id"];
         }
-        [DataHelper POST:API_REGISTER params:params completion:^(BOOL success, id responseObject, NSError *error){
+        [DataHelper POST:API_REGISTER params:params completion:^(BOOL success, id responseObject){
             if (success) {
                 if ([responseObject intValue] > 0) {
                     

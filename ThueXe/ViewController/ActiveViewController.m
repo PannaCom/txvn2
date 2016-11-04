@@ -42,7 +42,7 @@
         if ([self canResendActiveCode] && !wasSend) {
             wasSend = YES;
 
-            [DataHelper POST:API_RESEND_ACTIVE params:@{@"idtaixe":[userInfo objectForKey:@"id"]} completion:^(BOOL success, id responseObject, NSError *error){
+            [DataHelper POST:API_RESEND_ACTIVE params:@{@"idtaixe":[userInfo objectForKey:@"id"]} completion:^(BOOL success, id responseObject){
                 if (success && [responseObject isEqualToString:@"1"]) {
                     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
                     [userDefault setObject:[NSDate date] forKey:@"lastSend"];
@@ -109,7 +109,7 @@
     }
     else{
         [sendBtn setEnabled:NO];
-        [DataHelper POST:API_ACTIVE params:@{@"idtaixe":[userInfo objectForKey:@"id"], @"code":activeCode.text} completion:^(BOOL success, id responseObject, NSError *error){
+        [DataHelper POST:API_ACTIVE params:@{@"idtaixe":[userInfo objectForKey:@"id"], @"code":activeCode.text} completion:^(BOOL success, id responseObject){
             NSLog(@"%@", responseObject);
             if (success) {
                
