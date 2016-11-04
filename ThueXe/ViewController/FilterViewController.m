@@ -403,12 +403,13 @@
 }
 
 - (IBAction)backBtnClick:(id)sender {
-    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_9_0) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-    else {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+//    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_9_0) {
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//    }
+//    else {
+    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+//    }
     
 }
 - (IBAction)clearBtnClick:(id)sender {
@@ -433,6 +434,11 @@
 
 - (IBAction)changeOrder:(id)sender {
     [_filterData setObject:[NSString stringWithFormat:@"%d", orderSegment.selectedSegmentIndex] forKey:@"order"];
+}
+- (IBAction)findCarClick:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"filterDataNoti" object:nil userInfo:@{@"filterData":_filterData}];
+    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

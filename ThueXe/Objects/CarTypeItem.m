@@ -12,6 +12,7 @@
 {
     IBOutlet UIImageView *imageCar;
     IBOutlet UILabel *carTypeLb;
+    
 }
 @end
 

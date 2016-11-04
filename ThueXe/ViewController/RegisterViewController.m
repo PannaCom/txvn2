@@ -284,6 +284,15 @@
                     [self presentViewController:alert animated:YES completion:nil];
                 }
             }
+            else{
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalizedString(@"REGISTER_ERROR") message:@"Kiểm tra lại kết nối internet" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                    [alert dismissViewControllerAnimated:YES completion:nil];
+                    [registerBtn setHidden:NO];
+                }];
+                [alert addAction:ok];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
         }];
     }
     else{
@@ -301,7 +310,7 @@
             return;
         }
         if (y > _scrollView.contentSize.height - _scrollView.frame.size.height) {
-            [_scrollView setContentOffset:CGPointMake(0, scrollView.contentSize.height - _scrollView.frame.size.height)];
+            [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentSize.height - _scrollView.frame.size.height)];
         }
         if (y < 0) {
             [_scrollView setContentOffset:CGPointMake(0, 0)];
@@ -500,16 +509,17 @@
 
 #pragma mark - Events
 - (IBAction)backBtnClick:(id)sender {
-    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_9_0) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-    else {
+//    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_9_0) {
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//    }
+//    else {
         [self.navigationController popViewControllerAnimated:YES];
-    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+//    }
 }
 
 - (IBAction)menuBtnClick:(id)sender {
-    UIAlertController *menu = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    /*UIAlertController *menu = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *changeUser = [UIAlertAction actionWithTitle:LocalizedString(@"CHANGE_USER") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userInfo"];
@@ -535,7 +545,15 @@
     [menu addAction:share];
     [menu addAction:changeUser];
     [menu addAction:cancel];
-    [self presentViewController:menu animated:YES completion:nil];
+    [self presentViewController:menu animated:YES completion:nil];*/
+    NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại ";
+    NSURL *myWebsite = [NSURL URLWithString:@"http://thuexevn.com"];
+    
+    NSArray *objectsToShare = @[textToShare, myWebsite];
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
 }
 
 -(BOOL)checkInputDataTextField{

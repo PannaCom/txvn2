@@ -67,7 +67,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="QFe-aJ-ocT" kind="show" id="Zxh-5n-urB"/>
+                                                    <segue destination="OR8-pq-hUV" kind="show" id="nVr-s5-XtG"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dP5-bY-bmp">
@@ -171,12 +171,12 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="cau-Vu-cBx" secondAttribute="height" multiplier="1:1" id="Y55-wW-0US"/>
                                         </constraints>
-                                        <state key="normal" image="menu.png"/>
+                                        <state key="normal" image="share.png"/>
                                         <connections>
                                             <action selector="menuBtnClick:" destination="ib8-6N-HxX" eventType="touchUpInside" id="0PB-zZ-0eY"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLT-9x-gVC">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLT-9x-gVC">
                                         <rect key="frame" x="0.0" y="20" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="aLT-9x-gVC" secondAttribute="height" multiplier="1:1" id="Dr9-nP-3DC"/>
@@ -471,6 +471,7 @@
                                         <state key="normal" image="filter.png"/>
                                         <connections>
                                             <action selector="filterBtnClick:" destination="E0V-Ey-Rki" eventType="touchUpInside" id="BXM-kR-WkK"/>
+                                            <segue destination="QFe-aJ-ocT" kind="show" id="kIf-mJ-8Mu"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -508,7 +509,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qDF-A4-fou" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2086" y="1073"/>
+            <point key="canvasLocation" x="1369" y="1050"/>
         </scene>
         <!--List-->
         <scene sceneID="whx-Qy-Bfl">
@@ -568,6 +569,7 @@
                                         <state key="normal" image="filter.png"/>
                                         <connections>
                                             <action selector="filterBtnClick:" destination="hxd-x8-RmI" eventType="touchUpInside" id="cFk-Wr-3qA"/>
+                                            <segue destination="QFe-aJ-ocT" kind="show" id="UYC-aR-W9P"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -662,7 +664,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wkn-wb-yl9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2828" y="347.67616191904051"/>
+            <point key="canvasLocation" x="2070" y="348"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="FPo-kn-e0e">
@@ -681,7 +683,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u7M-uB-ufH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2086" y="348"/>
+            <point key="canvasLocation" x="1369" y="348"/>
         </scene>
         <!--Filter View Controller-->
         <scene sceneID="RO1-7p-23H">
@@ -796,7 +798,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="OR8-pq-hUV" kind="show" identifier="showListCarSegueId" id="TOm-ge-tYM"/>
+                                    <action selector="findCarClick:" destination="QFe-aJ-ocT" eventType="touchUpInside" id="GDb-Gf-V1l"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9U7-mm-TtJ">
@@ -873,7 +875,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YZU-GY-5aQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1369" y="348"/>
+            <point key="canvasLocation" x="2070" y="1050"/>
         </scene>
         <!--Map Driver View Controller-->
         <scene sceneID="nP8-bJ-duz">
@@ -1144,4 +1146,7 @@
         <image name="passenger.png" width="40" height="40"/>
         <image name="share.png" width="100" height="100"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="UYC-aR-W9P"/>
+    </inferredMetricsTieBreakers>
 </document>
