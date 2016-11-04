@@ -165,6 +165,7 @@
 }
 
 - (IBAction)menuBtnClick:(id)sender {
+    /*
     UIAlertController *menu = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *changeUser = [UIAlertAction actionWithTitle:LocalizedString(@"CHANGE_USER") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -183,7 +184,7 @@
 //    [menu addAction:changeUser];
     
     UIAlertAction *share = [UIAlertAction actionWithTitle:@"Chia sẻ ứng dụng" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại http://thuexevn.com";
+        NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại ";
         NSURL *myWebsite = [NSURL URLWithString:@"http://thuexevn.com"];
         
         NSArray *objectsToShare = @[textToShare, myWebsite];
@@ -196,6 +197,15 @@
     
     [menu addAction:cancel];
     [self presentViewController:menu animated:YES completion:nil];
+     */
+    NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại ";
+    NSURL *myWebsite = [NSURL URLWithString:@"http://thuexevn.com"];
+    
+    NSArray *objectsToShare = @[textToShare, myWebsite];
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
 }
 
 

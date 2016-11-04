@@ -31,7 +31,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_2.png" translatesAutoresizingMaskIntoConstraints="NO" id="GQS-L0-Dss">
-                                <rect key="frame" x="0.0" y="562" width="375" height="105"/>
+                                <rect key="frame" x="0.0" y="561.5" width="375" height="105.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="GQS-L0-Dss" secondAttribute="height" multiplier="1081:304" id="jBF-zm-pcC"/>
                                 </constraints>
@@ -54,7 +54,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZKh-DP-Cn9">
-                                <rect key="frame" x="0.0" y="274" width="375" height="288"/>
+                                <rect key="frame" x="0.0" y="274" width="375" height="287.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJF-PG-SE0">
                                         <rect key="frame" x="15" y="79" width="345" height="130"/>
@@ -890,12 +890,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M9F-81-jc4">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gtF-Kk-3hd">
-                                        <rect key="frame" x="325" y="20" width="50" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gtF-Kk-3hd">
+                                        <rect key="frame" x="330" y="25" width="45" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="gtF-Kk-3hd" secondAttribute="height" multiplier="1:1" id="HpO-fL-ahH"/>
                                         </constraints>
-                                        <state key="normal" image="menu.png"/>
+                                        <state key="normal" image="share.png"/>
                                         <connections>
                                             <action selector="menuBtnClick:" destination="bmr-5D-782" eventType="touchUpInside" id="JYf-1e-BcO"/>
                                         </connections>
@@ -911,7 +911,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Xe xung quanh" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04s-vJ-xOR">
-                                        <rect key="frame" x="50" y="20" width="275" height="50"/>
+                                        <rect key="frame" x="50" y="20" width="280" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -923,7 +923,7 @@
                                     <constraint firstAttribute="trailing" secondItem="gtF-Kk-3hd" secondAttribute="trailing" id="6ak-LX-591"/>
                                     <constraint firstItem="4b5-Rz-Hqa" firstAttribute="top" secondItem="M9F-81-jc4" secondAttribute="top" constant="20" id="8ld-1c-Ump"/>
                                     <constraint firstAttribute="height" constant="70" id="9xx-FG-iwW"/>
-                                    <constraint firstItem="gtF-Kk-3hd" firstAttribute="top" secondItem="M9F-81-jc4" secondAttribute="top" constant="20" id="HhW-4o-0Jn"/>
+                                    <constraint firstItem="gtF-Kk-3hd" firstAttribute="top" secondItem="M9F-81-jc4" secondAttribute="top" constant="25" id="HhW-4o-0Jn"/>
                                     <constraint firstItem="04s-vJ-xOR" firstAttribute="top" secondItem="M9F-81-jc4" secondAttribute="top" constant="20" id="LYb-NI-N8l"/>
                                     <constraint firstItem="4b5-Rz-Hqa" firstAttribute="leading" secondItem="M9F-81-jc4" secondAttribute="leading" id="P5u-hD-fuv"/>
                                     <constraint firstAttribute="bottom" secondItem="04s-vJ-xOR" secondAttribute="bottom" id="fHX-gW-RRz"/>
@@ -1112,7 +1112,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gVU-Wi-YbA" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bfn-ys-M0x">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bfn-ys-M0x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1142,5 +1142,6 @@
         <image name="map_selected.png" width="25" height="25"/>
         <image name="menu.png" width="50" height="50"/>
         <image name="passenger.png" width="40" height="40"/>
+        <image name="share.png" width="100" height="100"/>
     </resources>
 </document>

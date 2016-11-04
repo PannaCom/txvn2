@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E2E3C391DCC3DDF005480F9 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2E3C381DCC3DDF005480F9 /* share.png */; };
 		3E42688F1DA3B38A0018B76E /* image_1@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4268831DA3B38A0018B76E /* image_1@4x.png */; };
 		3E4268901DA3B38A0018B76E /* image_2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4268841DA3B38A0018B76E /* image_2@3x.png */; };
 		3E4268911DA3B38A0018B76E /* image_2@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4268851DA3B38A0018B76E /* image_2@4x.png */; };
@@ -129,6 +130,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E2E3C381DCC3DDF005480F9 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		3E4268831DA3B38A0018B76E /* image_1@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_1@4x.png"; sourceTree = "<group>"; };
 		3E4268841DA3B38A0018B76E /* image_2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_2@3x.png"; sourceTree = "<group>"; };
 		3E4268851DA3B38A0018B76E /* image_2@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_2@4x.png"; sourceTree = "<group>"; };
@@ -406,6 +408,8 @@
 			children = (
 				3EDFC60F1D9F87F700EB31B0 /* AppDelegate.h */,
 				3EDFC6101D9F87F700EB31B0 /* AppDelegate.m */,
+				3E42689B1DA3C0A90018B76E /* DataHelper.h */,
+				3E42689C1DA3C0A90018B76E /* DataHelper.m */,
 				3EDFC6151D9F87F700EB31B0 /* Main.storyboard */,
 				3EDFC63F1D9FBCD000EB31B0 /* Config.h */,
 				3EDFC6381D9FAFE300EB31B0 /* ViewController */,
@@ -413,8 +417,6 @@
 				3E512F641DB9FA660070B840 /* Modules */,
 				3EDFC60C1D9F87F700EB31B0 /* Supporting Files */,
 				3EDFC6241D9FA18900EB31B0 /* Resources */,
-				3E42689B1DA3C0A90018B76E /* DataHelper.h */,
-				3E42689C1DA3C0A90018B76E /* DataHelper.m */,
 			);
 			path = ThueXe;
 			sourceTree = "<group>";
@@ -446,6 +448,7 @@
 		3EDFC6251D9FA18900EB31B0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3E2E3C381DCC3DDF005480F9 /* share.png */,
 				3EAF2BBE1DB46EA000594FCE /* splash@4x.png */,
 				3EAF2BBF1DB46EA000594FCE /* splash@3x.png */,
 				3EAF2BC01DB46EA000594FCE /* splash@2x.png */,
@@ -710,6 +713,7 @@
 				3E4268911DA3B38A0018B76E /* image_2@4x.png in Resources */,
 				3EAF2BB51DB4696800594FCE /* back@1x.png in Resources */,
 				3EAF2BAE1DB4696800594FCE /* menu@4x.png in Resources */,
+				3E2E3C391DCC3DDF005480F9 /* share.png in Resources */,
 				3EA7A10C1DC33B6900821295 /* taxi.png in Resources */,
 				3EAF2BBA1DB469F400594FCE /* editUser@4x.png in Resources */,
 				3EAF2BE31DB46EA000594FCE /* filter@3x.png in Resources */,

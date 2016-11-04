@@ -253,16 +253,22 @@
         [DataHelper POST:API_REGISTER params:params completion:^(BOOL success, id responseObject, NSError *error){
             if (success) {
                 if ([responseObject intValue] > 0) {
-                    // đăng ký thành công, lưu thông tin người dùng ...
-                    [params setValue:[NSString stringWithFormat:@"%@", responseObject] forKey:@"id"];
-                    [[NSUserDefaults standardUserDefaults] setObject:@{@"data":params, @"userType":[NSString stringWithFormat:@"%d", USER_TYPE_DRIVER]} forKey:@"userInfo"];
                     
-                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    
                     if (_isEdit) {
-                        [self performSegueWithIdentifier:@"goToMapDriveSegueId" sender:self];
+                        // đăng ký thành công, lưu thông tin người dùng ...
+                        [params setValue:[NSString stringWithFormat:@"%@", responseObject] forKey:@"id"];
+                        [[NSUserDefaults standardUserDefaults] setObject:@{@"data":params, @"userType":[NSString stringWithFormat:@"%d", USER_TYPE_DRIVER], @"wasActived":@"YES"} forKey:@"userInfo"];
+                        [[NSUserDefaults standardUserDefaults] synchronize];
                         
+                        [self performSegueWithIdentifier:@"goToMapDriveSegueId" sender:self];
                     }
                     else{
+                        // đăng ký thành công, lưu thông tin người dùng ...
+                        [params setValue:[NSString stringWithFormat:@"%@", responseObject] forKey:@"id"];
+                        [[NSUserDefaults standardUserDefaults] setObject:@{@"data":params, @"userType":[NSString stringWithFormat:@"%d", USER_TYPE_DRIVER]} forKey:@"userInfo"];
+                        [[NSUserDefaults standardUserDefaults] synchronize];
+                        
                         ActiveViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"activeStoryboardId"];
                         [self presentViewController:vc animated:YES completion:nil];
                     }
@@ -517,7 +523,7 @@
     }];
     
     UIAlertAction *share = [UIAlertAction actionWithTitle:@"Chia sẻ ứng dụng" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại http://thuexevn.com";
+        NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại ";
         NSURL *myWebsite = [NSURL URLWithString:@"http://thuexevn.com"];
         
         NSArray *objectsToShare = @[textToShare, myWebsite];

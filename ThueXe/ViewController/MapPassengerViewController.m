@@ -149,7 +149,7 @@
     }];
     
     UIAlertAction *share = [UIAlertAction actionWithTitle:@"Chia sẻ ứng dụng" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại http://thuexevn.com";
+        NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại ";
         NSURL *myWebsite = [NSURL URLWithString:@"http://thuexevn.com"];
         
         NSArray *objectsToShare = @[textToShare, myWebsite];
