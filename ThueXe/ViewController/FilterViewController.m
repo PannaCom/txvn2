@@ -429,7 +429,7 @@
 //        [self dismissViewControllerAnimated:YES completion:nil];
 //    }
 //    else {
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 //    }
     
@@ -459,7 +459,7 @@
 }
 - (IBAction)findCarClick:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"filterDataNoti" object:nil userInfo:@{@"filterData":_filterData}];
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

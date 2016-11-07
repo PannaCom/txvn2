@@ -103,6 +103,7 @@ typedef NS_ENUM(int, CAR_STATUS){
 
 #define LINK_APP_STORE @"https://itunes.apple.com/us/app/thue-xe/id1166862903?l=vi&ls=1&mt=8"
 #define LINK_CHECK_VERSION @"http://itunes.apple.com/lookup?id=1166862903"
+
 //#define TEXT_ALL @"Tất cả"
 //
 //// LOCALIZE ----

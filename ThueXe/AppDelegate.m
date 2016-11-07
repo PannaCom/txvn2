@@ -132,7 +132,7 @@
         if (success && [responseObject[@"resultCount"] integerValue] == 1){
             NSString* appStoreVersion = responseObject[@"results"][0][@"version"];
             NSString* currentVersion = infoDictionary[@"CFBundleShortVersionString"];
-            if (![appStoreVersion isEqualToString:currentVersion]){
+            if ([currentVersion compare:appStoreVersion] == NSOrderedAscending) {
                 NSLog(@"Need to update [%@ != %@]", appStoreVersion, currentVersion);
                 UIAlertController *alertUpdate = [UIAlertController alertControllerWithTitle:@"Ứng dụng đã có phiên bản mới hơn" message:@"Cập nhật ứng dụng ngay." preferredStyle:UIAlertControllerStyleAlert];
                 [alertUpdate addAction:[UIAlertAction actionWithTitle:@"Cập nhật" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
