@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E2A5E431DD1E37D003685E1 /* loc.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2A5E411DD1E37D003685E1 /* loc.png */; };
+		3E2A5E441DD1E37D003685E1 /* call.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2A5E421DD1E37D003685E1 /* call.png */; };
 		3E2E3C391DCC3DDF005480F9 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2E3C381DCC3DDF005480F9 /* share.png */; };
 		3E42688F1DA3B38A0018B76E /* image_1@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4268831DA3B38A0018B76E /* image_1@4x.png */; };
 		3E4268901DA3B38A0018B76E /* image_2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4268841DA3B38A0018B76E /* image_2@3x.png */; };
@@ -130,6 +132,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E2A5E411DD1E37D003685E1 /* loc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loc.png; sourceTree = "<group>"; };
+		3E2A5E421DD1E37D003685E1 /* call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call.png; sourceTree = "<group>"; };
 		3E2E3C381DCC3DDF005480F9 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		3E4268831DA3B38A0018B76E /* image_1@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_1@4x.png"; sourceTree = "<group>"; };
 		3E4268841DA3B38A0018B76E /* image_2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_2@3x.png"; sourceTree = "<group>"; };
@@ -448,6 +452,8 @@
 		3EDFC6251D9FA18900EB31B0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3E2A5E411DD1E37D003685E1 /* loc.png */,
+				3E2A5E421DD1E37D003685E1 /* call.png */,
 				3E2E3C381DCC3DDF005480F9 /* share.png */,
 				3EAF2BBE1DB46EA000594FCE /* splash@4x.png */,
 				3EAF2BBF1DB46EA000594FCE /* splash@3x.png */,
@@ -677,6 +683,7 @@
 				3EAF2BA51DB4683B00594FCE /* Expand@1x.png in Resources */,
 				3E42688F1DA3B38A0018B76E /* image_1@4x.png in Resources */,
 				3EE856311DACC7DC00972BD8 /* map_selected@2x.png in Resources */,
+				3E2A5E441DD1E37D003685E1 /* call.png in Resources */,
 				3EE856321DACC7DC00972BD8 /* map_selected@1x.png in Resources */,
 				3EAF2BD31DB46EA000594FCE /* splash@3x.png in Resources */,
 				3EE856111DAB9B9000972BD8 /* taixe.png in Resources */,
@@ -720,6 +727,7 @@
 				3EAF2BDD1DB46EA000594FCE /* passenger@1x.png in Resources */,
 				3EAF2BE41DB46EA000594FCE /* filter@2x.png in Resources */,
 				3EAF2BD41DB46EA000594FCE /* splash@2x.png in Resources */,
+				3E2A5E431DD1E37D003685E1 /* loc.png in Resources */,
 				3EAF2BBD1DB469F400594FCE /* editUser@1x.png in Resources */,
 				3E4268961DA3B38A0018B76E /* car@4x.png in Resources */,
 				3EAF2BB31DB4696800594FCE /* back@3x.png in Resources */,

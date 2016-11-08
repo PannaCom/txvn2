@@ -31,7 +31,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_2.png" translatesAutoresizingMaskIntoConstraints="NO" id="GQS-L0-Dss">
-                                <rect key="frame" x="0.0" y="562" width="375" height="105"/>
+                                <rect key="frame" x="0.0" y="561.5" width="375" height="105.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="GQS-L0-Dss" secondAttribute="height" multiplier="1081:304" id="jBF-zm-pcC"/>
                                 </constraints>
@@ -54,16 +54,16 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZKh-DP-Cn9">
-                                <rect key="frame" x="0.0" y="274" width="375" height="288"/>
+                                <rect key="frame" x="0.0" y="274" width="375" height="287.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJF-PG-SE0">
                                         <rect key="frame" x="15" y="79" width="345" height="130"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g8I-OW-0JC">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g8I-OW-0JC">
                                                 <rect key="frame" x="0.0" y="0.0" width="345" height="60"/>
                                                 <color key="backgroundColor" red="0.0033083439338952303" green="0.66562110185623169" blue="0.71693974733352661" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <state key="normal" title="Hành khách">
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <state key="normal" title="Khách hàng/Tìm thuê xe     ">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -76,8 +76,8 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="6rz-AY-CyJ"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <state key="normal" title="Lái xe">
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <state key="normal" title="Tài xế/Nhà xe">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -468,7 +468,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="XeH-Z2-Qud" secondAttribute="height" multiplier="1:1" id="YRh-z2-ef3"/>
                                         </constraints>
-                                        <state key="normal" image="filter.png"/>
+                                        <state key="normal" image="loc.png"/>
                                         <connections>
                                             <action selector="filterBtnClick:" destination="E0V-Ey-Rki" eventType="touchUpInside" id="BXM-kR-WkK"/>
                                             <segue destination="QFe-aJ-ocT" kind="show" id="kIf-mJ-8Mu"/>
@@ -566,7 +566,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Bqt-mY-VTk" secondAttribute="height" multiplier="1:1" id="LCh-He-ncZ"/>
                                         </constraints>
-                                        <state key="normal" image="filter.png"/>
+                                        <state key="normal" image="loc.png"/>
                                         <connections>
                                             <action selector="filterBtnClick:" destination="hxd-x8-RmI" eventType="touchUpInside" id="cFk-Wr-3qA"/>
                                             <segue destination="QFe-aJ-ocT" kind="show" id="UYC-aR-W9P"/>
@@ -1116,7 +1116,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gVU-Wi-YbA" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bfn-ys-M0x">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bfn-ys-M0x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1136,12 +1136,12 @@
         <image name="car.png" width="170" height="91"/>
         <image name="driver.png" width="40" height="40"/>
         <image name="editUser.png" width="50" height="50"/>
-        <image name="filter.png" width="50" height="50"/>
         <image name="filter_clear.png" width="50" height="50"/>
         <image name="image_1.png" width="320" height="91"/>
         <image name="image_2.png" width="320" height="90"/>
         <image name="list_deselect.png" width="25" height="25"/>
         <image name="list_selected.png" width="25" height="25"/>
+        <image name="loc.png" width="234" height="234"/>
         <image name="map_deselect.png" width="25" height="25"/>
         <image name="map_selected.png" width="25" height="25"/>
         <image name="menu.png" width="50" height="50"/>
@@ -1149,6 +1149,6 @@
         <image name="share.png" width="100" height="100"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UYC-aR-W9P"/>
+        <segue reference="kIf-mJ-8Mu"/>
     </inferredMetricsTieBreakers>
 </document>
