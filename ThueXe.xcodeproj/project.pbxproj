@@ -39,6 +39,7 @@
 		3E512F8D1DB9FA660070B840 /* DataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E512F801DB9FA660070B840 /* DataTableViewCell.xib */; };
 		3E512F921DB9FF370070B840 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E512F941DB9FF370070B840 /* Localizable.strings */; };
 		3E512F9A1DBA0F930070B840 /* LocalizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E512F991DBA0F930070B840 /* LocalizeHelper.m */; };
+		3E6BEC9F1DD41D74006ACF87 /* call-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E6BEC9E1DD41D74006ACF87 /* call-1.png */; };
 		3E8AB2E61DA8CF3D001267C0 /* MapDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8AB2E51DA8CF3D001267C0 /* MapDriverViewController.m */; };
 		3E8AB2EB1DA9F211001267C0 /* car_small@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E8AB2E71DA9F211001267C0 /* car_small@1x.png */; };
 		3E8AB2EC1DA9F211001267C0 /* car_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E8AB2E81DA9F211001267C0 /* car_small@2x.png */; };
@@ -182,6 +183,7 @@
 		3E512F971DBA00740070B840 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		3E512F981DBA0F930070B840 /* LocalizeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizeHelper.h; sourceTree = "<group>"; };
 		3E512F991DBA0F930070B840 /* LocalizeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizeHelper.m; sourceTree = "<group>"; };
+		3E6BEC9E1DD41D74006ACF87 /* call-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call-1.png"; sourceTree = "<group>"; };
 		3E8AB2E41DA8CF3D001267C0 /* MapDriverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDriverViewController.h; sourceTree = "<group>"; };
 		3E8AB2E51DA8CF3D001267C0 /* MapDriverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapDriverViewController.m; sourceTree = "<group>"; };
 		3E8AB2E71DA9F211001267C0 /* car_small@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car_small@1x.png"; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 		3EDFC6251D9FA18900EB31B0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3E6BEC9E1DD41D74006ACF87 /* call-1.png */,
 				3E2A5E411DD1E37D003685E1 /* loc.png */,
 				3E2A5E421DD1E37D003685E1 /* call.png */,
 				3E2E3C381DCC3DDF005480F9 /* share.png */,
@@ -610,7 +613,7 @@
 		3EDFC6011D9F87F700EB31B0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = VMio69;
 				TargetAttributes = {
 					3EDFC6081D9F87F700EB31B0 = {
@@ -622,7 +625,7 @@
 								enabled = 1;
 							};
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -707,6 +710,7 @@
 				3EAF2BDE1DB46EA000594FCE /* filter_clear@4x.png in Resources */,
 				3EE856381DACC7DC00972BD8 /* list_deselect@2x.png in Resources */,
 				3EE8563A1DACC7DC00972BD8 /* list_selected@3x.png in Resources */,
+				3E6BEC9F1DD41D74006ACF87 /* call-1.png in Resources */,
 				3EDFC6171D9F87F700EB31B0 /* Main.storyboard in Resources */,
 				3EA7A10F1DC33B6900821295 /* container.png in Resources */,
 				3E8AB2EE1DA9F211001267C0 /* car_small@4x.png in Resources */,
@@ -886,6 +890,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -935,6 +940,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -964,6 +970,7 @@
 			baseConfigurationReference = 644576E57A9C96004176A891 /* Pods-ThueXe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ThueXe/ThueXe.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = FUH6R3ZC9Y;
 				INFOPLIST_FILE = ThueXe/Info.plist;
@@ -980,6 +987,7 @@
 			baseConfigurationReference = C8549B10B26532481AB5872F /* Pods-ThueXe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ThueXe/ThueXe.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = FUH6R3ZC9Y;
 				INFOPLIST_FILE = ThueXe/Info.plist;

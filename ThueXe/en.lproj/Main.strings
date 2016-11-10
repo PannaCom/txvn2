@@ -161,13 +161,13 @@
 "bmq-LO-EwF.title" = "Đăng nhập";
 
 /* Class = "UIButton"; normalTitle = "Lái xe"; ObjectID = "dP5-bY-bmp"; */
-"dP5-bY-bmp.normalTitle" = "Lái xe";
+"dP5-bY-bmp.normalTitle" = "Tài xế/Nhà xe";
 
 /* Class = "UITextField"; placeholder = "Loại xe"; ObjectID = "fnV-eq-hPa"; */
 "fnV-eq-hPa.placeholder" = "Loại xe";
 
 /* Class = "UIButton"; normalTitle = "Hành khách"; ObjectID = "g8I-OW-0JC"; */
-"g8I-OW-0JC.normalTitle" = "Hành khách";
+"g8I-OW-0JC.normalTitle" = "Khách hàng/Tìm thuê xe ";
 
 /* Class = "UIButton"; normalTitle = "Đăng ký"; ObjectID = "gid-PL-VZE"; */
 "gid-PL-VZE.normalTitle" = "Đăng ký";

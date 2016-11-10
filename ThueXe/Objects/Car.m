@@ -27,7 +27,8 @@
         car.carMade = [dict objectForKey:@"car_made"];
         car.carModel = [dict objectForKey:@"car_model"];
         car.carSize = [dict objectForKey:@"car_size"];
-        car.price = [dict objectForKey:@"car_price"];
+        NSString *carPrice = [NSString stringWithFormat:@"%@", [dict objectForKey:@"car_price"]];
+        car.price = ([carPrice isEqualToString:@"<null>"] || [carPrice isEqualToString:@"-1"]) ? @"Giá thỏa thuận" : carPrice;
         ///--- tinh toa do
         float lon = [[dict objectForKey:@"lon"] floatValue];
         float lat = [[dict objectForKey:@"lat"] floatValue];

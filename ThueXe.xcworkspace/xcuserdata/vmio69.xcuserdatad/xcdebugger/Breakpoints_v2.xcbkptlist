@@ -210,22 +210,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ThueXe/ViewController/ListDataViewController.m"
-            timestampString = "499341436.66358"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -261,134 +245,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ThueXe/ViewController/ListDataViewController.m"
-            timestampString = "499341436.66358"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ThueXe/ViewController/ListDataViewController.m"
-            timestampString = "499341882.51905"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "-viewWillAppear:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ThueXe/ViewController/ListDataViewController.m"
-            timestampString = "499341882.51905"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "-tabBarController:shouldSelectViewController:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ThueXe/ViewController/ListDataViewController.m"
-            timestampString = "499341882.51905"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
-            landmarkName = "-filterBtnClick:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ThueXe/ViewController/ListDataViewController.m"
-            timestampString = "499341436.66358"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ThueXe/ViewController/ListDataViewController.m"
-            timestampString = "499341882.51905"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
-            landmarkName = "-getListOnline"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ThueXe/ViewController/ListDataViewController.m"
-            timestampString = "499341436.66358"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ThueXe/ViewController/ListDataViewController.m"
-            timestampString = "499341882.51905"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
-            landmarkName = "-collectionView:cellForItemAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "ThueXe/ViewController/MapDriverViewController.m"
             timestampString = "499660369.747744"
             startingColumnNumber = "9223372036854775807"
@@ -406,12 +262,12 @@
                   moduleName = "ThueXe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vmio69/Desktop/AnhHT/txvn2/ThueXe/ViewController/MapDriverViewController.m"
-                  timestampString = "499939694.967944"
+                  timestampString = "500441776.684676"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "99"
                   endingLineNumber = "99"
-                  offsetFromSymbolStart = "292">
+                  offsetFromSymbolStart = "257">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -421,12 +277,12 @@
                   moduleName = "ThueXe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vmio69/Desktop/AnhHT/txvn2/ThueXe/ViewController/MapDriverViewController.m"
-                  timestampString = "499939694.970114"
+                  timestampString = "500441776.6874"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "100"
                   endingLineNumber = "100"
-                  offsetFromSymbolStart = "88">
+                  offsetFromSymbolStart = "87">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -470,12 +326,12 @@
                   moduleName = "ThueXe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vmio69/Desktop/AnhHT/txvn2/ThueXe/ViewController/ActiveViewController.m"
-                  timestampString = "499939694.977954"
+                  timestampString = "500441776.699822"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "125"
                   endingLineNumber = "125"
-                  offsetFromSymbolStart = "832">
+                  offsetFromSymbolStart = "724">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -485,12 +341,12 @@
                   moduleName = "ThueXe"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/vmio69/Desktop/AnhHT/txvn2/ThueXe/ViewController/ActiveViewController.m"
-                  timestampString = "499939694.980006"
+                  timestampString = "500441776.702881"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "125"
                   endingLineNumber = "125"
-                  offsetFromSymbolStart = "12">
+                  offsetFromSymbolStart = "27">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -533,13 +389,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ThueXe/AppDelegate.m"
-            timestampString = "499939608.503267"
+            filePath = "ThueXe/ViewController/ListDataViewController.m"
+            timestampString = "500439108.209554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "-updateVersionApp"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

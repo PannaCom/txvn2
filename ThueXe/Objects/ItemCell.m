@@ -48,12 +48,12 @@
     carModelLb.text = [NSString stringWithFormat:@"%@", car.carModel];
     carTypeLb.text = [NSString stringWithFormat:@"%@", car.carType];
     carSizeLb.text = [NSString stringWithFormat:@"%@ chỗ", car.carSize];
-//    if ([car.price rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]].location == NSNotFound) {
+    if ([car.price rangeOfCharacterFromSet:[NSCharacterSet letterCharacterSet]].location == NSNotFound) {
         priceLb.text = [NSString stringWithFormat:@"%@ (đồng/km)", car.price];
-//    }
-//    else{
-//        priceLb.text = [NSString stringWithFormat:@"%@", car.price];
-//    }
+    }
+    else{
+        priceLb.text = [NSString stringWithFormat:@"%@", car.price];
+    }
     
     phoneLb.text = [NSString stringWithFormat:@"%@", car.phone];
     if(car.distance < 1){
