@@ -20,11 +20,16 @@
 #define API_GET_AROUND [NSString stringWithFormat:@"%@/Api/getaround", URL_SERVER] // dùng cho lái xe
 #define API_GET_MADE_LIST [NSString stringWithFormat:@"%@/Api/getCarMadeList", URL_SERVER]
 #define API_GET_ALL_MADE_LIST [NSString stringWithFormat:@"%@/Api/getAllCarMadeList", URL_SERVER]
-#define API_GET_MODEL_LIST [NSString stringWithFormat:@"%@/Api/getCarModelList", URL_SERVER]
+//#define API_GET_MODEL_LIST [NSString stringWithFormat:@"%@/Api/getCarModelList", URL_SERVER]
+#define API_GET_MODEL_LIST [NSString stringWithFormat:@"%@/Api/getCarModelListFromMade", URL_SERVER]
+
 #define API_GET_TYPE_LIST [NSString stringWithFormat:@"%@/Api/getAllCarTypeList", URL_SERVER]
 
 #define API_ACTIVE [NSString stringWithFormat:@"%@/Api/acitive", URL_SERVER]
+#define API_ACTIVE_BUY [NSString stringWithFormat:@"%@/Api/activecode", URL_SERVER]
 #define API_RESEND_ACTIVE [NSString stringWithFormat:@"%@/Api/resendactive", URL_SERVER]
+
+#define API_POST_REG_ID [NSString stringWithFormat:@"%@/Api/PostRegId", URL_SERVER]
 
 #define WIDTH_SCREEN [UIScreen mainScreen].bounds.size.width
 #define HEIGHT_SCREEN [UIScreen mainScreen].bounds.size.height
@@ -47,6 +52,9 @@ typedef NS_ENUM(int, CAR_STATUS){
     CAR_STATUS_ENABLE,
     CAR_STATUS_DISABLE
 };
+#define REG_ID_FOR_DRIVER @"1"
+#define REG_ID_FOR_PASSENGER @"2"
+#define DEVICE_IOS @"2"
 
 //#define CAR_MADE_MODEL @[@{@"car_made":@"Audi",\
 //                        @"car_model":@[@"Audi A3",@"Audi A4",@"Audi A5",@"Audi A6",@"Audi A7",@"Audi A8L 3.0",@"Audi A8L 4.0",@"Audi TT",@"Audi Q1",@"Audi Q3",@"Audi Q5",@"Audi Q7 2.0",@"Audi Q7 3.0"]},\
@@ -100,6 +108,7 @@ typedef NS_ENUM(int, CAR_STATUS){
 #define TIME_LIMIT_GET_AROUND 3600 // seconds
 #define TIME_LIMIT_RESEND_CODE 60 // seconds
 
+#define DAYS_TRIAL 30
 
 #define LINK_APP_STORE @"https://itunes.apple.com/us/app/thue-xe/id1166862903?l=vi&ls=1&mt=8"
 #define LINK_CHECK_VERSION @"http://itunes.apple.com/lookup?id=1166862903"

@@ -244,7 +244,8 @@
         
         switch (textFieldSelected) {
             case TEXT_FIELD_CAR_MADE:
-                if (carMadeSelected != indexPath.row) {
+            {
+                if (carMadeSelected != indexPath.row-1) {
                     carModelTf.text = LocalizedString(@"TEXT_ALL");
                     carModelSelected = -1;
                     [_filterData setObject:@"" forKey:@"car_model"];
@@ -262,7 +263,15 @@
                     [_filterData setObject:@"" forKey:@"car_made"];
                     [_filterData setObject:@"" forKey:@"car_model"];
                 }
-                
+                [DataHelper GET:API_GET_MODEL_LIST params:@{@"keyword":[_filterData objectForKey:@"car_made"]} completion:^(BOOL success, id responseObject){
+                    if (success) {
+                        carModelAll = [responseObject valueForKey:@"name"];
+                    }
+                    else{
+                        [self showAlert];
+                    }
+                }];
+            }
                 break;
             case TEXT_FIELD_CAR_MODEL:
                 carModelSelected = indexPath.row-1;

@@ -23,10 +23,10 @@
 #pragma mark - LifeCycle View Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
-    float sizeFont = passengerBtn.frame.size.height/3.5;
+    float sizeFont = passengerBtn.frame.size.height/3;
     NSLog(@"%f", WIDTH_SCREEN);
     if (WIDTH_SCREEN > 320) {
-        sizeFont = passengerBtn.frame.size.height/3;
+        sizeFont = passengerBtn.frame.size.height/2.5;
     }
     
     passengerBtn.titleLabel.font = [UIFont systemFontOfSize:sizeFont];

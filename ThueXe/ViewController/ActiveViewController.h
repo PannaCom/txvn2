@@ -11,4 +11,6 @@
 
 @interface ActiveViewController : UIViewController
 
+@property BOOL isActiveBuyCode;
+
 @end

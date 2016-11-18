@@ -15,11 +15,18 @@
 #import "MapPassengerViewController.h"
 #import "FirstViewController.h"
 #import "ActiveViewController.h"
+#import <UserNotifications/UserNotifications.h>
+
 
 @import GoogleMaps;
 
-@interface AppDelegate ()
+#define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
+@interface AppDelegate ()<UNUserNotificationCenterDelegate>
+{
+    NSString *userType;
+    
+}
 @end
 
 @implementation AppDelegate
@@ -29,8 +36,14 @@
     [GMSServices provideAPIKey:@"AIzaSyArIGsr8eBKOuQTGwQn8ekDujQpAA_Murg"];
 //    [GMSPlacesClient provideAPIKey:@"AIzaSyArIGsr8eBKOuQTGwQn8ekDujQpAA_Murg"];
     [self updateVersionApp];
-    NSDictionary *userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES
+                                            withAnimation:UIStatusBarAnimationFade];
+    [self registerForRemoteNotifications];
+    
+//    NSDictionary *userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
+    NSDictionary *userInfo = [DataHelper getUserData];
     NSLog(@"%@", userInfo);
+    userType = @"";
     if (!userInfo) {
         _window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
     }
@@ -38,38 +51,33 @@
         switch ([[userInfo objectForKey:@"userType"] intValue] ) {
             case USER_TYPE_DRIVER:
             {
+                userType = REG_ID_FOR_DRIVER;
                 UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
                 if ([[userInfo objectForKey:@"wasActived"] boolValue]) {
-                    MapDriverViewController *controller = (MapDriverViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"mapDriverStoryboardId"];
-                    
-                    _window.rootViewController = controller;
+                    NSDate *dateNeedActive = [userInfo objectForKey:@"dateNeedActive"];
+                    if ([[NSDate date] compare:dateNeedActive] == NSOrderedDescending) {
+                        ActiveViewController *controller = (ActiveViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"activeStoryboardId"];
+                        controller.isActiveBuyCode = YES;
+                        _window.rootViewController = controller;
+                    }
+                    else{
+                        MapDriverViewController *controller = (MapDriverViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"mapDriverStoryboardId"];
+                        
+                        _window.rootViewController = controller;
+                    }
                 }
                 else{
                     ActiveViewController *controller = (ActiveViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"activeStoryboardId"];
+                    controller.isActiveBuyCode = NO;
                     _window.rootViewController = controller;
                 }
-                
-                
             }
                 break;
             case USER_TYPE_PASSENGER:
             {
+                userType = REG_ID_FOR_PASSENGER;
                 UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
                 NSDictionary *filterData = [DataHelper getFilterData];
-                
-//                if (filterData) {
-//                    UITabBarController *tabbar = [mainStoryboard instantiateViewControllerWithIdentifier: @"listCarStoryboardId"];
-//                    ListDataViewController *listController = [tabbar.viewControllers objectAtIndex:0];
-//                    listController.filterData = filterData;
-//                    [tabbar setSelectedIndex:0];
-//                    _window.rootViewController = tabbar;
-//                }
-//                else{
-//                    FilterViewController *controller = (FilterViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"filterDataStoryboardId"];
-//                    controller.filterData = [NSMutableDictionary dictionaryWithDictionary:@{@"car_made":@"", @"car_model":@"", @"car_size":@"", @"car_type":@""}];
-//                    _window.rootViewController = controller;
-//                }
-                
                 
                 if (!filterData) {
                     filterData = @{@"car_made":@"", @"car_model":@"", @"car_size":@"", @"car_type":@""};
@@ -118,6 +126,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
 }
 
 
@@ -143,6 +152,71 @@
             }
         }
     }];
+}
+
+- (void)registerForRemoteNotifications {
+    if(SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(@"10.0")){
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        center.delegate = self;
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error){
+            if(!error){
+                [[UIApplication sharedApplication] registerForRemoteNotifications];
+            }
+        }];
+    }
+    else {
+        UIUserNotificationType allNotificationTypes =
+        (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings =
+        [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }
+}
+
+//Called when a notification is delivered to a foreground app.
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
+    NSLog(@"User Info : %@",notification.request.content.userInfo);
+    completionHandler(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge);
+}
+
+//Called to let your app know which action was selected by the user for a given notification.
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)())completionHandler{
+    NSLog(@"User Info : %@",response.notification.request.content.userInfo);
+    completionHandler();
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
+        token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+        token = [token substringWithRange:NSMakeRange(1, 64)];
+        NSLog(@"deviceToken: %@", token);
+        [DataHelper setRegId:token userType:userType];
+//        [DataHelper setDeviceToken:token];
+    });
+}
+
+
+- (void)application:(UIApplication *)application
+didRegisterUserNotificationSettings:(UIUserNotificationSettings *)settings
+{
+    NSLog(@"Registering device for push notifications..."); // iOS 8
+    [application registerForRemoteNotifications];
+}
+
+
+- (void)application:(UIApplication *)application
+didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"Failed to register: %@", error);
+}
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier
+forRemoteNotification:(NSDictionary *)notification completionHandler:(void(^)())completionHandler
+{
+    NSLog(@"Received push notification: %@, identifier: %@", notification, identifier); // iOS 8
+    completionHandler();
 }
 
 @end

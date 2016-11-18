@@ -44,25 +44,30 @@
 }
 
 +(void)setFilterData:(NSDictionary*)filterData{
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    [userDefault setObject:filterData forKey:@"filterData"];
-    [userDefault synchronize];
+//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+//    [userDefault setObject:filterData forKey:@"filterData"];
+//    [userDefault synchronize];
+    [self setData:filterData forKey:@"filterData"];
 }
 
 +(NSDictionary*)getFilterData{
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    return [userDefault dictionaryForKey:@"filterData"];
+//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+//    return [userDefault dictionaryForKey:@"filterData"];
+    return [self getDataForKey:@"filterData"];
 }
 
 +(void)setUserData:(NSDictionary*)userData{
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    [userDefault setObject:userData forKey:@"userInfo"];
-    [userDefault synchronize];
+//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+//    [userDefault setObject:userData forKey:@"userInfo"];
+//    [userDefault synchronize];
+    [self setData:userData forKey:@"userInfo"];
 }
 
 +(NSDictionary*)getUserData{
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    return [userDefault dictionaryForKey:@"userInfo"];
+//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+//    return [userDefault dictionaryForKey:@"userInfo"];
+    
+    return [self getDataForKey:@"userInfo"];
 }
 
 +(void)clearUserData{
@@ -73,12 +78,74 @@
     [userDefault synchronize];
 }
 
-+(void)activeUser{
++(void)activeUser:(int)daysActive{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:[userDefault dictionaryForKey:@"userInfo"]];
     [userInfo setObject:@"YES" forKey:@"wasActived"];
+    
+    NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+    dayComponent.day = daysActive;
+    
+    NSCalendar *theCalendar = [NSCalendar currentCalendar];
+    NSDate *dateActive = [theCalendar dateByAddingComponents:dayComponent toDate:[NSDate date] options:0];
+    
+    [userInfo setObject:dateActive forKey:@"dateNeedActive"];
+    
     [userDefault setObject:userInfo forKey:@"userInfo"];
     [userDefault synchronize];
 }
+
++(void)setData:(NSDictionary*)data forKey:(NSString*)key{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setObject:data forKey:key];
+    [userDefault synchronize];
+}
+
++(NSDictionary*)getDataForKey:(NSString*)key{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    return [userDefault dictionaryForKey:key];
+}
+
++(void)setRegId:(NSString*)regId userType:(NSString *)userType{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSDictionary *oldRegIdAPNs = [userDefault dictionaryForKey:@"regIdAPNs"];
+    NSString *oldRegId = [oldRegIdAPNs objectForKey:@"regId"];
+    if ([regId isEqualToString:oldRegId] == NO) {
+        [userDefault setObject:@{@"regId":regId, @"userType":@""} forKey:@"regIdAPNs"];
+//        [userDefault synchronize];
+        if (userType.length > 0) {
+            [self POST:API_POST_REG_ID params:@{@"tobject":userType, @"regid":regId, @"os":DEVICE_IOS} completion:^(BOOL success, id responseObject){
+                if (success) {
+                    [userDefault setObject:@{@"regId":regId, @"userType":userType} forKey:@"regIdAPNs"];
+                    [userDefault synchronize];
+                }
+                else{
+                    [userDefault synchronize];
+                }
+            }];
+        }
+        else{
+            [userDefault synchronize];
+        }
+    }
+}
+
++(void)sendRegIdUserType:(NSString*)userType{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSDictionary *oldRegIdAPNs = [userDefault dictionaryForKey:@"regIdAPNs"];
+    if (oldRegIdAPNs) {
+        NSString *regId = [oldRegIdAPNs objectForKey:@"regId"];
+        NSString *oldUserType = [oldRegIdAPNs objectForKey:@"userType"];
+        if (![userType isEqualToString:oldUserType]) {
+            [self POST:API_POST_REG_ID params:@{@"tobject":userType, @"regid":regId, @"os":DEVICE_IOS} completion:^(BOOL success, id responseObject){
+                if (success) {
+                    [userDefault setObject:@{@"regId":regId, @"userType":userType} forKey:@"regIdAPNs"];
+                    [userDefault synchronize];
+                }
+            }];
+        }
+    }
+}
+
 
 @end

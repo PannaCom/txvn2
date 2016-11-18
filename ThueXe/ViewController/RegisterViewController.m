@@ -196,17 +196,6 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO
                                             withAnimation:UIStatusBarAnimationFade];
     [self.navigationController setNavigationBarHidden:YES];
-    
-//    NSInteger index = [carMade indexOfObject:carMadeTf.text];
-//    if (index != NSNotFound) {
-//        carModel = [[CAR_MADE_MODEL objectAtIndex:index] objectForKey:@"car_model"];
-//    }
-//    else{
-//        carModel = [NSMutableArray new];
-//        for (NSDictionary *car in CAR_MADE_MODEL) {
-//            [carModel addObjectsFromArray:[car objectForKey:@"car_model"]];
-//        }
-//    }
 }
 
 
@@ -258,16 +247,20 @@
                     if (_isEdit) {
                         // đăng ký thành công, lưu thông tin người dùng ...
                         [params setValue:[NSString stringWithFormat:@"%@", responseObject] forKey:@"id"];
-                        [[NSUserDefaults standardUserDefaults] setObject:@{@"data":params, @"userType":[NSString stringWithFormat:@"%d", USER_TYPE_DRIVER], @"wasActived":@"YES"} forKey:@"userInfo"];
-                        [[NSUserDefaults standardUserDefaults] synchronize];
+//                        [[NSUserDefaults standardUserDefaults] setObject:@{@"data":params, @"userType":[NSString stringWithFormat:@"%d", USER_TYPE_DRIVER], @"wasActived":@"YES"} forKey:@"userInfo"];
+//                        [[NSUserDefaults standardUserDefaults] synchronize];
+                        
+                        [DataHelper setUserData:@{@"data":params, @"userType":[NSString stringWithFormat:@"%d", USER_TYPE_DRIVER], @"wasActived":@"YES"}];
                         
                         [self performSegueWithIdentifier:@"goToMapDriveSegueId" sender:self];
                     }
                     else{
                         // đăng ký thành công, lưu thông tin người dùng ...
                         [params setValue:[NSString stringWithFormat:@"%@", responseObject] forKey:@"id"];
-                        [[NSUserDefaults standardUserDefaults] setObject:@{@"data":params, @"userType":[NSString stringWithFormat:@"%d", USER_TYPE_DRIVER]} forKey:@"userInfo"];
-                        [[NSUserDefaults standardUserDefaults] synchronize];
+//                        [[NSUserDefaults standardUserDefaults] setObject:@{@"data":params, @"userType":[NSString stringWithFormat:@"%d", USER_TYPE_DRIVER]} forKey:@"userInfo"];
+//                        [[NSUserDefaults standardUserDefaults] synchronize];
+                        
+                        [DataHelper setUserData:@{@"data":params, @"userType":[NSString stringWithFormat:@"%d", USER_TYPE_DRIVER]}];
                         
                         ActiveViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"activeStoryboardId"];
                         [self presentViewController:vc animated:YES completion:nil];
@@ -320,6 +313,10 @@
 
 #pragma mark - UITextFieldDelegate Methods
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    if (textField == carModelTf && [textField.text isEqualToString:@"Nhập Mẫu xe"]) {
+        carModelTf.text = @"";
+        return YES;
+    }
     
     if (textField == carMadeTf /*|| textField == carModelTf*/ || textField == carTypeTf || textField == carSizeTf || textField == carYearTf || textField == carPriceTf) {
         [self.view endEditing:YES];
@@ -334,21 +331,6 @@
             textFieldSelected = TEXT_FIELD_CAR_MADE;
             rowSelected = carMadeSelected;
         }
-//        if (textField == carModelTf) {
-//            if (carMadeSelected == -1) {
-//                alertController = [UIAlertController alertControllerWithTitle:@"Chưa chọn hãng xe" message:@"Hãy chọn hãng xe của bạn" preferredStyle:UIAlertControllerStyleAlert];
-//                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-//                    [alertController dismissViewControllerAnimated:YES completion:nil];
-//                }];
-//                [alertController addAction:cancelAction];
-//                [self presentViewController:alertController animated:YES completion:nil];
-//                return NO;
-//            }
-//            dataTableView = carModel;
-//            title = @"Chọn mẫu xe";
-//            textFieldSelected = TEXT_FIELD_CAR_MODEL;
-//            rowSelected = carModelSelected;
-//        }
         if (textField == carTypeTf) {
             dataTableView = carTypes;
             title = LocalizedString(@"REGISTER_TITLE_SELECT_CAR_TYPE");
@@ -466,13 +448,21 @@
     else{
         switch (textFieldSelected) {
             case TEXT_FIELD_CAR_MADE:
+            {
                 if (carMadeSelected != indexPath.row) {
-                    carModelTf.text = @"";
+                    carModelTf.text = @"Nhập Mẫu xe";
                     carModelSelected = -1;
                 }
                 carMadeSelected = indexPath.row;
 //                carModel = [[CAR_MADE_MODEL objectAtIndex:carMadeSelected] objectForKey:@"car_model"];
                 carMadeTf.text = [carMade objectAtIndex:carMadeSelected];
+                
+                [DataHelper GET:API_GET_MODEL_LIST params:@{@"keyword":carMadeTf.text} completion:^(BOOL success, id responseObject){
+                    if (success) {
+                        carModel = [responseObject valueForKey:@"name"];
+                    }
+                }];
+            }
                 break;
             case TEXT_FIELD_CAR_MODEL:
                 carModelSelected = indexPath.row;
@@ -519,33 +509,6 @@
 }
 
 - (IBAction)menuBtnClick:(id)sender {
-    /*UIAlertController *menu = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *changeUser = [UIAlertAction actionWithTitle:LocalizedString(@"CHANGE_USER") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userInfo"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        FirstViewController *firstViewController = (FirstViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"firstViewControllerStoryboardId"];
-        
-        [self presentViewController:firstViewController animated:YES completion:nil];
-    }];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Hủy" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
-        [menu dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    UIAlertAction *share = [UIAlertAction actionWithTitle:@"Chia sẻ ứng dụng" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại ";
-        NSURL *myWebsite = [NSURL URLWithString:@"http://thuexevn.com"];
-        
-        NSArray *objectsToShare = @[textToShare, myWebsite];
-        
-        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
-        
-        [self presentViewController:activityVC animated:YES completion:nil];
-    }];
-    [menu addAction:share];
-    [menu addAction:changeUser];
-    [menu addAction:cancel];
-    [self presentViewController:menu animated:YES completion:nil];*/
     NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại ";
     NSURL *myWebsite = [NSURL URLWithString:@"http://thuexevn.com"];
     
@@ -573,7 +536,7 @@
         [self showAlertWithString:LocalizedString(@"REGISTER_ERROR_CAR_MADE")];
         return NO;
     }
-    if (carModelTf.text.length == 0) {
+    if (carModelTf.text.length == 0 || [carModelTf.text isEqualToString:@"Nhập Mẫu xe"]) {
         [self showAlertWithString:LocalizedString(@"REGISTER_ERROR_CAR_MODEL")];
         return NO;
     }

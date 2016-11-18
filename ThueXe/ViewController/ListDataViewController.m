@@ -118,6 +118,7 @@
             //            NSLog(@"%@", carTypes);
         }
     }];
+    [DataHelper sendRegIdUserType:REG_ID_FOR_PASSENGER];
 }
 
 -(void)filterData:(NSNotification *)noti{

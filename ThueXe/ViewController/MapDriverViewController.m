@@ -35,7 +35,7 @@
 #pragma mark - LifeCycle View Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    NSLog(@"%@", [NSDate date]);
     carStatus = CAR_STATUS_ENABLE;
     camera = [GMSCameraPosition cameraWithLatitude:20.982879
                                          longitude:105.925522
@@ -67,6 +67,8 @@
     
     timerUpdateLocation = [NSTimer scheduledTimerWithTimeInterval:TIME_UPDATE_LOCATE target:self selector:@selector(updateLocation) userInfo:nil repeats:YES];
     [_mapView bringSubviewToFront:changeStatusSeg];
+    
+    [DataHelper sendRegIdUserType:REG_ID_FOR_DRIVER];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -165,39 +167,6 @@
 }
 
 - (IBAction)menuBtnClick:(id)sender {
-    /*
-    UIAlertController *menu = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *changeUser = [UIAlertAction actionWithTitle:LocalizedString(@"CHANGE_USER") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        carStatus = CAR_STATUS_DISABLE;
-        [timerUpdateLocation invalidate];
-        timerUpdateLocation = nil;
-        [self updateLocation];
-        [DataHelper clearUserData];
-        FirstViewController *firstViewController = (FirstViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"firstViewControllerStoryboardId"];
-        
-        [self presentViewController:firstViewController animated:YES completion:nil];
-    }];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:LocalizedString(@"CANCEL") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
-        [menu dismissViewControllerAnimated:YES completion:nil];
-    }];
-//    [menu addAction:changeUser];
-    
-    UIAlertAction *share = [UIAlertAction actionWithTitle:@"Chia sẻ ứng dụng" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại ";
-        NSURL *myWebsite = [NSURL URLWithString:@"http://thuexevn.com"];
-        
-        NSArray *objectsToShare = @[textToShare, myWebsite];
-        
-        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
-        
-        [self presentViewController:activityVC animated:YES completion:nil];
-    }];
-    [menu addAction:share];
-    
-    [menu addAction:cancel];
-    [self presentViewController:menu animated:YES completion:nil];
-     */
     NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại ";
     NSURL *myWebsite = [NSURL URLWithString:@"http://thuexevn.com"];
     

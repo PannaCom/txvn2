@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+//! Project version number for UIFloatLabelTextField.
+FOUNDATION_EXPORT double UIFloatLabelTextFieldVersionNumber;
+
+//! Project version string for UIFloatLabelTextField.
+FOUNDATION_EXPORT const unsigned char UIFloatLabelTextFieldVersionString[];
+
 /**
  A typedef that delineates the states of the float label
  */
@@ -118,6 +124,13 @@ typedef NS_ENUM(NSUInteger, UIFloatLabelAnimationType)
  * Defaults to YES.
  */
 @property (nonatomic, assign) NSNumber *selectAllEnabled UI_APPEARANCE_SELECTOR;
+
+/**
+ * The textField's clear button.
+ *
+ * Read-only variable.
+ */
+@property (nonatomic, strong, readonly) UIButton *textFieldClearButton;
 
 /**
  Toggles the float label using an animation
