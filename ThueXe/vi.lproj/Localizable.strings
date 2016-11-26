@@ -19,6 +19,7 @@
 "REGISTER_ERROR" = "Đăng ký không thành công";
 
 "REGISTER_TITLE_SELECT_CAR_MADE" = "Chọn hãng xe";
+"REGISTER_TITLE_SELECT_CAR_MODEL" = "Chọn mẫu xe";
 "REGISTER_TITLE_SELECT_CAR_TYPE" = "Chọn loại xe";
 "REGISTER_TITLE_SELECT_CAR_SIZE" = "Chọn số chỗ";
 "REGISTER_TITLE_SELECT_CAR_YEAR" = "Chọn năm sản xuất xe";

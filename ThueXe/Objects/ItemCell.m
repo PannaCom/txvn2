@@ -7,6 +7,8 @@
 //
 
 #import "ItemCell.h"
+#import "DataHelper.h"
+#import "Config.h"
 
 @interface ItemCell()
 {
@@ -69,6 +71,9 @@
     NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"tel:%@",phoneLb.text]];
     
     if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+        [DataHelper GET:API_CALL params:@{@"phone":phoneLb.text} completion:^(BOOL success, id responseObject){
+            NSLog(@"Post Call number: %@", responseObject);
+        }];
         [[UIApplication sharedApplication] openURL:phoneUrl];
     }
     else

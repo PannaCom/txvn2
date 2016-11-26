@@ -17,6 +17,7 @@
 //"REGISTER_ERROR" = "Register success";
 //
 //"REGISTER_TITLE_SELECT_CAR_MADE" = "Select Car made";
+//"REGISTER_TITLE_SELECT_CAR_MODEL" = "Select Car model";
 //"REGISTER_TITLE_SELECT_CAR_TYPE" = "Select Car model";
 //"REGISTER_TITLE_SELECT_CAR_SIZE" = "Select number of seat";
 //"REGISTER_TITLE_SELECT_CAR_YEAR" = "Select Manufacture year";
@@ -83,6 +84,7 @@
 "REGISTER_ERROR" = "Đăng ký không thành công";
 
 "REGISTER_TITLE_SELECT_CAR_MADE" = "Chọn hãng xe";
+"REGISTER_TITLE_SELECT_CAR_MODEL" = "Chọn mẫu xe";
 "REGISTER_TITLE_SELECT_CAR_TYPE" = "Chọn loại xe";
 "REGISTER_TITLE_SELECT_CAR_SIZE" = "Chọn số chỗ";
 "REGISTER_TITLE_SELECT_CAR_YEAR" = "Chọn năm sản xuất xe";
