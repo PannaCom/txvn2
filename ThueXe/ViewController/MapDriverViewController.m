@@ -68,7 +68,7 @@
     timerUpdateLocation = [NSTimer scheduledTimerWithTimeInterval:TIME_UPDATE_LOCATE target:self selector:@selector(updateLocation) userInfo:nil repeats:YES];
     [_mapView bringSubviewToFront:changeStatusSeg];
     
-    [DataHelper sendRegIdUserType:REG_ID_FOR_DRIVER];
+//    [DataHelper sendRegIdUserType:REG_ID_FOR_DRIVER];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

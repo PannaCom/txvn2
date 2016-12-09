@@ -26,8 +26,8 @@
     BOOL getListOnlineNow;
     
     IBOutlet UICollectionView *carTypeCollectionView;
-    NSArray *carTypeNames;
-    NSArray *carTypeImages;
+//    NSArray *carTypeNames;
+//    NSArray *carTypeImages;
     NSIndexPath *selectedIndexPath;
     NSArray *carTypes;
 }
@@ -50,12 +50,23 @@
     [locationManager startUpdatingLocation];
     _currentLocation = [CLLocation new];
     
-    
+    carTypes = [NSArray new];
     
     _cars = [NSArray new];
     [_tableView registerNib:[UINib nibWithNibName:@"ItemCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"carCellId"];
     
-    [[NSUserDefaults standardUserDefaults] setObject:@{@"userType":[NSString stringWithFormat:@"%d", USER_TYPE_PASSENGER]} forKey:@"userInfo"];
+    
+    NSDictionary *userInfo = [DataHelper getUserData];
+    switch ([userInfo[@"userType"] intValue]) {
+        case USER_TYPE_DRIVER:
+            [DataHelper setUserData:@{@"userType":[NSString stringWithFormat:@"%d", USER_TYPE_PASSENGER]}];
+            break;
+        case USER_TYPE_PASSENGER:
+            
+            break;
+        default:
+            break;
+    }
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     
@@ -66,8 +77,6 @@
     
     self.tabBarController.delegate = self;
     
-//    _tableView.emptyDataSetSource = self;
-//    _tableView.emptyDataSetDelegate = self;
     _tableView.tableFooterView = [UIView new];
     
     __weak UITableView *weakTableView = _tableView;
@@ -87,7 +96,6 @@
         [DataHelper GET:API_GET_LIST_ONLINE params:@{@"lon":lon, @"lat":lat, @"car_made":[weakSelf.filterData objectForKey:@"car_made"], @"car_model":[weakSelf.filterData objectForKey:@"car_model"], @"car_size":carSize, @"car_type":[weakSelf.filterData objectForKey:@"car_type"], @"order":@"0"} completion:^(BOOL success, id responseObject){
             [weakTableView.pullToRefreshView stopAnimating];
             if (success) {
-//                NSLog(@"list online: %@", responseObject);
                 _cars = [Car getDataFromJson:responseObject];
                 [weakTableView reloadData];
             }
@@ -97,17 +105,14 @@
         }];
     }];
     
-    carTypeNames = @[@"Tất cả", @"Tự do", @"Taxi", @"Cưới", @"Hợp đồng", @"Tự lái", @"Xe tải", @"Container", @"Xe khách"];
-    carTypeImages = @[@"all_car.png", @"free_car.png", @"taxi.png", @"wedding_car.png", @"contract_car.png", @"self_driver.png", @"delivery_car.png", @"container.png", @"coach.png"];
-    
     [carTypeCollectionView setAllowsMultipleSelection:NO];
     NSString *carType = [_filterData objectForKey:@"car_type"];
     [DataHelper GET:API_GET_TYPE_LIST params:@{} completion:^(BOOL success, id responseObject){
         if (success) {
-            //            NSLog(@"%@", responseObject);
             carTypes = [responseObject valueForKey:@"name"];
             if (carType.length == 0) {
                 selectedIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+                [carTypeCollectionView reloadData];
             }
             else{
                 selectedIndexPath = [NSIndexPath indexPathForItem:[carTypes indexOfObject:carType]+1 inSection:0];
@@ -115,10 +120,9 @@
                 [carTypeCollectionView reloadData];
             }
             
-            //            NSLog(@"%@", carTypes);
         }
     }];
-    [DataHelper sendRegIdUserType:REG_ID_FOR_PASSENGER];
+//    [DataHelper sendRegIdUserType:REG_ID_FOR_PASSENGER];
 }
 
 -(void)filterData:(NSNotification *)noti{
@@ -131,7 +135,16 @@
     [_tableView triggerPullToRefresh];
     [[UIApplication sharedApplication] setStatusBarHidden:NO
                                             withAnimation:UIStatusBarAnimationFade];
-
+    NSString *carType = [_filterData objectForKey:@"car_type"];
+    if (carType.length == 0) {
+        selectedIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+        [carTypeCollectionView reloadData];
+    }
+    else{
+        selectedIndexPath = [NSIndexPath indexPathForItem:[carTypes indexOfObject:carType]+1 inSection:0];
+        [carTypeCollectionView scrollToItemAtIndexPath:selectedIndexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+        [carTypeCollectionView reloadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -234,6 +247,11 @@
     }];
     [menu addAction:share];
     
+//    UIAlertAction *booking = [UIAlertAction actionWithTitle:@"Đặt xe" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+//        [self performSegueWithIdentifier:@"bookingSegueId" sender:self];
+//    }];
+//    [menu addAction:booking];
+    
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:LocalizedString(@"CANCEL") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
         [menu dismissViewControllerAnimated:YES completion:nil];
     }];
@@ -257,12 +275,68 @@
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return carTypeNames.count;
+    return carTypes.count + 1;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     CarTypeItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"carTypeItemId" forIndexPath:indexPath];
-    [cell setCarType:[carTypeNames objectAtIndex:indexPath.item] withImage:[carTypeImages objectAtIndex:indexPath.item]];
+    
+    if (indexPath.item == 0) {
+        [cell setCarType:@"Tất cả" withImage:@"all_car.png"];
+    }
+    else{
+        NSString *carTypeName = [carTypes objectAtIndex:indexPath.item-1];
+        NSString *carTypeImage = @"";
+        if ([carTypeName isEqualToString:@""]) {
+            carTypeImage = @"";
+        }
+        else{
+            if ([carTypeName isEqualToString:@"xe tự do"]) {
+                carTypeImage = @"free_car.png";
+            }
+            else{
+                if ([carTypeName containsString:@"taxi"]) {
+                    carTypeImage = @"taxi.png";
+                }
+                else{
+                    if ([carTypeName isEqualToString:@"xe cưới"]) {
+                        carTypeImage = @"wedding_car.png";
+                    }
+                    else{
+                        if ([carTypeName isEqualToString:@"xe hợp đồng"]) {
+                            carTypeImage = @"contract_car.png";
+                        }
+                        else{
+                            if ([carTypeName isEqualToString:@"xe tự lái"]) {
+                                carTypeImage = @"self_driver.png";
+                            }
+                            else{
+                                if ([carTypeName containsString:@"xe tải"]) {
+                                    carTypeImage = @"delivery_car.png";
+                                }
+                                else{
+                                    if ([carTypeName containsString:@"container"]) {
+                                        carTypeImage = @"container.png";
+                                    }
+                                    else{
+                                        if ([carTypeName containsString:@"xe khách"]) {
+                                            carTypeImage = @"coach.png";
+                                        }
+                                        else{
+                                            carTypeImage = @"other_car.png";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        [cell setCarType:carTypeName withImage:carTypeImage];
+    }
+    
+    
     if (indexPath.item == selectedIndexPath.item) {
         [cell.contentView setBackgroundColor:[UIColor yellowColor]];
     }
@@ -273,7 +347,7 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(70, 70);
+    return CGSizeMake(110, 70);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{

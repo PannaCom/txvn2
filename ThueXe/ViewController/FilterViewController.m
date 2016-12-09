@@ -23,6 +23,7 @@
     NSArray *carMade;
     NSArray *carModel;
     NSArray *carTypes;
+    NSArray *carSizes;
     NSMutableArray *carYear;
     long carMadeSelected, carModelSelected, carTypeSelected, carSizeSelected, carYearSelected;
     NSArray *dataTableView;
@@ -53,7 +54,7 @@
     carModel = [NSArray new];
     carModelAll = [NSArray new];
     carTypes = [NSArray new];
-//    carMade = [CAR_MADE_MODEL valueForKey:@"car_made"];
+    carSizes = [NSArray new];
     
     //Get Current Year
     NSDateFormatter* formatter = [NSDateFormatter new];
@@ -77,24 +78,7 @@
     carModelTf.text = [self checkIsAll:[_filterData objectForKey:@"car_model"]];
     carSizeTf.text = [self checkIsAll:[_filterData objectForKey:@"car_size"]];
     carTypeTf.text = [self checkIsAll:[_filterData objectForKey:@"car_type"]];
-    
-//    allCar = [NSMutableArray new];
-//    for (NSDictionary *car_made in CAR_MADE_MODEL) {
-//        [allCar addObjectsFromArray:[car_made objectForKey:@"car_model"]];
-//    }
-    
-//    tableViewSearch = [[UITableView alloc] initWithFrame:CGRectMake(4, 200, 320, 120)];
-//    tableViewSearch.delegate = self;
-//    tableViewSearch.dataSource = self;
-//    tableViewSearch.scrollEnabled = YES;
-//    tableViewSearch.allowsMultipleSelection = NO;
-//    [tableViewSearch registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellSearchId"];
-//    [tableViewSearch setHidden:YES];
-//    [self.view addSubview:tableViewSearch];
-//    [self.view bringSubviewToFront:tableViewSearch];
-//    [carModelTf addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-//    carModelTf.inputAccessoryView = nil;
-//    carModelTf.autocorrectionType = UITextAutocorrectionTypeNo;
+
     
     NSString *order = [_filterData objectForKey:@"order"];
     if (order != nil && order.length > 0) {
@@ -125,60 +109,42 @@
     [DataHelper GET:API_GET_MADE_LIST params:@{} completion:^(BOOL success, id responseObject){
         if (success) {
             done ++;
-            if (done == 3) {
+            if (done == 4) {
                 [progressHudView hideAnimated:YES];
             }
-//            NSLog(@"%@", responseObject);
             carMade = [responseObject valueForKey:@"name"];
-//            NSLog(@"%@", carMade);
-        }
-        else{
-            [self showAlert];
         }
     }];
     
     [DataHelper GET:API_GET_MODEL_LIST params:@{@"keyword":[_filterData objectForKey:@"car_made"]} completion:^(BOOL success, id responseObject){
         if (success) {
             done ++;
-            if (done == 3) {
+            if (done == 4) {
                 [progressHudView hideAnimated:YES];
             }
-            //            NSLog(@"%@", responseObject);
             carModelAll = [responseObject valueForKey:@"name"];
-//            NSLog(@"%@", carModel);
-        }
-        else{
-            [self showAlert];
         }
     }];
     
     [DataHelper GET:API_GET_TYPE_LIST params:@{} completion:^(BOOL success, id responseObject){
         if (success) {
             done ++;
-            if (done == 3) {
+            if (done == 4) {
                 [progressHudView hideAnimated:YES];
             }
-            //            NSLog(@"%@", responseObject);
             carTypes = [responseObject valueForKey:@"name"];
-            //            NSLog(@"%@", carTypes);
-        }
-        else{
-            [self showAlert];
         }
     }];
-}
-
--(void)showAlert{
-    [progressHudView hideAnimated:YES];
-    if (!self.presentedViewController) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Lỗi kết nối" message:@"Hãy kiểm tra kết nối Internet." preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-            [alert dismissViewControllerAnimated:YES completion:nil];
-        }];
-        [alert addAction:ok];
-        [self presentViewController:alert animated:YES completion:nil];
-    }
     
+    [DataHelper GET:API_GET_SIZE_LIST params:@{} completion:^(BOOL success, id responseObject){
+        if (success) {
+            done ++;
+            if (done == 4) {
+                [progressHudView hideAnimated:YES];
+            }
+            carSizes = [responseObject valueForKey:@"name"];
+        }
+    }];
 }
 
 -(NSString *)checkIsAll:(NSString *)input{
@@ -210,12 +176,7 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (tableView == tableViewSearch) {
-//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellSearchId" forIndexPath:indexPath];
-//        cell.textLabel.text = [carModel objectAtIndex:indexPath.row];
-//        return cell;
-//    }
-//    else{
+
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellSelectId" forIndexPath:indexPath];
         if (indexPath.row == 0) {
             cell.textLabel.text = LocalizedString(@"TEXT_ALL");
@@ -231,17 +192,10 @@
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
         return cell;
-//    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (tableView == tableViewSearch) {
-//        carModelTf.text = [carModel objectAtIndex:indexPath.row];
-//        [tableViewSearch setHidden:YES];
-//        [carModelTf resignFirstResponder];
-//    }
-//    else{
-    
+
         switch (textFieldSelected) {
             case TEXT_FIELD_CAR_MADE:
             {
@@ -252,12 +206,10 @@
                 }
                 carMadeSelected = indexPath.row-1;
                 if (carMadeSelected > -1) {
-    //                carModel = [[CAR_MADE_MODEL objectAtIndex:carMadeSelected] objectForKey:@"car_model"];
                     carMadeTf.text = [carMade objectAtIndex:carMadeSelected];
                     [_filterData setObject:carMadeTf.text forKey:@"car_made"];
                 }
                 else{
-    //                carModel = allCar;
                     carMadeTf.text = LocalizedString(@"TEXT_ALL");
                     carModelTf.text = LocalizedString(@"TEXT_ALL");
                     [_filterData setObject:@"" forKey:@"car_made"];
@@ -269,9 +221,6 @@
                     [progressHudView hideAnimated:YES];
                     if (success) {
                         carModelAll = [responseObject valueForKey:@"name"];
-                    }
-                    else{
-                        [self showAlert];
                     }
                 }];
             }
@@ -295,7 +244,7 @@
                     [_filterData setObject:@"" forKey:@"car_size"];
                 }
                 else{
-                    carSizeTf.text = [CAR_SIZE objectAtIndex:carSizeSelected];
+                    carSizeTf.text = [carSizes objectAtIndex:carSizeSelected];
                     [_filterData setObject:carSizeTf.text forKey:@"car_size"];
                 }
                 
@@ -325,7 +274,6 @@
         }
         [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section]].accessoryType = UITableViewCellAccessoryCheckmark;
         [alertController dismissViewControllerAnimated:YES completion:nil];
-//    }
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -365,7 +313,7 @@
                 }
                 else{
                     if (textField == carSizeTf) {
-                        dataTableView = CAR_SIZE;
+                        dataTableView = carSizes;
                         title = LocalizedString(@"REGISTER_TITLE_SELECT_CAR_SIZE");
                         textFieldSelected = TEXT_FIELD_CAR_SIZE;
                         rowSelected = carSizeSelected;

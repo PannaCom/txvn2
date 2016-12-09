@@ -7,9 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E01C3F81DF78AF0002DF7E5 /* socho_no_border.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E01C3F71DF78AF0002DF7E5 /* socho_no_border.png */; };
+		3E01C3FA1DF78BA1002DF7E5 /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E01C3F91DF78BA1002DF7E5 /* bus.png */; };
+		3E01C3FC1DF79642002DF7E5 /* txvnCert.cer in Resources */ = {isa = PBXBuildFile; fileRef = 3E01C3FB1DF79642002DF7E5 /* txvnCert.cer */; };
+		3E01C3FF1DF79F26002DF7E5 /* BookingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E01C3FE1DF79F26002DF7E5 /* BookingObject.m */; };
 		3E2A5E431DD1E37D003685E1 /* loc.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2A5E411DD1E37D003685E1 /* loc.png */; };
 		3E2A5E441DD1E37D003685E1 /* call.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2A5E421DD1E37D003685E1 /* call.png */; };
 		3E2E3C391DCC3DDF005480F9 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2E3C381DCC3DDF005480F9 /* share.png */; };
+		3E4040FD1DF4060C0046F754 /* CAPSPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4040FC1DF4060C0046F754 /* CAPSPageMenu.m */; };
+		3E4041001DF407160046F754 /* BookingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4040FF1DF407160046F754 /* BookingViewController.m */; };
+		3E4041051DF407620046F754 /* MapBookingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4041041DF407620046F754 /* MapBookingViewController.m */; };
+		3E4041081DF407750046F754 /* GetBookingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4041071DF407750046F754 /* GetBookingViewController.m */; };
+		3E40410B1DF407990046F754 /* InfoBookingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E40410A1DF407990046F754 /* InfoBookingViewController.m */; };
 		3E42688F1DA3B38A0018B76E /* image_1@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4268831DA3B38A0018B76E /* image_1@4x.png */; };
 		3E4268901DA3B38A0018B76E /* image_2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4268841DA3B38A0018B76E /* image_2@3x.png */; };
 		3E4268911DA3B38A0018B76E /* image_2@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4268851DA3B38A0018B76E /* image_2@4x.png */; };
@@ -40,6 +49,11 @@
 		3E512F921DB9FF370070B840 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E512F941DB9FF370070B840 /* Localizable.strings */; };
 		3E512F9A1DBA0F930070B840 /* LocalizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E512F991DBA0F930070B840 /* LocalizeHelper.m */; };
 		3E6BEC9F1DD41D74006ACF87 /* call-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E6BEC9E1DD41D74006ACF87 /* call-1.png */; };
+		3E7F08D01DF6480200F891BA /* BookingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F08CF1DF6480200F891BA /* BookingCell.m */; };
+		3E7F08D21DF6481500F891BA /* BookingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E7F08D11DF6481500F891BA /* BookingCell.xib */; };
+		3E7F08D71DF6792500F891BA /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E7F08D31DF6792500F891BA /* clock.png */; };
+		3E7F08D81DF6792500F891BA /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E7F08D41DF6792500F891BA /* location.png */; };
+		3E7F08D91DF6792500F891BA /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E7F08D51DF6792500F891BA /* home.png */; };
 		3E8AB2E61DA8CF3D001267C0 /* MapDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8AB2E51DA8CF3D001267C0 /* MapDriverViewController.m */; };
 		3E8AB2EB1DA9F211001267C0 /* car_small@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E8AB2E71DA9F211001267C0 /* car_small@1x.png */; };
 		3E8AB2EC1DA9F211001267C0 /* car_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E8AB2E81DA9F211001267C0 /* car_small@2x.png */; };
@@ -100,6 +114,7 @@
 		3ECD53711DDEB696000DDF3F /* thuexe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ECD536D1DDEB696000DDF3F /* thuexe@2x.png */; };
 		3ECD53721DDEB696000DDF3F /* thuexe@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ECD536E1DDEB696000DDF3F /* thuexe@3x.png */; };
 		3ECD53731DDEB696000DDF3F /* thuexe@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ECD536F1DDEB696000DDF3F /* thuexe@4x.png */; };
+		3ED1A1AD1DF291580024E89D /* other_car.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ED1A1AC1DF291580024E89D /* other_car.png */; };
 		3EDFC60E1D9F87F700EB31B0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDFC60D1D9F87F700EB31B0 /* main.m */; };
 		3EDFC6111D9F87F700EB31B0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDFC6101D9F87F700EB31B0 /* AppDelegate.m */; };
 		3EDFC6171D9F87F700EB31B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EDFC6151D9F87F700EB31B0 /* Main.storyboard */; };
@@ -136,9 +151,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E01C3F71DF78AF0002DF7E5 /* socho_no_border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = socho_no_border.png; sourceTree = "<group>"; };
+		3E01C3F91DF78BA1002DF7E5 /* bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus.png; sourceTree = "<group>"; };
+		3E01C3FB1DF79642002DF7E5 /* txvnCert.cer */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = txvnCert.cer; sourceTree = SOURCE_ROOT; };
+		3E01C3FD1DF79F26002DF7E5 /* BookingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookingObject.h; sourceTree = "<group>"; };
+		3E01C3FE1DF79F26002DF7E5 /* BookingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookingObject.m; sourceTree = "<group>"; };
 		3E2A5E411DD1E37D003685E1 /* loc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loc.png; sourceTree = "<group>"; };
 		3E2A5E421DD1E37D003685E1 /* call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call.png; sourceTree = "<group>"; };
 		3E2E3C381DCC3DDF005480F9 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		3E4040FB1DF4060C0046F754 /* CAPSPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAPSPageMenu.h; sourceTree = "<group>"; };
+		3E4040FC1DF4060C0046F754 /* CAPSPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAPSPageMenu.m; sourceTree = "<group>"; };
+		3E4040FE1DF407160046F754 /* BookingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookingViewController.h; sourceTree = "<group>"; };
+		3E4040FF1DF407160046F754 /* BookingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookingViewController.m; sourceTree = "<group>"; };
+		3E4041031DF407620046F754 /* MapBookingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapBookingViewController.h; sourceTree = "<group>"; };
+		3E4041041DF407620046F754 /* MapBookingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapBookingViewController.m; sourceTree = "<group>"; };
+		3E4041061DF407750046F754 /* GetBookingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetBookingViewController.h; sourceTree = "<group>"; };
+		3E4041071DF407750046F754 /* GetBookingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetBookingViewController.m; sourceTree = "<group>"; };
+		3E4041091DF407990046F754 /* InfoBookingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoBookingViewController.h; sourceTree = "<group>"; };
+		3E40410A1DF407990046F754 /* InfoBookingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoBookingViewController.m; sourceTree = "<group>"; };
 		3E4268831DA3B38A0018B76E /* image_1@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_1@4x.png"; sourceTree = "<group>"; };
 		3E4268841DA3B38A0018B76E /* image_2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_2@3x.png"; sourceTree = "<group>"; };
 		3E4268851DA3B38A0018B76E /* image_2@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_2@4x.png"; sourceTree = "<group>"; };
@@ -187,6 +217,12 @@
 		3E512F981DBA0F930070B840 /* LocalizeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalizeHelper.h; sourceTree = "<group>"; };
 		3E512F991DBA0F930070B840 /* LocalizeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizeHelper.m; sourceTree = "<group>"; };
 		3E6BEC9E1DD41D74006ACF87 /* call-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call-1.png"; sourceTree = "<group>"; };
+		3E7F08CE1DF6480200F891BA /* BookingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookingCell.h; sourceTree = "<group>"; };
+		3E7F08CF1DF6480200F891BA /* BookingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookingCell.m; sourceTree = "<group>"; };
+		3E7F08D11DF6481500F891BA /* BookingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingCell.xib; sourceTree = "<group>"; };
+		3E7F08D31DF6792500F891BA /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
+		3E7F08D41DF6792500F891BA /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
+		3E7F08D51DF6792500F891BA /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		3E8AB2E41DA8CF3D001267C0 /* MapDriverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapDriverViewController.h; sourceTree = "<group>"; };
 		3E8AB2E51DA8CF3D001267C0 /* MapDriverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapDriverViewController.m; sourceTree = "<group>"; };
 		3E8AB2E71DA9F211001267C0 /* car_small@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car_small@1x.png"; sourceTree = "<group>"; };
@@ -253,6 +289,7 @@
 		3ECD536D1DDEB696000DDF3F /* thuexe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thuexe@2x.png"; sourceTree = "<group>"; };
 		3ECD536E1DDEB696000DDF3F /* thuexe@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thuexe@3x.png"; sourceTree = "<group>"; };
 		3ECD536F1DDEB696000DDF3F /* thuexe@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thuexe@4x.png"; sourceTree = "<group>"; };
+		3ED1A1AC1DF291580024E89D /* other_car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = other_car.png; sourceTree = "<group>"; };
 		3EDFC6091D9F87F700EB31B0 /* ThueXe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThueXe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EDFC60D1D9F87F700EB31B0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3EDFC60F1D9F87F700EB31B0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -320,9 +357,53 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		3E4040FA1DF4060C0046F754 /* CAPSPageMenu */ = {
+			isa = PBXGroup;
+			children = (
+				3E4040FB1DF4060C0046F754 /* CAPSPageMenu.h */,
+				3E4040FC1DF4060C0046F754 /* CAPSPageMenu.m */,
+			);
+			path = CAPSPageMenu;
+			sourceTree = "<group>";
+		};
+		3E4041011DF407380046F754 /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				3EDFC6391D9FAFE300EB31B0 /* RegisterViewController.h */,
+				3EDFC63A1D9FAFE300EB31B0 /* RegisterViewController.m */,
+				3E512F611DB9C5BA0070B840 /* ActiveViewController.h */,
+				3E512F621DB9C5BA0070B840 /* ActiveViewController.m */,
+				3E8AB2E41DA8CF3D001267C0 /* MapDriverViewController.h */,
+				3E8AB2E51DA8CF3D001267C0 /* MapDriverViewController.m */,
+				3E4041061DF407750046F754 /* GetBookingViewController.h */,
+				3E4041071DF407750046F754 /* GetBookingViewController.m */,
+			);
+			name = Driver;
+			sourceTree = "<group>";
+		};
+		3E4041021DF407470046F754 /* Passenger */ = {
+			isa = PBXGroup;
+			children = (
+				3E8AB2EF1DAA5F8C001267C0 /* FilterViewController.h */,
+				3E8AB2F01DAA5F8C001267C0 /* FilterViewController.m */,
+				3EA00F901DA0B5CA000FD90B /* ListDataViewController.h */,
+				3EA00F911DA0B5CA000FD90B /* ListDataViewController.m */,
+				3EE8563D1DACD1A800972BD8 /* MapPassengerViewController.h */,
+				3EE8563E1DACD1A800972BD8 /* MapPassengerViewController.m */,
+				3E4040FE1DF407160046F754 /* BookingViewController.h */,
+				3E4040FF1DF407160046F754 /* BookingViewController.m */,
+				3E4041031DF407620046F754 /* MapBookingViewController.h */,
+				3E4041041DF407620046F754 /* MapBookingViewController.m */,
+				3E4041091DF407990046F754 /* InfoBookingViewController.h */,
+				3E40410A1DF407990046F754 /* InfoBookingViewController.m */,
+			);
+			name = Passenger;
+			sourceTree = "<group>";
+		};
 		3E512F641DB9FA660070B840 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				3E4040FA1DF4060C0046F754 /* CAPSPageMenu */,
 				3E512F651DB9FA660070B840 /* SlideMenuControllerOC */,
 			);
 			path = Modules;
@@ -393,6 +474,11 @@
 				3EA00FA81DA0E064000FD90B /* ItemCell.xib */,
 				3EA7A1111DC34B5C00821295 /* CarTypeItem.h */,
 				3EA7A1121DC34B5C00821295 /* CarTypeItem.m */,
+				3E7F08CE1DF6480200F891BA /* BookingCell.h */,
+				3E7F08CF1DF6480200F891BA /* BookingCell.m */,
+				3E7F08D11DF6481500F891BA /* BookingCell.xib */,
+				3E01C3FD1DF79F26002DF7E5 /* BookingObject.h */,
+				3E01C3FE1DF79F26002DF7E5 /* BookingObject.m */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -436,6 +522,7 @@
 		3EDFC60C1D9F87F700EB31B0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3E01C3FB1DF79642002DF7E5 /* txvnCert.cer */,
 				3EDFC6181D9F87F700EB31B0 /* Assets.xcassets */,
 				3EDFC61A1D9F87F700EB31B0 /* LaunchScreen.storyboard */,
 				3EDFC61D1D9F87F700EB31B0 /* Info.plist */,
@@ -545,18 +632,8 @@
 			children = (
 				3EDFC63B1D9FAFE300EB31B0 /* FirstViewController.h */,
 				3EDFC63C1D9FAFE300EB31B0 /* FirstViewController.m */,
-				3EDFC6391D9FAFE300EB31B0 /* RegisterViewController.h */,
-				3EDFC63A1D9FAFE300EB31B0 /* RegisterViewController.m */,
-				3E512F611DB9C5BA0070B840 /* ActiveViewController.h */,
-				3E512F621DB9C5BA0070B840 /* ActiveViewController.m */,
-				3E8AB2E41DA8CF3D001267C0 /* MapDriverViewController.h */,
-				3E8AB2E51DA8CF3D001267C0 /* MapDriverViewController.m */,
-				3E8AB2EF1DAA5F8C001267C0 /* FilterViewController.h */,
-				3E8AB2F01DAA5F8C001267C0 /* FilterViewController.m */,
-				3EA00F901DA0B5CA000FD90B /* ListDataViewController.h */,
-				3EA00F911DA0B5CA000FD90B /* ListDataViewController.m */,
-				3EE8563D1DACD1A800972BD8 /* MapPassengerViewController.h */,
-				3EE8563E1DACD1A800972BD8 /* MapPassengerViewController.m */,
+				3E4041011DF407380046F754 /* Driver */,
+				3E4041021DF407470046F754 /* Passenger */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -564,6 +641,12 @@
 		3EE856061DAB9B9000972BD8 /* CarIcons */ = {
 			isa = PBXGroup;
 			children = (
+				3E01C3F91DF78BA1002DF7E5 /* bus.png */,
+				3E01C3F71DF78AF0002DF7E5 /* socho_no_border.png */,
+				3E7F08D31DF6792500F891BA /* clock.png */,
+				3E7F08D41DF6792500F891BA /* location.png */,
+				3E7F08D51DF6792500F891BA /* home.png */,
+				3ED1A1AC1DF291580024E89D /* other_car.png */,
 				3EA7A0FF1DC33B6800821295 /* contract_car.png */,
 				3EA7A1001DC33B6800821295 /* all_car.png */,
 				3EA7A1011DC33B6900821295 /* free_car.png */,
@@ -671,6 +754,7 @@
 				3EE856141DAB9EBB00972BD8 /* giatien.png in Resources */,
 				3EAF2BD91DB46EA000594FCE /* driver@1x.png in Resources */,
 				3EAF2BDF1DB46EA000594FCE /* filter_clear@3x.png in Resources */,
+				3E7F08D21DF6481500F891BA /* BookingCell.xib in Resources */,
 				3EA7A1091DC33B6900821295 /* all_car.png in Resources */,
 				3EA7A10A1DC33B6900821295 /* free_car.png in Resources */,
 				3EE856351DACC7DC00972BD8 /* map_deselect@3x.png in Resources */,
@@ -683,9 +767,11 @@
 				3EE856121DAB9B9000972BD8 /* tenxe.png in Resources */,
 				3EE8560D1DAB9B9000972BD8 /* khoangcach.png in Resources */,
 				3ECD53731DDEB696000DDF3F /* thuexe@4x.png in Resources */,
+				3E01C3FC1DF79642002DF7E5 /* txvnCert.cer in Resources */,
 				3EAF2BA31DB4683B00594FCE /* Expand@4x.png in Resources */,
 				3EE8560F1DAB9B9000972BD8 /* sdt.png in Resources */,
 				3E512F921DB9FF370070B840 /* Localizable.strings in Resources */,
+				3E01C3F81DF78AF0002DF7E5 /* socho_no_border.png in Resources */,
 				3EAF2BD51DB46EA000594FCE /* splash@1x.png in Resources */,
 				3EE856301DACC7DC00972BD8 /* map_selected@3x.png in Resources */,
 				3EAF2BDC1DB46EA000594FCE /* passenger@2x.png in Resources */,
@@ -697,8 +783,11 @@
 				3EE856311DACC7DC00972BD8 /* map_selected@2x.png in Resources */,
 				3E2A5E441DD1E37D003685E1 /* call.png in Resources */,
 				3EE856321DACC7DC00972BD8 /* map_selected@1x.png in Resources */,
+				3E7F08D81DF6792500F891BA /* location.png in Resources */,
 				3EAF2BD31DB46EA000594FCE /* splash@3x.png in Resources */,
+				3E7F08D91DF6792500F891BA /* home.png in Resources */,
 				3EE856111DAB9B9000972BD8 /* taixe.png in Resources */,
+				3E7F08D71DF6792500F891BA /* clock.png in Resources */,
 				3EE8563C1DACC7DC00972BD8 /* list_selected@1x.png in Resources */,
 				3E4268951DA3B38A0018B76E /* image_2@1x.png in Resources */,
 				3EE8563B1DACC7DC00972BD8 /* list_selected@2x.png in Resources */,
@@ -731,10 +820,12 @@
 				3EAF2BB21DB4696800594FCE /* back@4x.png in Resources */,
 				3EAF2BE51DB46EA000594FCE /* filter@1x.png in Resources */,
 				3E4268991DA3B38A0018B76E /* car@2x.png in Resources */,
+				3E01C3FA1DF78BA1002DF7E5 /* bus.png in Resources */,
 				3EAF2BD81DB46EA000594FCE /* driver@2x.png in Resources */,
 				3E4268911DA3B38A0018B76E /* image_2@4x.png in Resources */,
 				3EAF2BB51DB4696800594FCE /* back@1x.png in Resources */,
 				3EAF2BAE1DB4696800594FCE /* menu@4x.png in Resources */,
+				3ED1A1AD1DF291580024E89D /* other_car.png in Resources */,
 				3E2E3C391DCC3DDF005480F9 /* share.png in Resources */,
 				3EA7A10C1DC33B6900821295 /* taxi.png in Resources */,
 				3EAF2BBA1DB469F400594FCE /* editUser@4x.png in Resources */,
@@ -831,21 +922,28 @@
 				3EDFC6111D9F87F700EB31B0 /* AppDelegate.m in Sources */,
 				3EE8563F1DACD1A800972BD8 /* MapPassengerViewController.m in Sources */,
 				3EDFC63D1D9FAFE300EB31B0 /* RegisterViewController.m in Sources */,
+				3E01C3FF1DF79F26002DF7E5 /* BookingObject.m in Sources */,
 				3EA7A1131DC34B5C00821295 /* CarTypeItem.m in Sources */,
 				3E512F871DB9FA660070B840 /* UIViewController+SlideMenuControllerOC.m in Sources */,
 				3E512F891DB9FA660070B840 /* ImageHeaderView.m in Sources */,
 				3E512F841DB9FA660070B840 /* UIImageView+SlideMenuControllerOC.m in Sources */,
 				3EA00FAA1DA0E064000FD90B /* ItemCell.m in Sources */,
 				3E512F9A1DBA0F930070B840 /* LocalizeHelper.m in Sources */,
+				3E4040FD1DF4060C0046F754 /* CAPSPageMenu.m in Sources */,
+				3E4041001DF407160046F754 /* BookingViewController.m in Sources */,
 				3E512F8B1DB9FA660070B840 /* BaseTableViewCell.m in Sources */,
+				3E4041051DF407620046F754 /* MapBookingViewController.m in Sources */,
 				3E512F861DB9FA660070B840 /* UIView+SlideMenuController.m in Sources */,
 				3E8AB2E61DA8CF3D001267C0 /* MapDriverViewController.m in Sources */,
 				3E512F851DB9FA660070B840 /* UITableView+SlideMenuControllerOC.m in Sources */,
 				3E512F831DB9FA660070B840 /* UIImage+SlideMenuController.m in Sources */,
 				3E512F8C1DB9FA660070B840 /* DataTableViewCell.m in Sources */,
 				3EA00F921DA0B5CA000FD90B /* ListDataViewController.m in Sources */,
+				3E7F08D01DF6480200F891BA /* BookingCell.m in Sources */,
 				3EDFC63E1D9FAFE300EB31B0 /* FirstViewController.m in Sources */,
 				3EDFC60E1D9F87F700EB31B0 /* main.m in Sources */,
+				3E40410B1DF407990046F754 /* InfoBookingViewController.m in Sources */,
+				3E4041081DF407750046F754 /* GetBookingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

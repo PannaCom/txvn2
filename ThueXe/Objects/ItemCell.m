@@ -38,12 +38,6 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 -(void)setData:(Car*)car{
     nameLb.text = [NSString stringWithFormat:@"%@", car.name];
     carMadeLb.text = [NSString stringWithFormat:@"%@", car.carMade];
@@ -59,10 +53,10 @@
     
     phoneLb.text = [NSString stringWithFormat:@"%@", car.phone];
     if(car.distance < 1){
-        distanceLb.text = [NSString stringWithFormat:@"%d m", (int)(car.distance*1000)];
+        distanceLb.text = [NSString stringWithFormat:@"cách %d m", (int)(car.distance*1000)];
     }
     else{
-        distanceLb.text = [NSString stringWithFormat:@"%.1f km", car.distance];
+        distanceLb.text = [NSString stringWithFormat:@"cách %.1f km", car.distance];
     }
     
 }
@@ -71,7 +65,7 @@
     NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"tel:%@",phoneLb.text]];
     
     if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
-        [DataHelper GET:API_CALL params:@{@"phone":phoneLb.text} completion:^(BOOL success, id responseObject){
+        [DataHelper POST:API_CALL params:@{@"phone":phoneLb.text} completion:^(BOOL success, id responseObject){
             NSLog(@"Post Call number: %@", responseObject);
         }];
         [[UIApplication sharedApplication] openURL:phoneUrl];

@@ -18,7 +18,9 @@
 +(NSDictionary*)getUserData;
 +(void)clearUserData;
 +(void)activeUser:(int)daysActive;
-+(void)sendRegIdUserType:(NSString*)userType;
-+(void)setRegId:(NSString*)regId userType:(NSString*)userType;
+//+(void)sendRegIdUserType:(NSString*)userType;
+//+(void)setRegId:(NSString*)regId userType:(NSString*)userType;
++(void)setRegId:(NSString *)regId;
++(NSString *)getRegId;
 
 @end

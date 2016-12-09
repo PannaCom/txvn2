@@ -19,6 +19,7 @@
 
 
 @import GoogleMaps;
+@import GooglePlaces;
 
 #define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
@@ -33,14 +34,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [GMSServices provideAPIKey:@"AIzaSyArIGsr8eBKOuQTGwQn8ekDujQpAA_Murg"];
-//    [GMSPlacesClient provideAPIKey:@"AIzaSyArIGsr8eBKOuQTGwQn8ekDujQpAA_Murg"];
+    [GMSServices provideAPIKey:GOOGLE_MAP_API_KEY];
+    [GMSPlacesClient provideAPIKey:GOOGLE_MAP_API_KEY];
     [self updateVersionApp];
     [[UIApplication sharedApplication] setStatusBarHidden:YES
                                             withAnimation:UIStatusBarAnimationFade];
     [self registerForRemoteNotifications];
     
-//    NSDictionary *userInfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"];
     NSDictionary *userInfo = [DataHelper getUserData];
     NSLog(@"%@", userInfo);
     userType = @"";
@@ -53,7 +53,7 @@
             {
                 userType = REG_ID_FOR_DRIVER;
                 UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-                if ([[userInfo objectForKey:@"wasActived"] boolValue]) {
+//                if ([[userInfo objectForKey:@"wasActived"] boolValue]) {
                     NSDate *dateNeedActive = [userInfo objectForKey:@"dateNeedActive"];
                     if ([[NSDate date] compare:dateNeedActive] == NSOrderedDescending) {
                         ActiveViewController *controller = (ActiveViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"activeStoryboardId"];
@@ -65,12 +65,15 @@
                         
                         _window.rootViewController = controller;
                     }
-                }
-                else{
-                    ActiveViewController *controller = (ActiveViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"activeStoryboardId"];
-                    controller.isActiveBuyCode = NO;
-                    _window.rootViewController = controller;
-                }
+                /*
+                 Bỏ chức năng active sms khi đăng ký tài khoản
+                 */
+//                }
+//                else{
+//                    ActiveViewController *controller = (ActiveViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"activeStoryboardId"];
+//                    controller.isActiveBuyCode = NO;
+//                    _window.rootViewController = controller;
+//                }
             }
                 break;
             case USER_TYPE_PASSENGER:
@@ -192,8 +195,8 @@
         token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
         token = [token substringWithRange:NSMakeRange(1, 64)];
         NSLog(@"deviceToken: %@", token);
-        [DataHelper setRegId:token userType:userType];
-//        [DataHelper setDeviceToken:token];
+//        [DataHelper setRegId:token userType:userType];
+        [DataHelper setRegId:token];
     });
 }
 

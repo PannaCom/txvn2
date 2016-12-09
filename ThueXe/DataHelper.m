@@ -13,7 +13,14 @@
 
 +(void)POST:(NSString*)url params:(NSDictionary*)params completion:(void(^)(BOOL success, id responseObject))completionHandler{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFSecurityPolicy *policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey];
+    manager.securityPolicy = policy;
+    NSString *pathToCert = [[NSBundle mainBundle]pathForResource:@"txvnCert" ofType:@"cer"];
+    NSData *localCertificate = [NSData dataWithContentsOfFile:pathToCert];
+    manager.securityPolicy.pinnedCertificates = [NSSet setWithObject:localCertificate];
+    
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     [manager POST:url parameters:params progress:nil success:^(NSURLSessionDataTask *task, id responseObject){
         NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         completionHandler(YES, string);
@@ -30,6 +37,11 @@
 
 +(void)GET:(NSString*)url params:(NSDictionary*)params completion:(void(^)(BOOL success, id responseObject))completionHandler{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFSecurityPolicy *policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey];
+    manager.securityPolicy = policy;
+    NSString *pathToCert = [[NSBundle mainBundle]pathForResource:@"txvnCert" ofType:@"cer"];
+    NSData *localCertificate = [NSData dataWithContentsOfFile:pathToCert];
+    manager.securityPolicy.pinnedCertificates = [NSSet setWithObject:localCertificate];
     [manager GET:url parameters:params progress:nil success:^(NSURLSessionDataTask *task, id responseObject){
          completionHandler(YES, responseObject);
     }failure:^(NSURLSessionDataTask *task, NSError *error){
@@ -44,29 +56,18 @@
 }
 
 +(void)setFilterData:(NSDictionary*)filterData{
-//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-//    [userDefault setObject:filterData forKey:@"filterData"];
-//    [userDefault synchronize];
     [self setData:filterData forKey:@"filterData"];
 }
 
 +(NSDictionary*)getFilterData{
-//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-//    return [userDefault dictionaryForKey:@"filterData"];
     return [self getDataForKey:@"filterData"];
 }
 
 +(void)setUserData:(NSDictionary*)userData{
-//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-//    [userDefault setObject:userData forKey:@"userInfo"];
-//    [userDefault synchronize];
     [self setData:userData forKey:@"userInfo"];
 }
 
 +(NSDictionary*)getUserData{
-//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-//    return [userDefault dictionaryForKey:@"userInfo"];
-    
     return [self getDataForKey:@"userInfo"];
 }
 
@@ -106,46 +107,56 @@
     return [userDefault dictionaryForKey:key];
 }
 
-+(void)setRegId:(NSString*)regId userType:(NSString *)userType{
+//+(void)setRegId:(NSString*)regId userType:(NSString *)userType{
+//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+//    NSDictionary *oldRegIdAPNs = [userDefault dictionaryForKey:@"regIdAPNs"];
+//    NSString *oldRegId = [oldRegIdAPNs objectForKey:@"regId"];
+//    if ([regId isEqualToString:oldRegId] == NO) {
+//        [userDefault setObject:@{@"regId":regId, @"userType":@""} forKey:@"regIdAPNs"];
+////        [userDefault synchronize];
+//        if (userType.length > 0) {
+//            [self POST:API_POST_REG_ID params:@{@"tobject":userType, @"regid":regId, @"os":DEVICE_IOS} completion:^(BOOL success, id responseObject){
+//                if (success) {
+//                    [userDefault setObject:@{@"regId":regId, @"userType":userType} forKey:@"regIdAPNs"];
+//                    [userDefault synchronize];
+//                }
+//                else{
+//                    [userDefault synchronize];
+//                }
+//            }];
+//        }
+//        else{
+//            [userDefault synchronize];
+//        }
+//    }
+//}
+//
+//+(void)sendRegIdUserType:(NSString*)userType{
+//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+//    NSDictionary *oldRegIdAPNs = [userDefault dictionaryForKey:@"regIdAPNs"];
+//    if (oldRegIdAPNs) {
+//        NSString *regId = [oldRegIdAPNs objectForKey:@"regId"];
+//        NSString *oldUserType = [oldRegIdAPNs objectForKey:@"userType"];
+//        if (![userType isEqualToString:oldUserType]) {
+//            [self POST:API_POST_REG_ID params:@{@"tobject":userType, @"regid":regId, @"os":DEVICE_IOS} completion:^(BOOL success, id responseObject){
+//                if (success) {
+//                    [userDefault setObject:@{@"regId":regId, @"userType":userType} forKey:@"regIdAPNs"];
+//                    [userDefault synchronize];
+//                }
+//            }];
+//        }
+//    }
+//}
+
++(void)setRegId:(NSString *)regId{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    NSDictionary *oldRegIdAPNs = [userDefault dictionaryForKey:@"regIdAPNs"];
-    NSString *oldRegId = [oldRegIdAPNs objectForKey:@"regId"];
-    if ([regId isEqualToString:oldRegId] == NO) {
-        [userDefault setObject:@{@"regId":regId, @"userType":@""} forKey:@"regIdAPNs"];
-//        [userDefault synchronize];
-        if (userType.length > 0) {
-            [self POST:API_POST_REG_ID params:@{@"tobject":userType, @"regid":regId, @"os":DEVICE_IOS} completion:^(BOOL success, id responseObject){
-                if (success) {
-                    [userDefault setObject:@{@"regId":regId, @"userType":userType} forKey:@"regIdAPNs"];
-                    [userDefault synchronize];
-                }
-                else{
-                    [userDefault synchronize];
-                }
-            }];
-        }
-        else{
-            [userDefault synchronize];
-        }
-    }
+    [userDefault setObject:regId forKey:@"regIdAPNs"];
+    [userDefault synchronize];
 }
 
-+(void)sendRegIdUserType:(NSString*)userType{
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    NSDictionary *oldRegIdAPNs = [userDefault dictionaryForKey:@"regIdAPNs"];
-    if (oldRegIdAPNs) {
-        NSString *regId = [oldRegIdAPNs objectForKey:@"regId"];
-        NSString *oldUserType = [oldRegIdAPNs objectForKey:@"userType"];
-        if (![userType isEqualToString:oldUserType]) {
-            [self POST:API_POST_REG_ID params:@{@"tobject":userType, @"regid":regId, @"os":DEVICE_IOS} completion:^(BOOL success, id responseObject){
-                if (success) {
-                    [userDefault setObject:@{@"regId":regId, @"userType":userType} forKey:@"regIdAPNs"];
-                    [userDefault synchronize];
-                }
-            }];
-        }
-    }
++(NSString *)getRegId{
+    
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"regIdAPNs"];
 }
-
 
 @end

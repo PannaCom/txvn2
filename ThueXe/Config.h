@@ -24,12 +24,17 @@
 #define API_GET_MODEL_LIST [NSString stringWithFormat:@"%@/Api/getCarModelListFromMade", URL_SERVER]
 
 #define API_GET_TYPE_LIST [NSString stringWithFormat:@"%@/Api/getAllCarTypeList", URL_SERVER]
-
+#define API_GET_SIZE_LIST [NSString stringWithFormat:@"%@/Api/getCarSize", URL_SERVER]
+#define API_GET_HIRE_TYPE_LIST [NSString stringWithFormat:@"%@/Api/getCarHireType", URL_SERVER]
+#define API_BOOKING [NSString stringWithFormat:@"%@/Api/booking", URL_SERVER]
+#define API_DRIVER_GET_BOOKING [NSString stringWithFormat:@"%@/Api/getBooking", URL_SERVER]
+#define API_PASSENGER_GET_BOOKING [NSString stringWithFormat:@"%@/Api/getBookingByPhone", URL_SERVER]
 #define API_ACTIVE [NSString stringWithFormat:@"%@/Api/acitive", URL_SERVER]
 #define API_ACTIVE_BUY [NSString stringWithFormat:@"%@/Api/activecode", URL_SERVER]
 #define API_RESEND_ACTIVE [NSString stringWithFormat:@"%@/Api/resendactive", URL_SERVER]
 
 #define API_POST_REG_ID [NSString stringWithFormat:@"%@/Api/PostRegId", URL_SERVER]
+#define API_POST_REG_ID_USER [NSString stringWithFormat:@"%@/Api/RegIdUser", URL_SERVER]
 #define API_CALL [NSString stringWithFormat:@"%@/Api/cal", URL_SERVER]
 #define WIDTH_SCREEN [UIScreen mainScreen].bounds.size.width
 #define HEIGHT_SCREEN [UIScreen mainScreen].bounds.size.height
@@ -45,7 +50,12 @@ typedef NS_ENUM(int, TEXT_FIELD){
     TEXT_FIELD_CAR_TYPE,
     TEXT_FIELD_CAR_SIZE,
     TEXT_FIELD_CAR_YEAR,
-    TEXT_FIELD_CAR_PRICE
+    TEXT_FIELD_CAR_PRICE,
+    TEXT_FIELD_CAR_HIRE_TYPE,
+    TEXT_FIELD_PLACE_FROM,
+    TEXT_FIELD_PLACE_TO,
+    TEXT_FIELD_DATE_FROM,
+    TEXT_FIELD_DATE_TO
 };
 
 typedef NS_ENUM(int, CAR_STATUS){
@@ -55,8 +65,6 @@ typedef NS_ENUM(int, CAR_STATUS){
 #define REG_ID_FOR_DRIVER @"1"
 #define REG_ID_FOR_PASSENGER @"2"
 #define DEVICE_IOS @"2"
-
-#define CAR_SIZE @[@"4 chỗ", @"5 chỗ", @"7 chỗ", @"12 chỗ", @"16 chỗ", @"24 chỗ", @"40 chỗ", @"50 chỗ"]
 
 #define CAR_YEAR_OLD 10
 #define TIME_UPDATE_LOCATE 30 //seconds
@@ -69,5 +77,7 @@ typedef NS_ENUM(int, CAR_STATUS){
 #define LINK_APP_STORE @"https://itunes.apple.com/us/app/thue-xe/id1166862903?l=vi&ls=1&mt=8"
 #define LINK_CHECK_VERSION @"http://itunes.apple.com/lookup?id=1166862903"
 
+#define GOOGLE_MAP_API_KEY @"AIzaSyArIGsr8eBKOuQTGwQn8ekDujQpAA_Murg"
+#define API_GET_DIRECTIONS(lat1, long1, lat2, long2) [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&sensor=true",lat1, long1, lat2, long2] 
 
 #endif /* Config_h */
