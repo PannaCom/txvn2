@@ -11,6 +11,7 @@
 		3E01C3FA1DF78BA1002DF7E5 /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E01C3F91DF78BA1002DF7E5 /* bus.png */; };
 		3E01C3FC1DF79642002DF7E5 /* txvnCert.cer in Resources */ = {isa = PBXBuildFile; fileRef = 3E01C3FB1DF79642002DF7E5 /* txvnCert.cer */; };
 		3E01C3FF1DF79F26002DF7E5 /* BookingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E01C3FE1DF79F26002DF7E5 /* BookingObject.m */; };
+		3E1FD62C1DFBE80300D1E25A /* DriverMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1FD62B1DFBE80300D1E25A /* DriverMainViewController.m */; };
 		3E2A5E431DD1E37D003685E1 /* loc.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2A5E411DD1E37D003685E1 /* loc.png */; };
 		3E2A5E441DD1E37D003685E1 /* call.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2A5E421DD1E37D003685E1 /* call.png */; };
 		3E2E3C391DCC3DDF005480F9 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2E3C381DCC3DDF005480F9 /* share.png */; };
@@ -110,6 +111,7 @@
 		3EAF2BE31DB46EA000594FCE /* filter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EAF2BCF1DB46EA000594FCE /* filter@3x.png */; };
 		3EAF2BE41DB46EA000594FCE /* filter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EAF2BD01DB46EA000594FCE /* filter@2x.png */; };
 		3EAF2BE51DB46EA000594FCE /* filter@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EAF2BD11DB46EA000594FCE /* filter@1x.png */; };
+		3EC62D361DFAC1D7007C45EA /* complete.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EC62D351DFAC1D7007C45EA /* complete.png */; };
 		3ECD53701DDEB696000DDF3F /* thuexe@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ECD536C1DDEB696000DDF3F /* thuexe@1x.png */; };
 		3ECD53711DDEB696000DDF3F /* thuexe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ECD536D1DDEB696000DDF3F /* thuexe@2x.png */; };
 		3ECD53721DDEB696000DDF3F /* thuexe@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ECD536E1DDEB696000DDF3F /* thuexe@3x.png */; };
@@ -156,6 +158,8 @@
 		3E01C3FB1DF79642002DF7E5 /* txvnCert.cer */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = txvnCert.cer; sourceTree = SOURCE_ROOT; };
 		3E01C3FD1DF79F26002DF7E5 /* BookingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookingObject.h; sourceTree = "<group>"; };
 		3E01C3FE1DF79F26002DF7E5 /* BookingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookingObject.m; sourceTree = "<group>"; };
+		3E1FD62A1DFBE80300D1E25A /* DriverMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriverMainViewController.h; sourceTree = "<group>"; };
+		3E1FD62B1DFBE80300D1E25A /* DriverMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriverMainViewController.m; sourceTree = "<group>"; };
 		3E2A5E411DD1E37D003685E1 /* loc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loc.png; sourceTree = "<group>"; };
 		3E2A5E421DD1E37D003685E1 /* call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call.png; sourceTree = "<group>"; };
 		3E2E3C381DCC3DDF005480F9 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
@@ -285,6 +289,7 @@
 		3EAF2BCF1DB46EA000594FCE /* filter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filter@3x.png"; sourceTree = "<group>"; };
 		3EAF2BD01DB46EA000594FCE /* filter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filter@2x.png"; sourceTree = "<group>"; };
 		3EAF2BD11DB46EA000594FCE /* filter@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filter@1x.png"; sourceTree = "<group>"; };
+		3EC62D351DFAC1D7007C45EA /* complete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = complete.png; sourceTree = "<group>"; };
 		3ECD536C1DDEB696000DDF3F /* thuexe@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thuexe@1x.png"; sourceTree = "<group>"; };
 		3ECD536D1DDEB696000DDF3F /* thuexe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thuexe@2x.png"; sourceTree = "<group>"; };
 		3ECD536E1DDEB696000DDF3F /* thuexe@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thuexe@3x.png"; sourceTree = "<group>"; };
@@ -377,6 +382,8 @@
 				3E8AB2E51DA8CF3D001267C0 /* MapDriverViewController.m */,
 				3E4041061DF407750046F754 /* GetBookingViewController.h */,
 				3E4041071DF407750046F754 /* GetBookingViewController.m */,
+				3E1FD62A1DFBE80300D1E25A /* DriverMainViewController.h */,
+				3E1FD62B1DFBE80300D1E25A /* DriverMainViewController.m */,
 			);
 			name = Driver;
 			sourceTree = "<group>";
@@ -547,6 +554,7 @@
 		3EDFC6251D9FA18900EB31B0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3EC62D351DFAC1D7007C45EA /* complete.png */,
 				3ECD536C1DDEB696000DDF3F /* thuexe@1x.png */,
 				3ECD536D1DDEB696000DDF3F /* thuexe@2x.png */,
 				3ECD536E1DDEB696000DDF3F /* thuexe@3x.png */,
@@ -787,6 +795,7 @@
 				3EAF2BD31DB46EA000594FCE /* splash@3x.png in Resources */,
 				3E7F08D91DF6792500F891BA /* home.png in Resources */,
 				3EE856111DAB9B9000972BD8 /* taixe.png in Resources */,
+				3EC62D361DFAC1D7007C45EA /* complete.png in Resources */,
 				3E7F08D71DF6792500F891BA /* clock.png in Resources */,
 				3EE8563C1DACC7DC00972BD8 /* list_selected@1x.png in Resources */,
 				3E4268951DA3B38A0018B76E /* image_2@1x.png in Resources */,
@@ -925,6 +934,7 @@
 				3E01C3FF1DF79F26002DF7E5 /* BookingObject.m in Sources */,
 				3EA7A1131DC34B5C00821295 /* CarTypeItem.m in Sources */,
 				3E512F871DB9FA660070B840 /* UIViewController+SlideMenuControllerOC.m in Sources */,
+				3E1FD62C1DFBE80300D1E25A /* DriverMainViewController.m in Sources */,
 				3E512F891DB9FA660070B840 /* ImageHeaderView.m in Sources */,
 				3E512F841DB9FA660070B840 /* UIImageView+SlideMenuControllerOC.m in Sources */,
 				3EA00FAA1DA0E064000FD90B /* ItemCell.m in Sources */,

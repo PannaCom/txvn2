@@ -45,7 +45,7 @@
                                 <rect key="frame" x="0.0" y="61" width="879" height="244"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YEa-D0-CCb">
-                                        <rect key="frame" x="10" y="19.5" width="647" height="206"/>
+                                        <rect key="frame" x="10" y="19" width="647" height="206"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home.png" translatesAutoresizingMaskIntoConstraints="NO" id="7Zd-8i-dQl">
                                                 <rect key="frame" x="0.0" y="2" width="30" height="30"/>
@@ -157,6 +157,12 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="roF-f8-M8f">
                                         <rect key="frame" x="657" y="40" width="219" height="163"/>
                                         <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="complete.png" translatesAutoresizingMaskIntoConstraints="NO" id="A6L-7L-6hn">
+                                                <rect key="frame" x="10" y="9" width="198" height="144"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="A6L-7L-6hn" secondAttribute="height" multiplier="275:200" id="1lD-ml-G5V"/>
+                                                </constraints>
+                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ncv-Sh-J5c">
                                                 <rect key="frame" x="0.0" y="40" width="219" height="54"/>
                                                 <color key="backgroundColor" red="0.013062684428649997" green="0.53367875647668395" blue="0.014159319550545427" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -165,6 +171,9 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="cancelBtnClick:" destination="n0a-5C-OFt" eventType="touchUpInside" id="55z-2u-WfN"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOg-xP-HnW">
                                                 <rect key="frame" x="0.0" y="104" width="219" height="54"/>
@@ -177,6 +186,9 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="doneBtnClick:" destination="n0a-5C-OFt" eventType="touchUpInside" id="toV-Qu-Rtf"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1xv-Bo-M2e">
                                                 <rect key="frame" x="95" y="5" width="30" height="30"/>
@@ -187,6 +199,9 @@
                                                 <state key="normal" image="call.png">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="callBtnClick:" destination="n0a-5C-OFt" eventType="touchUpInside" id="8e0-Vz-o9v"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -196,11 +211,14 @@
                                             <constraint firstItem="BOg-xP-HnW" firstAttribute="height" secondItem="Ncv-Sh-J5c" secondAttribute="height" id="Md3-ah-TVX"/>
                                             <constraint firstAttribute="bottom" secondItem="BOg-xP-HnW" secondAttribute="bottom" constant="5" id="Mss-Pg-5uc"/>
                                             <constraint firstItem="Ncv-Sh-J5c" firstAttribute="top" secondItem="1xv-Bo-M2e" secondAttribute="bottom" constant="5" id="NiO-kL-8On"/>
+                                            <constraint firstItem="A6L-7L-6hn" firstAttribute="leading" secondItem="roF-f8-M8f" secondAttribute="leading" constant="10" id="YgB-bH-wif"/>
                                             <constraint firstItem="1xv-Bo-M2e" firstAttribute="top" secondItem="roF-f8-M8f" secondAttribute="top" constant="5" id="Z6w-jo-C95"/>
                                             <constraint firstItem="BOg-xP-HnW" firstAttribute="top" secondItem="Ncv-Sh-J5c" secondAttribute="bottom" constant="10" id="ZQz-au-I1j"/>
+                                            <constraint firstItem="A6L-7L-6hn" firstAttribute="centerX" secondItem="roF-f8-M8f" secondAttribute="centerX" id="ely-2j-vai"/>
                                             <constraint firstItem="BOg-xP-HnW" firstAttribute="leading" secondItem="roF-f8-M8f" secondAttribute="leading" id="erJ-5R-Pay"/>
                                             <constraint firstItem="BOg-xP-HnW" firstAttribute="centerX" secondItem="roF-f8-M8f" secondAttribute="centerX" id="gjJ-IL-yYX"/>
                                             <constraint firstItem="BOg-xP-HnW" firstAttribute="leading" secondItem="Ncv-Sh-J5c" secondAttribute="leading" id="uBe-sV-5d8"/>
+                                            <constraint firstItem="A6L-7L-6hn" firstAttribute="centerY" secondItem="roF-f8-M8f" secondAttribute="centerY" id="wDw-n7-cXZ"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -243,6 +261,7 @@
                 <outlet property="_cancelBtn" destination="Ncv-Sh-J5c" id="QQM-rf-Luw"/>
                 <outlet property="_carSizeLb" destination="b3k-Fa-g0A" id="MAm-14-CHQ"/>
                 <outlet property="_carTypeHirTypeLb" destination="3Q0-6b-Bc8" id="Qga-gS-USV"/>
+                <outlet property="_completeImage" destination="A6L-7L-6hn" id="T2h-Eg-Px7"/>
                 <outlet property="_dateFromLb" destination="JEp-eH-RJt" id="Pcf-58-fzK"/>
                 <outlet property="_dateToLb" destination="Rs7-fJ-kcC" id="DuS-Q3-GMu"/>
                 <outlet property="_doneBtn" destination="BOg-xP-HnW" id="beI-wc-m3M"/>
@@ -259,6 +278,7 @@
         <image name="bus.png" width="100" height="100"/>
         <image name="call.png" width="296" height="272"/>
         <image name="clock.png" width="100" height="100"/>
+        <image name="complete.png" width="275" height="200"/>
         <image name="home.png" width="96" height="96"/>
         <image name="location.png" width="96" height="96"/>
         <image name="socho_no_border.png" width="88" height="88"/>

@@ -92,6 +92,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(textDidChange:)
                                                  name:UITextFieldTextDidChangeNotification object:nil];
+
+    self.layer.borderColor = [[UIColor colorWithRed:1./255. green:156./255. blue:160./255. alpha:1.] CGColor];
+    self.layer.borderWidth = 1.;
+    self.layer.cornerRadius = 8.;
 }
 
 - (void)setuptextFieldClearButton

@@ -7,6 +7,8 @@
 //
 
 #import "BookingCell.h"
+#import "DataHelper.h"
+#import "Config.h"
 
 @interface BookingCell()
 {
@@ -26,6 +28,8 @@
     IBOutlet UIButton *_doneBtn;
     IBOutlet UIButton *_cancelBtn;
     
+    IBOutlet UIImageView *_completeImage;
+
 }
 @end
 
@@ -49,7 +53,7 @@
     // Configure the view for the selected state
 }
 
--(void)setData:(BookingObject*)bookingObj forUser:(USER_TYPE)userType{
+- (void)setData:(BookingObject*)bookingObj forUser:(USER_TYPE)userType{
     switch (userType) {
         case USER_TYPE_DRIVER:
             _nameLb.text = bookingObj.name;
@@ -57,12 +61,23 @@
             _doneBtn.hidden = YES;
             _cancelBtn.hidden = YES;
             heightCallBtnConstraint.constant = self.frame.size.width/5;
+            _completeImage.hidden = YES;
             break;
         case USER_TYPE_PASSENGER:
             _nameLb.text = [NSString stringWithFormat:@"#%@",bookingObj.bookingId];
            
             heightCallBtnConstraint.constant = 0;
             
+            if (!bookingObj.status) {
+                _completeImage.hidden = YES;
+                _cancelBtn.hidden = NO;
+                _doneBtn.hidden = NO;
+            }
+            else {
+                _completeImage.hidden = NO;
+                _cancelBtn.hidden = YES;
+                _doneBtn.hidden = YES;
+            }
             
             
             break;
@@ -77,6 +92,30 @@
     _dateToLb.text = [NSString stringWithFormat:@"%@", bookingObj.dateTo];
     _carTypeHirTypeLb.text = [NSString stringWithFormat:@"%@ - %@", bookingObj.carType, bookingObj.carHireType];
     _carSizeLb.text = [NSString stringWithFormat:@"%@ chỗ", bookingObj.carSize];
+}
+- (IBAction)cancelBtnClick:(id)sender {
+    [self updateStatusBookingItem];
+}
+
+- (IBAction)doneBtnClick:(id)sender {
+    [self updateStatusBookingItem];
+}
+
+- (void)updateStatusBookingItem{
+    [self.delegate bookingDidUpdated:_bookingId];
+}
+- (IBAction)callBtnClick:(id)sender {
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"tel:%@",_phone]];
+
+    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+        [self.delegate bookingDriverDidCalled:_phone];
+        [[UIApplication sharedApplication] openURL:phoneUrl];
+    }
+    else
+     {
+        NSLog(@"Error can't call phone.");
+     }
+
 }
 
 @end

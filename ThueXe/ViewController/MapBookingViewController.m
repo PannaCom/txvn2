@@ -64,16 +64,23 @@
 }
 
 -(void)drawDirectionFrom:(CLLocationCoordinate2D)coordinate1 to:(CLLocationCoordinate2D)coordinate2{
+
+    _fromMaker.map = nil;
+    _toMaker.map = nil;
     [_mapView clear];
     
+//    if (CLLocationCoordinate2DIsValid(coordinate1) && [self isNotZeroLocation:coordinate1]) {
+//        _fromMaker.position = coordinate1;
+//        _fromMaker.map = _mapView;
+//    }
+//
+//    if (CLLocationCoordinate2DIsValid(coordinate2) && [self isNotZeroLocation:coordinate2]) {
+//        _toMaker.position = coordinate2;
+//        _toMaker.map = _mapView;
+//    }
+
     if (CLLocationCoordinate2DIsValid(coordinate1) && CLLocationCoordinate2DIsValid(coordinate2) && [self isNotZeroLocation:coordinate1] && [self isNotZeroLocation:coordinate2]) {
-        _fromMaker.position = coordinate1;
-        _fromMaker.map = _mapView;
-        
-        _toMaker.position = coordinate2;
-        _toMaker.map = _mapView;
-        
-        [DataHelper GET:API_GET_DIRECTIONS(coordinate1.latitude, coordinate1.longitude, coordinate2.latitude, coordinate2.longitude) params:nil completion:^(BOOL success, id responseObject){
+        [DataHelper GET_NO_POLICY:API_GET_DIRECTIONS(coordinate1.latitude, coordinate1.longitude, coordinate2.latitude, coordinate2.longitude) params:nil completion:^(BOOL success, id responseObject){
             if (success) {
                 if (![responseObject[@"status"] isEqualToString:@"NOT_FOUND"]) {
                     GMSPath *path =[GMSPath pathFromEncodedPath:responseObject[@"routes"][0][@"overview_polyline"][@"points"]];
@@ -81,6 +88,13 @@
                     singleLine.strokeWidth = 7;
                     singleLine.strokeColor = [UIColor greenColor];
                     singleLine.map = _mapView;
+
+                    _fromMaker.position = coordinate1;
+                    _fromMaker.map = _mapView;
+                    _fromMaker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
+                    _toMaker.position = coordinate2;
+                    _toMaker.map = _mapView;
+                    _toMaker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
                 }
             }
         }];

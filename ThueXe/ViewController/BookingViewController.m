@@ -12,7 +12,7 @@
 #import "InfoBookingViewController.h"
 #import "GetBookingViewController.h"
 
-@interface BookingViewController ()<CAPSPageMenuDelegate>
+@interface BookingViewController ()<CAPSPageMenuDelegate, BookingDelegate>
 {
     CAPSPageMenu *_pageMenu;
     IBOutlet UIView *_titleView;
@@ -41,18 +41,17 @@
                                  CAPSPageMenuOptionViewBackgroundColor: [UIColor whiteColor],
                                  CAPSPageMenuOptionSelectionIndicatorColor: [UIColor orangeColor],
                                  CAPSPageMenuOptionBottomMenuHairlineColor: [UIColor colorWithRed:70.0/255.0 green:70.0/255.0 blue:70.0/255.0 alpha:1.0],
-                                 CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue" size:13.0],
+                                 CAPSPageMenuOptionMenuItemFont: [UIFont fontWithName:@"HelveticaNeue" size:23.0],
                                  CAPSPageMenuOptionMenuHeight: @(40.0),
                                  CAPSPageMenuOptionCenterMenuItems: @(YES),
                                  CAPSPageMenuOptionUseMenuLikeSegmentedControl: @(YES),
                                  CAPSPageMenuOptionMenuItemWidthBasedOnTitleTextWidth: @(YES)
                                  };
     _pageMenu = [[CAPSPageMenu alloc] initWithViewControllers:controllers frame:CGRectMake(0.0, _titleView.frame.origin.y+_titleView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height-(_titleView.frame.origin.y+_titleView.frame.size.height)) options:parameters];
-    [_pageMenu setMenuItemFont: [UIFont systemFontOfSize:18.0]];
-    _pageMenu.viewBackgroundColor = [UIColor clearColor];
+    _pageMenu.viewBackgroundColor = [UIColor colorWithRed:184./255. green:184./255. blue:184./255. alpha:0.6];
     [self.view addSubview:_pageMenu.view];
     _pageMenu.delegate = self;
-    
+    infoVc.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -112,6 +111,10 @@
         
     }
     return YES;
+}
+
+- (void)didBookingDone{
+     [self performSegueWithIdentifier:@"getPassengerBookingSegueId" sender:self];
 }
 
 @end

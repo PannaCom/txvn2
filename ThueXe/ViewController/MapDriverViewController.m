@@ -71,7 +71,7 @@
 //    [DataHelper sendRegIdUserType:REG_ID_FOR_DRIVER];
 }
 
--(void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     getAroundNow = YES;
     [[UIApplication sharedApplication] setStatusBarHidden:NO
@@ -82,7 +82,7 @@
     }
 }
 
--(void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [timerUpdateLocation invalidate];
     timerUpdateLocation = nil;
@@ -93,7 +93,7 @@
     // Dispose of any resources that can be recreated.
 }
 #pragma mark - Events
--(void)updateLocation{
+- (void)updateLocation{
     NSDictionary *userInfo = [[[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"] objectForKey:@"data"];
     if (!userInfo) {
         return;

@@ -24,7 +24,7 @@
         bookingItem.dateTo = [dict objectForKey:@"date_to"];
         bookingItem.carSize = [[dict objectForKey:@"car_size"] stringValue];
         bookingItem.bookingId = [[dict objectForKey:@"id"] stringValue];
-        
+        bookingItem.status = [[dict objectForKey:@"status"] boolValue];
         [bookingList addObject:bookingItem];
     }
     return bookingList;

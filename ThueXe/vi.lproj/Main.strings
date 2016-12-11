@@ -75,13 +75,13 @@
 "mLv-Jj-OTw.title" = "Next";
 
 /* Class = "UITabBarItem"; title = "List"; ObjectID = "nCj-Az-YWQ"; */
-"nCj-Az-YWQ.title" = "List";
+"nCj-Az-YWQ.title" = "Danh sách";
 
 /* Class = "UITextField"; placeholder = "Năm sản xuất"; ObjectID = "v5f-uq-Wjb"; */
 "v5f-uq-Wjb.placeholder" = "Năm sản xuất";
 
 /* Class = "UITabBarItem"; title = "Map"; ObjectID = "vKA-nB-gc0"; */
-"vKA-nB-gc0.title" = "Map";
+"vKA-nB-gc0.title" = "Bản đồ";
 
 /* Class = "UITextField"; placeholder = "Hãng xe"; ObjectID = "vdT-e1-wRH"; */
 "vdT-e1-wRH.placeholder" = "Hãng xe";

@@ -61,7 +61,7 @@
                         _window.rootViewController = controller;
                     }
                     else{
-                        MapDriverViewController *controller = (MapDriverViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"mapDriverStoryboardId"];
+                        MapDriverViewController *controller = (MapDriverViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"driverMainStoryboardId"];
                         
                         _window.rootViewController = controller;
                     }

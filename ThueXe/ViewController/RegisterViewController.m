@@ -129,7 +129,7 @@
     [self getInfoCarFromServer];
 }
 
--(void)getInfoCarFromServer{
+- (void)getInfoCarFromServer{
     
     [DataHelper GET:API_GET_ALL_MADE_LIST params:@{} completion:^(BOOL success, id responseObject){
         if (success) {
@@ -156,7 +156,7 @@
     }];
 }
 
--(void)textFieldDidChange:(NSNotification*)noti{
+- (void)textFieldDidChange:(NSNotification *)noti{
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@", carModelTf.text];
     dataTableView = [carModel filteredArrayUsingPredicate:predicate];
 
@@ -167,7 +167,7 @@
 }
 
 
--(void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:NO
                                             withAnimation:UIStatusBarAnimationFade];
@@ -190,7 +190,7 @@
 }
 
 // Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWillBeShown:(NSNotification*)aNotification
+- (void)keyboardWillBeShown:(NSNotification *)aNotification
 {
     keyboardIsShow = YES;
     NSDictionary* info = [aNotification userInfo];
@@ -201,7 +201,7 @@
 }
 
 // Called when the UIKeyboardWillHideNotification is sent
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+- (void)keyboardWillBeHidden:(NSNotification *)aNotification
 {
     keyboardIsShow = NO;
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
@@ -209,7 +209,7 @@
     _scrollView.scrollIndicatorInsets = contentInsets;
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView == _scrollView) {
         float y = scrollView.contentOffset.y;
         if (keyboardIsShow) {
@@ -308,19 +308,19 @@
 
 
 #pragma mark - UITableViewDelegate Methods
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return dataTableView.count;
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 55.;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellSelectId" forIndexPath:indexPath];
         cell.textLabel.text = [dataTableView objectAtIndex:indexPath.row];
@@ -333,7 +333,7 @@
         return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (textFieldSelected) {
         case TEXT_FIELD_CAR_MADE:
         {
@@ -381,7 +381,7 @@
     [alertController dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
 }
@@ -398,14 +398,12 @@
         [DataHelper POST:API_REGISTER params:params completion:^(BOOL success, id responseObject){
             if (success) {
                 if ([responseObject intValue] > 0) {
-                    
-                    
 //                    if (_isEdit) {
                         // đăng ký thành công, lưu thông tin người dùng ...
                         [params setValue:[NSString stringWithFormat:@"%@", responseObject] forKey:@"id"];
                         [DataHelper setUserData:@{@"data":params, @"userType":[NSString stringWithFormat:@"%d", USER_TYPE_DRIVER], @"wasActived":@"YES"}];
                         
-                        [self performSegueWithIdentifier:@"goToMapDriveSegueId" sender:self];
+                        [self performSegueWithIdentifier:@"gotoDriverMainSegueId" sender:self];
                     /*
                      Bỏ chức năng active sms khi đăng ký tài khoản
                      */
@@ -453,7 +451,7 @@
     [self presentViewController:activityVC animated:YES completion:nil];
 }
 
--(BOOL)checkInputDataTextField{
+- (BOOL)checkInputDataTextField{
     if (userNameTf.text.length == 0) {
         [self showAlertWithString:LocalizedString(@"REGISTER_ERROR_NAME")];
         return NO;
@@ -490,7 +488,7 @@
     return YES;
 }
 
--(void)showAlertWithString:(NSString*)string{
+- (void)showAlertWithString:(NSString *)string{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:string message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:ok];

@@ -193,7 +193,7 @@ NSString * const CAPSPageMenuOptionHideTopMenuBar                       = @"hide
     
     _selectionIndicatorColor      = [UIColor whiteColor];
     _selectedMenuItemLabelColor   = [UIColor whiteColor];
-    _unselectedMenuItemLabelColor = [UIColor lightGrayColor];
+    _unselectedMenuItemLabelColor = [UIColor whiteColor];
     _scrollMenuBackgroundColor    = [UIColor blackColor];
     _viewBackgroundColor          = [UIColor whiteColor];
     _bottomMenuHairlineColor      = [UIColor whiteColor];

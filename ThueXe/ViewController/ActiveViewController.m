@@ -36,7 +36,7 @@
    
 }
 
--(void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if (_isActiveBuyCode) {
         headerLb.text = @"Nhập mã kích hoạt";
@@ -63,7 +63,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
     if (textView == resendTextView) {
         [resendTextView setUserInteractionEnabled:NO];
         if ([self canResendActiveCode] && !wasSend) {
@@ -110,7 +110,7 @@
     return NO;
 }
 
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
 
     NSUInteger oldLength = [textField.text length];
     NSUInteger replacementLength = [string length];
@@ -132,7 +132,7 @@
                 int daysActive = [responseObject intValue];
                 if (daysActive > 0) {
                     [DataHelper activeUser:daysActive];
-                    MapDriverViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDriverStoryboardId"];
+                    MapDriverViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"driverMainStoryboardId"];
                     
                     [self presentViewController:controller animated:YES completion:nil];
                 }
@@ -196,7 +196,7 @@
     }
 }
 
--(BOOL)canResendActiveCode{
+- (BOOL)canResendActiveCode{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSDate *lastSend = [userDefault objectForKey:@"lastSend"];
     

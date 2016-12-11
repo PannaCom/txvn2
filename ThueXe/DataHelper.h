@@ -10,17 +10,18 @@
 
 @interface DataHelper : NSObject
 
-+(void)POST:(NSString*)url params:(NSDictionary*)params completion:(void(^)(BOOL success, id responseObject))completionHandler;
-+(void)GET:(NSString*)url params:(NSDictionary*)params completion:(void(^)(BOOL success, id responseObject))completionHandler;
-+(void)setFilterData:(NSDictionary*)filterData;
-+(NSDictionary*)getFilterData;
-+(void)setUserData:(NSDictionary*)userData;
-+(NSDictionary*)getUserData;
-+(void)clearUserData;
-+(void)activeUser:(int)daysActive;
++ (void)POST:(NSString*)url params:(NSDictionary*)params completion:(void(^)(BOOL success, id responseObject))completionHandler;
++ (void)GET:(NSString*)url params:(NSDictionary*)params completion:(void(^)(BOOL success, id responseObject))completionHandler;
++ (void)GET_NO_POLICY:(NSString*)url params:(NSDictionary*)params completion:(void(^)(BOOL success, id responseObject))completionHandler;
++ (void)setFilterData:(NSDictionary*)filterData;
++ (NSDictionary*)getFilterData;
++ (void)setUserData:(NSDictionary*)userData;
++ (NSDictionary*)getUserData;
++ (void)clearUserData;
++ (void)activeUser:(int)daysActive;
 //+(void)sendRegIdUserType:(NSString*)userType;
 //+(void)setRegId:(NSString*)regId userType:(NSString*)userType;
-+(void)setRegId:(NSString *)regId;
-+(NSString *)getRegId;
++ (void)setRegId:(NSString *)regId;
++ (NSString *)getRegId;
 
 @end

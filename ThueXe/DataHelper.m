@@ -20,7 +20,7 @@
     manager.securityPolicy.pinnedCertificates = [NSSet setWithObject:localCertificate];
     
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-//    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     [manager POST:url parameters:params progress:nil success:^(NSURLSessionDataTask *task, id responseObject){
         NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         completionHandler(YES, string);
@@ -44,6 +44,21 @@
     manager.securityPolicy.pinnedCertificates = [NSSet setWithObject:localCertificate];
     [manager GET:url parameters:params progress:nil success:^(NSURLSessionDataTask *task, id responseObject){
          completionHandler(YES, responseObject);
+    }failure:^(NSURLSessionDataTask *task, NSError *error){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Lỗi kết nối" message:@"Hãy kiểm tra kết nối Internet." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alert addAction:ok];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+        completionHandler(NO, error);
+    }];
+}
+
++ (void)GET_NO_POLICY:(NSString*)url params:(NSDictionary*)params completion:(void(^)(BOOL success, id responseObject))completionHandler{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager GET:url parameters:params progress:nil success:^(NSURLSessionDataTask *task, id responseObject){
+        completionHandler(YES, responseObject);
     }failure:^(NSURLSessionDataTask *task, NSError *error){
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Lỗi kết nối" message:@"Hãy kiểm tra kết nối Internet." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){

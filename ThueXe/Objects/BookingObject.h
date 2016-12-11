@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSString *carHireType;
 @property (strong, nonatomic) NSString *carSize;
 @property (strong, nonatomic) NSString *bookingId;
+@property BOOL status;
 
 +(NSArray<BookingObject*>*)getDataFromJson:(NSArray*)input;
 

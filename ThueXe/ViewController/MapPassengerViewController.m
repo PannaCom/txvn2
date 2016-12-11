@@ -149,6 +149,11 @@
         [self presentViewController:firstViewController animated:YES completion:nil];
     }];
     
+    UIAlertAction *booking = [UIAlertAction actionWithTitle:@"Đặt xe" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        [self performSegueWithIdentifier:@"mapToBookingSegueId" sender:self];
+    }];
+    [menu addAction:booking];
+    
     UIAlertAction *share = [UIAlertAction actionWithTitle:@"Mời người sử dụng" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại ";
         NSURL *myWebsite = [NSURL URLWithString:@"http://thuexevn.com"];

@@ -11,31 +11,56 @@
 #import "AFNetworking.h"
 #import "LocalizeHelper.h"
 
-//api
+//APIs
 #define URL_SERVER @"http://thuexevn.com"
 
-#define API_GET_LIST_ONLINE [NSString stringWithFormat:@"%@/Api/getlistonline", URL_SERVER] // dùng cho hành khách
+/**
+ APIs for request data of Driver
+
+ - Register usser
+ - Post Location
+ - Get booking of Passenger
+ - Active user
+ - ...
+ */
 #define API_REGISTER [NSString stringWithFormat:@"%@/Api/register", URL_SERVER]
 #define API_LOCATE [NSString stringWithFormat:@"%@/Api/locate", URL_SERVER]
-#define API_GET_AROUND [NSString stringWithFormat:@"%@/Api/getaround", URL_SERVER] // dùng cho lái xe
-#define API_GET_MADE_LIST [NSString stringWithFormat:@"%@/Api/getCarMadeList", URL_SERVER]
-#define API_GET_ALL_MADE_LIST [NSString stringWithFormat:@"%@/Api/getAllCarMadeList", URL_SERVER]
-
-#define API_GET_MODEL_LIST [NSString stringWithFormat:@"%@/Api/getCarModelListFromMade", URL_SERVER]
-
-#define API_GET_TYPE_LIST [NSString stringWithFormat:@"%@/Api/getAllCarTypeList", URL_SERVER]
-#define API_GET_SIZE_LIST [NSString stringWithFormat:@"%@/Api/getCarSize", URL_SERVER]
-#define API_GET_HIRE_TYPE_LIST [NSString stringWithFormat:@"%@/Api/getCarHireType", URL_SERVER]
-#define API_BOOKING [NSString stringWithFormat:@"%@/Api/booking", URL_SERVER]
+#define API_GET_AROUND [NSString stringWithFormat:@"%@/Api/getaround", URL_SERVER] 
 #define API_DRIVER_GET_BOOKING [NSString stringWithFormat:@"%@/Api/getBooking", URL_SERVER]
-#define API_PASSENGER_GET_BOOKING [NSString stringWithFormat:@"%@/Api/getBookingByPhone", URL_SERVER]
 #define API_ACTIVE [NSString stringWithFormat:@"%@/Api/acitive", URL_SERVER]
 #define API_ACTIVE_BUY [NSString stringWithFormat:@"%@/Api/activecode", URL_SERVER]
 #define API_RESEND_ACTIVE [NSString stringWithFormat:@"%@/Api/resendactive", URL_SERVER]
 
 #define API_POST_REG_ID [NSString stringWithFormat:@"%@/Api/PostRegId", URL_SERVER]
 #define API_POST_REG_ID_USER [NSString stringWithFormat:@"%@/Api/RegIdUser", URL_SERVER]
-#define API_CALL [NSString stringWithFormat:@"%@/Api/cal", URL_SERVER]
+#define API_LOG_DRIVER_CALL_PASSENGER [NSString stringWithFormat:@"%@/Api/LogDriver", URL_SERVER]
+
+
+/**
+ APIs for request data of Passenger
+ - Get list driver online
+ - Booking
+ - Get list Passenger's Booking
+ - Update status booking
+ - ...
+ */
+#define API_GET_LIST_ONLINE [NSString stringWithFormat:@"%@/Api/getlistonline", URL_SERVER] 
+#define API_BOOKING [NSString stringWithFormat:@"%@/Api/booking", URL_SERVER]
+#define API_PASSENGER_GET_BOOKING [NSString stringWithFormat:@"%@/Api/getBookingByPhone", URL_SERVER]
+#define API_PASSENGER_UPDATE_BOOKING [NSString stringWithFormat:@"%@/Api/updateBooking", URL_SERVER]
+#define API_LOG_PASSENGER_CALL_DRIVER [NSString stringWithFormat:@"%@/Api/cal", URL_SERVER]
+
+// Get info
+#define API_GET_MADE_LIST [NSString stringWithFormat:@"%@/Api/getCarMadeList", URL_SERVER]
+#define API_GET_ALL_MADE_LIST [NSString stringWithFormat:@"%@/Api/getAllCarMadeList", URL_SERVER]
+#define API_GET_MODEL_LIST [NSString stringWithFormat:@"%@/Api/getCarModelListFromMade", URL_SERVER]
+#define API_GET_TYPE_LIST [NSString stringWithFormat:@"%@/Api/getAllCarTypeList", URL_SERVER]
+#define API_GET_SIZE_LIST [NSString stringWithFormat:@"%@/Api/getCarSize", URL_SERVER]
+#define API_GET_HIRE_TYPE_LIST [NSString stringWithFormat:@"%@/Api/getCarHireType", URL_SERVER]
+
+// End APIs
+
+
 #define WIDTH_SCREEN [UIScreen mainScreen].bounds.size.width
 #define HEIGHT_SCREEN [UIScreen mainScreen].bounds.size.height
 

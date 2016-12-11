@@ -65,7 +65,7 @@
     NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"tel:%@",phoneLb.text]];
     
     if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
-        [DataHelper POST:API_CALL params:@{@"phone":phoneLb.text} completion:^(BOOL success, id responseObject){
+        [DataHelper POST:API_LOG_PASSENGER_CALL_DRIVER params:@{@"phone":phoneLb.text} completion:^(BOOL success, id responseObject){
             NSLog(@"Post Call number: %@", responseObject);
         }];
         [[UIApplication sharedApplication] openURL:phoneUrl];

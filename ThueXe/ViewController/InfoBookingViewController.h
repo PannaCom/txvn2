@@ -9,10 +9,18 @@
 #import <UIKit/UIKit.h>
 #import <GoogleMaps/GoogleMaps.h>
 
+@protocol BookingDelegate <NSObject>
+
+- (void)didBookingDone;
+
+@end
+
 @interface InfoBookingViewController : UIViewController
 
 @property CLLocationCoordinate2D locationFrom;
 @property CLLocationCoordinate2D locationTo;
 @property (strong, nonatomic) NSString *phone;
+
+@property (nonatomic, weak) id <BookingDelegate> delegate;
 
 @end
