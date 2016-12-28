@@ -65,7 +65,8 @@
 }
 
 - (IBAction)backBtnClick:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    [self performSegueWithIdentifier:@"fromPassengerBookingToListdataUnwindSegueId" sender:self];
 }
 
 - (IBAction)menuBtnClick:(id)sender {
@@ -115,6 +116,10 @@
 
 - (void)didBookingDone{
      [self performSegueWithIdentifier:@"getPassengerBookingSegueId" sender:self];
+}
+
+-(IBAction)unwindToBooking:(UIStoryboardSegue*)sender{
+
 }
 
 @end

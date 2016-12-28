@@ -367,4 +367,8 @@
     [collectionView reloadData];
 }
 
+-(void)unwindForSegue:(UIStoryboardSegue *)unwindSegue towardsViewController:(UIViewController *)subsequentVC{
+    
+}
+
 @end

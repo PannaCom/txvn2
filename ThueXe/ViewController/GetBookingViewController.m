@@ -149,7 +149,8 @@
 }
 #pragma mark - Events
 - (IBAction)backBtnClick:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    [self performSegueWithIdentifier:@"fromPassengerGetBookingToListDataUnwindSegueId" sender:self];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
@@ -208,7 +209,8 @@
 
     
     UIAlertAction *booking = [UIAlertAction actionWithTitle:@"Đặt xe" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        [self dismissViewControllerAnimated:YES completion:nil];
+//        [self dismissViewControllerAnimated:YES completion:nil];
+        [self performSegueWithIdentifier:@"fromPassengerGetBookingToBookingUnwindSegueId" sender:self];
     }];
     [menu addAction:booking];
     

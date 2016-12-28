@@ -61,6 +61,7 @@
 		3E8AB2ED1DA9F211001267C0 /* car_small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E8AB2E91DA9F211001267C0 /* car_small@3x.png */; };
 		3E8AB2EE1DA9F211001267C0 /* car_small@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E8AB2EA1DA9F211001267C0 /* car_small@4x.png */; };
 		3E8AB2F11DAA5F8C001267C0 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8AB2F01DAA5F8C001267C0 /* FilterViewController.m */; };
+		3E9708F01E135C10006F25DA /* PassengerTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9708EF1E135C10006F25DA /* PassengerTabBarController.m */; };
 		3EA00F921DA0B5CA000FD90B /* ListDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA00F911DA0B5CA000FD90B /* ListDataViewController.m */; };
 		3EA00FA91DA0E064000FD90B /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA00FA51DA0E064000FD90B /* Car.m */; };
 		3EA00FAA1DA0E064000FD90B /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA00FA71DA0E064000FD90B /* ItemCell.m */; };
@@ -235,6 +236,8 @@
 		3E8AB2EA1DA9F211001267C0 /* car_small@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car_small@4x.png"; sourceTree = "<group>"; };
 		3E8AB2EF1DAA5F8C001267C0 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
 		3E8AB2F01DAA5F8C001267C0 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
+		3E9708EE1E135C10006F25DA /* PassengerTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassengerTabBarController.h; sourceTree = "<group>"; };
+		3E9708EF1E135C10006F25DA /* PassengerTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassengerTabBarController.m; sourceTree = "<group>"; };
 		3EA00F901DA0B5CA000FD90B /* ListDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListDataViewController.h; sourceTree = "<group>"; };
 		3EA00F911DA0B5CA000FD90B /* ListDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListDataViewController.m; sourceTree = "<group>"; };
 		3EA00FA41DA0E064000FD90B /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
@@ -403,6 +406,8 @@
 				3E4041041DF407620046F754 /* MapBookingViewController.m */,
 				3E4041091DF407990046F754 /* InfoBookingViewController.h */,
 				3E40410A1DF407990046F754 /* InfoBookingViewController.m */,
+				3E9708EE1E135C10006F25DA /* PassengerTabBarController.h */,
+				3E9708EF1E135C10006F25DA /* PassengerTabBarController.m */,
 			);
 			name = Passenger;
 			sourceTree = "<group>";
@@ -951,6 +956,7 @@
 				3EA00F921DA0B5CA000FD90B /* ListDataViewController.m in Sources */,
 				3E7F08D01DF6480200F891BA /* BookingCell.m in Sources */,
 				3EDFC63E1D9FAFE300EB31B0 /* FirstViewController.m in Sources */,
+				3E9708F01E135C10006F25DA /* PassengerTabBarController.m in Sources */,
 				3EDFC60E1D9F87F700EB31B0 /* main.m in Sources */,
 				3E40410B1DF407990046F754 /* InfoBookingViewController.m in Sources */,
 				3E4041081DF407750046F754 /* GetBookingViewController.m in Sources */,

@@ -122,47 +122,6 @@
     return [userDefault dictionaryForKey:key];
 }
 
-//+(void)setRegId:(NSString*)regId userType:(NSString *)userType{
-//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-//    NSDictionary *oldRegIdAPNs = [userDefault dictionaryForKey:@"regIdAPNs"];
-//    NSString *oldRegId = [oldRegIdAPNs objectForKey:@"regId"];
-//    if ([regId isEqualToString:oldRegId] == NO) {
-//        [userDefault setObject:@{@"regId":regId, @"userType":@""} forKey:@"regIdAPNs"];
-////        [userDefault synchronize];
-//        if (userType.length > 0) {
-//            [self POST:API_POST_REG_ID params:@{@"tobject":userType, @"regid":regId, @"os":DEVICE_IOS} completion:^(BOOL success, id responseObject){
-//                if (success) {
-//                    [userDefault setObject:@{@"regId":regId, @"userType":userType} forKey:@"regIdAPNs"];
-//                    [userDefault synchronize];
-//                }
-//                else{
-//                    [userDefault synchronize];
-//                }
-//            }];
-//        }
-//        else{
-//            [userDefault synchronize];
-//        }
-//    }
-//}
-//
-//+(void)sendRegIdUserType:(NSString*)userType{
-//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-//    NSDictionary *oldRegIdAPNs = [userDefault dictionaryForKey:@"regIdAPNs"];
-//    if (oldRegIdAPNs) {
-//        NSString *regId = [oldRegIdAPNs objectForKey:@"regId"];
-//        NSString *oldUserType = [oldRegIdAPNs objectForKey:@"userType"];
-//        if (![userType isEqualToString:oldUserType]) {
-//            [self POST:API_POST_REG_ID params:@{@"tobject":userType, @"regid":regId, @"os":DEVICE_IOS} completion:^(BOOL success, id responseObject){
-//                if (success) {
-//                    [userDefault setObject:@{@"regId":regId, @"userType":userType} forKey:@"regIdAPNs"];
-//                    [userDefault synchronize];
-//                }
-//            }];
-//        }
-//    }
-//}
-
 +(void)setRegId:(NSString *)regId{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     [userDefault setObject:regId forKey:@"regIdAPNs"];
