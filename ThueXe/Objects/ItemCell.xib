@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -28,17 +28,26 @@
                                 <rect key="frame" x="0.0" y="0.0" width="776" height="93"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mẫu xe:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1mC-bN-dF1">
-                                        <rect key="frame" x="8" y="0.0" width="768" height="93"/>
+                                        <rect key="frame" x="98" y="0.0" width="678" height="93"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9nC-Ce-IPL">
+                                        <rect key="frame" x="0.0" y="0.0" width="93" height="93"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="9nC-Ce-IPL" secondAttribute="height" multiplier="1:1" id="sG3-QA-971"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0033083439338952303" green="0.66562110185623169" blue="0.71693974733352661" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="9nC-Ce-IPL" firstAttribute="top" secondItem="y7i-8H-mwb" secondAttribute="top" id="1ow-g8-Tnw"/>
+                                    <constraint firstItem="1mC-bN-dF1" firstAttribute="leading" secondItem="9nC-Ce-IPL" secondAttribute="trailing" constant="5" id="KBC-4F-DFV"/>
+                                    <constraint firstItem="9nC-Ce-IPL" firstAttribute="centerY" secondItem="y7i-8H-mwb" secondAttribute="centerY" id="T3I-og-eZM"/>
                                     <constraint firstItem="1mC-bN-dF1" firstAttribute="top" secondItem="y7i-8H-mwb" secondAttribute="top" id="ZiE-7B-s1W"/>
                                     <constraint firstAttribute="bottom" secondItem="1mC-bN-dF1" secondAttribute="bottom" id="fT5-JX-0PQ"/>
                                     <constraint firstAttribute="trailing" secondItem="1mC-bN-dF1" secondAttribute="trailing" id="jIN-pa-2YO"/>
-                                    <constraint firstItem="1mC-bN-dF1" firstAttribute="leading" secondItem="y7i-8H-mwb" secondAttribute="leading" constant="8" id="sPW-7i-xUy"/>
+                                    <constraint firstItem="9nC-Ce-IPL" firstAttribute="leading" secondItem="y7i-8H-mwb" secondAttribute="leading" id="rp5-eh-Xfl"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yh-4k-axV">
@@ -226,6 +235,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="carImage" destination="9nC-Ce-IPL" id="vA1-tv-p8F"/>
                 <outlet property="carMadeLb" destination="3gq-nq-Egc" id="LWu-Ry-pEA"/>
                 <outlet property="carModelLb" destination="1mC-bN-dF1" id="qVv-ij-xwu"/>
                 <outlet property="carSizeLb" destination="q2h-80-eyf" id="6sD-Sz-1tR"/>

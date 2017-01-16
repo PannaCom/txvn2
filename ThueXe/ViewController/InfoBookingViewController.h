@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import "Config.h"
 
 @protocol BookingDelegate <NSObject>
 
@@ -22,5 +23,6 @@
 @property (strong, nonatomic) NSString *phone;
 
 @property (nonatomic, weak) id <BookingDelegate> delegate;
+@property USER_TYPE userType;
 
 @end

@@ -45,11 +45,6 @@
     _toMaker.title = @"Điểm đến";
     _fromMaker.map = _mapView;
     _toMaker.map = _mapView;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLocation:) name:@"updateLocationBooking" object:nil];
-}
-
--(void)updateLocation:(NSNotification*)noti{
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated{

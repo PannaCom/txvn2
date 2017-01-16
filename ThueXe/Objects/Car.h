@@ -21,6 +21,7 @@
 @property (strong, nonatomic) NSString *price;
 @property float distance;
 @property (strong, nonatomic) CLLocation *location;
+@property (strong, nonatomic) NSURL *imageLink;
 
 +(NSArray<Car*>*)getDataFromJson:(NSArray*)input;
 

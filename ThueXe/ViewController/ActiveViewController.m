@@ -103,7 +103,7 @@
         }
         else{
             RegisterViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"registerStoryboardId"];
-            [self presentViewController:vc animated:YES completion:nil];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
     
@@ -133,8 +133,8 @@
                 if (daysActive > 0) {
                     [DataHelper activeUser:daysActive];
                     MapDriverViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"driverMainStoryboardId"];
-                    
-                    [self presentViewController:controller animated:YES completion:nil];
+
+                    [self.navigationController pushViewController:controller animated:YES];
                 }
                 else{
                     [sendBtn setEnabled:YES];
@@ -175,7 +175,7 @@
                         [DataHelper activeUser:DAYS_TRIAL];
                         MapDriverViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"mapDriverStoryboardId"];
                         
-                        [self presentViewController:controller animated:YES completion:nil];
+                        [self.navigationController pushViewController:controller animated:YES];
                     }
                     else{
                         [sendBtn setEnabled:YES];

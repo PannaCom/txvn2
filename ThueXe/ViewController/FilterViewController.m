@@ -7,7 +7,7 @@
 //
 
 #import "FilterViewController.h"
-#import "UIFloatLabelTextField.h"
+#import "JVFloatLabeledTextField.h"
 #import "Config.h"
 #import "DataHelper.h"
 #import "ListDataViewController.h"
@@ -15,11 +15,11 @@
 
 @interface FilterViewController ()<UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 {
-    IBOutlet UIFloatLabelTextField *carMadeTf;
-    IBOutlet UIFloatLabelTextField *carModelTf;
-    IBOutlet UIFloatLabelTextField *carSizeTf;
+    IBOutlet JVFloatLabeledTextField *carMadeTf;
+    IBOutlet JVFloatLabeledTextField *carModelTf;
+    IBOutlet JVFloatLabeledTextField *carSizeTf;
     IBOutlet UISegmentedControl *orderSegment;
-    IBOutlet UIFloatLabelTextField *carTypeTf;
+    IBOutlet JVFloatLabeledTextField *carTypeTf;
     NSArray *carMade;
     NSArray *carModel;
     NSArray *carTypes;
@@ -91,8 +91,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO
-                                            withAnimation:UIStatusBarAnimationFade];
+//    [self prefersStatusBarHidden];
 //    [self getFilterDataFromServer];
 }
 
@@ -358,6 +357,7 @@
 #pragma mark - Events
 
 - (IBAction)backBtnClick:(id)sender {
+//    [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)clearBtnClick:(id)sender {
@@ -374,6 +374,7 @@
 }
 - (IBAction)findCarClick:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"filterDataNoti" object:nil userInfo:@{@"filterData":_filterData}];
+//    [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

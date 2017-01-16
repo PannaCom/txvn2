@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Config.h"
 
 @interface BookingViewController : UIViewController
+
+@property USER_TYPE userType;
 
 @end

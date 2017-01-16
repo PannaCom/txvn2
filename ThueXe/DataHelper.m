@@ -21,6 +21,7 @@
     
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+
     [manager POST:url parameters:params progress:nil success:^(NSURLSessionDataTask *task, id responseObject){
         NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         completionHandler(YES, string);
@@ -129,7 +130,6 @@
 }
 
 +(NSString *)getRegId{
-    
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"regIdAPNs"];
 }
 

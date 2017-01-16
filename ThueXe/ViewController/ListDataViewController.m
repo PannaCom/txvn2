@@ -17,6 +17,8 @@
 #import "MapPassengerViewController.h"
 #import "UIScrollView+SVPullToRefresh.h"
 #import "CarTypeItem.h"
+#import "GetBookingViewController.h"
+#import "BookingViewController.h"
 
 @interface ListDataViewController ()<CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 {
@@ -133,8 +135,7 @@
     [super viewWillAppear:animated];
     getListOnlineNow = YES;
     [_tableView triggerPullToRefresh];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO
-                                            withAnimation:UIStatusBarAnimationFade];
+//    [self prefersStatusBarHidden];
     NSString *carType = [_filterData objectForKey:@"car_type"];
     if (carType.length == 0) {
         selectedIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
@@ -204,6 +205,7 @@
     FilterViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"filterDataStoryboardId"];
     vc.filterData = _filterData;
     [self presentViewController:vc animated:YES completion:nil];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)getListOnline{
@@ -233,13 +235,22 @@
         [DataHelper clearUserData];
         FirstViewController *firstViewController = (FirstViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"firstViewControllerStoryboardId"];
         
-        [self presentViewController:firstViewController animated:YES completion:nil];
+        [self.navigationController pushViewController:firstViewController animated:YES];
     }];
     
     UIAlertAction *booking = [UIAlertAction actionWithTitle:@"Đặt xe" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         [self performSegueWithIdentifier:@"bookingSegueId" sender:self];
     }];
     [menu addAction:booking];
+
+    UIAlertAction *getBooking = [UIAlertAction actionWithTitle:@"Tìm chuyến chiều về đi chung" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        GetBookingViewController *vc = [mainStoryboard instantiateViewControllerWithIdentifier:@"getBookingStoryboardId"];
+        vc.userType = USER_TYPE_PASSENGER_GET_DRIVER_BOOKING;
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    [menu addAction:getBooking];
     
     UIAlertAction *share = [UIAlertAction actionWithTitle:@"Mời người sử dụng" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại ";
@@ -367,8 +378,11 @@
     [collectionView reloadData];
 }
 
--(void)unwindForSegue:(UIStoryboardSegue *)unwindSegue towardsViewController:(UIViewController *)subsequentVC{
-    
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"bookingSegueId"]) {
+        BookingViewController *vc = [segue destinationViewController];
+        vc.userType = USER_TYPE_PASSENGER;
+    }
 }
 
 @end

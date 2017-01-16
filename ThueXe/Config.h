@@ -34,6 +34,7 @@
 #define API_POST_REG_ID [NSString stringWithFormat:@"%@/Api/PostRegId", URL_SERVER]
 #define API_POST_REG_ID_USER [NSString stringWithFormat:@"%@/Api/RegIdUser", URL_SERVER]
 #define API_LOG_DRIVER_CALL_PASSENGER [NSString stringWithFormat:@"%@/Api/LogDriver", URL_SERVER]
+#define API_LOGIN_DRIVER [NSString stringWithFormat:@"%@/Api/loginDriver", URL_SERVER]
 
 
 /**
@@ -49,6 +50,7 @@
 #define API_PASSENGER_GET_BOOKING [NSString stringWithFormat:@"%@/Api/getBookingByPhone", URL_SERVER]
 #define API_PASSENGER_UPDATE_BOOKING [NSString stringWithFormat:@"%@/Api/updateBooking", URL_SERVER]
 #define API_LOG_PASSENGER_CALL_DRIVER [NSString stringWithFormat:@"%@/Api/cal", URL_SERVER]
+#define API_GET_CUSTOMER_BOOKING [NSString stringWithFormat:@"%@/Api/getBookingForCustomer", URL_SERVER]
 
 // Get info
 #define API_GET_MADE_LIST [NSString stringWithFormat:@"%@/Api/getCarMadeList", URL_SERVER]
@@ -66,7 +68,8 @@
 
 typedef NS_ENUM(int, USER_TYPE){
     USER_TYPE_PASSENGER,
-    USER_TYPE_DRIVER
+    USER_TYPE_DRIVER,
+    USER_TYPE_PASSENGER_GET_DRIVER_BOOKING
 };
 
 typedef NS_ENUM(int, TEXT_FIELD){
@@ -80,7 +83,8 @@ typedef NS_ENUM(int, TEXT_FIELD){
     TEXT_FIELD_PLACE_FROM,
     TEXT_FIELD_PLACE_TO,
     TEXT_FIELD_DATE_FROM,
-    TEXT_FIELD_DATE_TO
+    TEXT_FIELD_DATE_TO,
+    TEXT_FIELD_ADDRESS
 };
 
 typedef NS_ENUM(int, CAR_STATUS){

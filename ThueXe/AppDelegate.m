@@ -12,10 +12,11 @@
 #import "DataHelper.h"
 #import "FilterViewController.h"
 #import "ListDataViewController.h"
-#import "MapPassengerViewController.h"
+#import "DriverMainViewController.h"
 #import "FirstViewController.h"
 #import "ActiveViewController.h"
 #import <UserNotifications/UserNotifications.h>
+#import "PassengerTabBarController.h"
 
 
 @import GoogleMaps;
@@ -37,12 +38,11 @@
     [GMSServices provideAPIKey:GOOGLE_MAP_API_KEY];
     [GMSPlacesClient provideAPIKey:GOOGLE_MAP_API_KEY];
     [self updateVersionApp];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES
-                                            withAnimation:UIStatusBarAnimationFade];
+//    [self.window.rootViewController prefersStatusBarHidden];
     [self registerForRemoteNotifications];
     
     NSDictionary *userInfo = [DataHelper getUserData];
-    NSLog(@"%@", userInfo);
+//    NSLog(@"%@", userInfo);
     userType = @"";
     if (!userInfo) {
         _window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
@@ -58,12 +58,14 @@
                     if ([[NSDate date] compare:dateNeedActive] == NSOrderedDescending) {
                         ActiveViewController *controller = (ActiveViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"activeStoryboardId"];
                         controller.isActiveBuyCode = YES;
-                        _window.rootViewController = controller;
+//                        _window.rootViewController = controller;
+                        [self changeRootViewController:controller];
                     }
                     else{
-                        MapDriverViewController *controller = (MapDriverViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"driverMainStoryboardId"];
+                        DriverMainViewController *controller = (DriverMainViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"driverMainStoryboardId"];
                         
-                        _window.rootViewController = controller;
+//                        _window.rootViewController = controller;
+                        [self changeRootViewController:controller];
                     }
                 /*
                  Bỏ chức năng active sms khi đăng ký tài khoản
@@ -86,18 +88,20 @@
                     filterData = @{@"car_made":@"", @"car_model":@"", @"car_size":@"", @"car_type":@""};
                 }
                
-                UITabBarController *tabbar = [mainStoryboard instantiateViewControllerWithIdentifier: @"listCarStoryboardId"];
+                PassengerTabBarController *tabbar = [mainStoryboard instantiateViewControllerWithIdentifier: @"listCarStoryboardId"];
                 ListDataViewController *listController = [tabbar.viewControllers objectAtIndex:0];
                 listController.filterData = [filterData mutableCopy];
                 [tabbar setSelectedIndex:0];
-                _window.rootViewController = tabbar;
+
+               [self changeRootViewController:tabbar];
+
             }
                 break;
             default:
             {
                 UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
                 FirstViewController *controller = (FirstViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"firstViewControllerStoryboardId"];
-                _window.rootViewController = controller;
+               [self changeRootViewController:controller];
             }
                 break;
         }
@@ -107,6 +111,15 @@
     view.backgroundColor=[UIColor colorWithRed:1/255. green:156/255. blue:160/255. alpha:1.];
     [self.window.rootViewController.view addSubview:view];
     return YES;
+}
+
+- (void) changeRootViewController:(UIViewController *)rootVc {
+    _navigationController = [[UINavigationController alloc] initWithRootViewController:rootVc];
+    [_navigationController prefersStatusBarHidden];
+    [_navigationController setNavigationBarHidden:YES];
+    [_window setRootViewController:_navigationController];
+
+    [_window makeKeyAndVisible];
 }
 
 

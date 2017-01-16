@@ -14,7 +14,6 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - DZNEmptyDataSet (1.8.1)
   - GoogleMaps (2.1.1):
     - GoogleMaps/Maps (= 2.1.1)
   - GoogleMaps/Base (2.1.1)
@@ -22,34 +21,50 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (2.1.1):
     - GoogleMaps/Base (= 2.1.1)
+  - HexColors (2.3.0)
+  - INTULocationManager (4.2.0)
+  - JVFloatLabeledTextField (1.1.1)
   - MBProgressHUD (1.0.0)
+  - SCLAlertView-Objective-C (1.1.0)
   - SlideMenuControllerOC (1.0.1)
   - SVPullToRefresh (0.4.1)
-  - UIFloatLabelTextField (1.2.7)
-  - UIFloatLabelTextView (1.0.9)
+  - TSMessages (0.9.13):
+    - HexColors (~> 2.3.0)
 
 DEPENDENCIES:
   - AFNetworking
-  - DZNEmptyDataSet
   - GoogleMaps
   - GooglePlaces
+  - INTULocationManager
+  - JVFloatLabeledTextField
   - MBProgressHUD
+  - SCLAlertView-Objective-C
   - SlideMenuControllerOC
   - SVPullToRefresh
-  - UIFloatLabelTextField
-  - UIFloatLabelTextView
+  - TSMessages (from `https://github.com/KrauseFx/TSMessages.git`)
+
+EXTERNAL SOURCES:
+  TSMessages:
+    :git: https://github.com/KrauseFx/TSMessages.git
+
+CHECKOUT OPTIONS:
+  TSMessages:
+    :commit: 949e7559c60a8863f33c5fd2cbc55e8efbb4b53f
+    :git: https://github.com/KrauseFx/TSMessages.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
   GooglePlaces: 35636d86e5020cba3856eb988c09a5491de0a65a
+  HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
+  INTULocationManager: 73f8254b3d05c897c56bb13c190e5b7c648c0998
+  JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  SCLAlertView-Objective-C: 349a894d4e1d1dbf14d443da784c6ca1e92c78d2
   SlideMenuControllerOC: c0527642a48fa16602bb08257c1ffed0e1bd09b7
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
-  UIFloatLabelTextField: ec6e82ae7cc06185bda955a9dce17e81cf34327c
-  UIFloatLabelTextView: 44061fe88933a055e139c58a7c0ae8ca5a26d610
+  TSMessages: eb3cf27b6900684a21bad4fe9ea426e287b8c839
 
-PODFILE CHECKSUM: 56798c5a5b0f2b90adad9b0d9f0e349ce51e60d8
+PODFILE CHECKSUM: 35165bda95559459886cc60d3a8f4a16f2baa71c
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0.beta.3

@@ -7,6 +7,7 @@
 //
 
 #import "Car.h"
+#import "Config.h"
 
 @implementation Car
 
@@ -33,7 +34,8 @@
         float lon = [[dict objectForKey:@"lon"] floatValue];
         float lat = [[dict objectForKey:@"lat"] floatValue];
         car.location = [[CLLocation alloc] initWithLatitude:lat longitude:lon];
-        
+        car.imageLink = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", URL_SERVER, [dict objectForKey:@"image"]]];
+
         [cars addObject:car];
     }
     return cars;

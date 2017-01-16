@@ -1,37 +1,31 @@
 //
-//  InfoBookingViewController.m
+//  DriverBookingInfoViewController.m
 //  ThueXe
 //
-//  Created by VMio69 on 12/4/16.
-//  Copyright © 2016 VMio69. All rights reserved.
+//  Created by VMio69 on 1/12/17.
+//  Copyright © 2017 VMio69. All rights reserved.
 //
 
-#import "InfoBookingViewController.h"
+#import "DriverBookingInfoViewController.h"
 #import "JVFloatLabeledTextField.h"
 #import "DataHelper.h"
 #import "Config.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import <GooglePlaces/GooglePlaces.h>
 
-@interface InfoBookingViewController ()<UITextFieldDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, GMSMapViewDelegate, GMSAutocompleteFetcherDelegate>
+@interface DriverBookingInfoViewController ()<UITextFieldDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, GMSMapViewDelegate, GMSAutocompleteFetcherDelegate>
 {
     IBOutlet UIScrollView *_scrollView;
-    IBOutlet JVFloatLabeledTextField *_nameTf;
-    IBOutlet JVFloatLabeledTextField *_phoneTf;
     IBOutlet JVFloatLabeledTextField *_hireTypeTf;
     IBOutlet JVFloatLabeledTextField *_placeFromTf;
     IBOutlet JVFloatLabeledTextField *_placeToTf;
-    IBOutlet JVFloatLabeledTextField *_carTypeTf;
-    IBOutlet JVFloatLabeledTextField *_carSizeTf;
     IBOutlet JVFloatLabeledTextField *_dateFromTf;
-    IBOutlet JVFloatLabeledTextField *_dateToTf;
     IBOutlet UIButton *_bookingBtn;
-    NSArray *carTypes;
-    NSArray *carSizes;
+
     NSArray *hireTypes;
     NSArray *dataTableView;
     int textFieldSelected;
-    long carTypeSelected, carSizeSelected, carHireTypeSelected;
+    long carHireTypeSelected;
     long rowSelected;
     UIAlertController *alertController;
     GMSAutocompleteFetcher* _fetcher;
@@ -41,46 +35,40 @@
     NSDateFormatter *dateFormatter;
     NSDate *_dateFrom;
     NSDate *_dateTo;
+    UIFont *fontSearchCell;
 }
 @end
 
-@implementation InfoBookingViewController
+@implementation DriverBookingInfoViewController
 #pragma mark - Life Cycle View
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    carTypes = [NSArray new];
-    carSizes = [NSArray new];
     hireTypes = [NSArray new];
-    
-    _nameTf.delegate = self;
-    _phoneTf.delegate = self;
+
     _hireTypeTf.delegate = self;
     _placeFromTf.delegate = self;
     _placeToTf.delegate = self;
-    _carTypeTf.delegate = self;
-    _carSizeTf.delegate = self;
     _dateFromTf.delegate = self;
-    _dateToTf.delegate = self;
-    
+
     dataTableView = [NSArray new];
-    
+
     [self getInfoCarFromServer];
-    
+
     _placeFromTf.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _placeFromTf.autocorrectionType = UITextAutocorrectionTypeNo;
     _placeFromTf.delegate = self;
     [_placeFromTf addTarget:self
-                  action:@selector(textFieldDidChange:)
-        forControlEvents:UIControlEventEditingChanged];
-    
+                     action:@selector(textFieldDidChange:)
+           forControlEvents:UIControlEventEditingChanged];
+
     _placeToTf.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _placeToTf.autocorrectionType = UITextAutocorrectionTypeNo;
     _placeToTf.delegate = self;
     [_placeToTf addTarget:self
-                action:@selector(textFieldDidChange:)
-      forControlEvents:UIControlEventEditingChanged];
-    
+                   action:@selector(textFieldDidChange:)
+         forControlEvents:UIControlEventEditingChanged];
+
     _resultTableView = [UITableView new];
     _resultTableView.delegate = self;
     _resultTableView.dataSource = self;
@@ -103,25 +91,18 @@
                                                                        coordinate:southWestBoundsCorner];
     // Set up the autocomplete filter.
     GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
+//    filter.type = kGMSPlacesAutocompleteTypeFilterEstablishment;
     filter.country = @"VN";
     // Create the fetcher.
     _fetcher = [[GMSAutocompleteFetcher alloc] initWithBounds:bounds
                                                        filter:filter];
     _fetcher.delegate = self;
-
     dateFormatter = [NSDateFormatter new];
+
     [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mm:ss a"];
     NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
     [dateFormatter setLocale:usLocale];
-
-    if (_userType == USER_TYPE_PASSENGER) {
-        NSDictionary *userInfo = [DataHelper getUserData];
-        if ([[userInfo objectForKey:@"userType"] intValue] == USER_TYPE_PASSENGER) {
-            _nameTf.text = userInfo[@"data"][@"name"];
-            _phoneTf.text = userInfo[@"data"][@"phone"];
-            _phone = _phoneTf.text;
-        }
-    }
+    fontSearchCell = [UIFont systemFontOfSize:14];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -148,37 +129,26 @@
 
 #pragma mark - UITextFieldDelegate Methods
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    
-    if (textField == _carTypeTf || textField == _carSizeTf || textField == _hireTypeTf) {
+
+    if (textField == _hireTypeTf) {
         [self.view endEditing:YES];
         UIViewController *controller = [[UIViewController alloc]init];
         UITableView *alertTableView;
         CGRect rect;
-        
+
         NSString *title = @"";
-        if (textField == _carTypeTf) {
-            dataTableView = carTypes;
-            title = @"Chọn loại xe";
-            textFieldSelected = TEXT_FIELD_CAR_TYPE;
-            rowSelected = carTypeSelected;
-        }
-        if (textField == _carSizeTf) {
-            dataTableView = carSizes;
-            title = @"Chọn số chỗ";
-            textFieldSelected = TEXT_FIELD_CAR_SIZE;
-            rowSelected = carSizeSelected;
-        }
+
         if (textField == _hireTypeTf) {
-            dataTableView = [hireTypes subarrayWithRange:NSMakeRange(0, 3)];
+            dataTableView = hireTypes;
             title = @"Chọn hình thức thuê xe";
             textFieldSelected = TEXT_FIELD_CAR_HIRE_TYPE;
             rowSelected = carHireTypeSelected;
         }
-        
-        float heightRect = MIN(HEIGHT_SCREEN*2/3, 40.*dataTableView.count);
+
+        float heightRect = MIN(HEIGHT_SCREEN*2/3, 60.*dataTableView.count);
         rect = CGRectMake(0, 0, WIDTH_SCREEN*3/4, heightRect);
         [controller setPreferredContentSize:rect.size];
-        
+
         alertTableView  = [[UITableView alloc]initWithFrame:rect];
         alertTableView.delegate = self;
         alertTableView.dataSource = self;
@@ -186,7 +156,7 @@
         [alertTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         [alertTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellSelectId"];
         [alertTableView reloadData];
-        
+
         [controller.view addSubview:alertTableView];
         [controller.view bringSubviewToFront:alertTableView];
         [controller.view setUserInteractionEnabled:YES];
@@ -199,61 +169,55 @@
         }];
         [alertController addAction:cancelAction];
         [self presentViewController:alertController animated:YES completion:nil];
-        
+
         return NO;
     }
-    
-    
-    if (textField == _dateFromTf || textField == _dateToTf) {
-        
+
+
+    if (textField == _dateFromTf) {
+
         CGRect rect = CGRectMake(0, 0, WIDTH_SCREEN*3/4, HEIGHT_SCREEN/2);
         UIViewController *controller = [UIViewController new];
         [controller setPreferredContentSize:rect.size];
         datePicker = [[UIDatePicker alloc] initWithFrame:rect];
         datePicker.date = [NSDate date];
         datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-        
+
         [controller.view addSubview:datePicker];
         [controller.view bringSubviewToFront:datePicker];
         [controller.view setUserInteractionEnabled:YES];
         [datePicker setUserInteractionEnabled:YES];
-        
+
         NSString *title = @"";
         if (textField == _dateFromTf) {
             textFieldSelected = TEXT_FIELD_DATE_FROM;
             title = @"Chọn ngày đi";
         }
-        if (textField == _dateToTf) {
-            textFieldSelected = TEXT_FIELD_DATE_TO;
-            title = @"Chọn ngày về";
-        }
         alertController = [UIAlertController alertControllerWithTitle:title message:@"" preferredStyle:UIAlertControllerStyleAlert];
         [alertController setValue:controller forKey:@"contentViewController"];
-        
+
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Hủy" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
             [alertController dismissViewControllerAnimated:YES completion:nil];
         }];
         UIAlertAction *selectAction = [UIAlertAction actionWithTitle:@"Chọn" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            
+
             switch (textFieldSelected) {
                 case TEXT_FIELD_DATE_FROM:
                     _dateFromTf.text = [dateFormatter stringFromDate:datePicker.date];
                     _dateFrom = datePicker.date;
-                    break;
-                case TEXT_FIELD_DATE_TO:
-                    _dateToTf.text = [dateFormatter stringFromDate:datePicker.date];
-                    _dateTo = datePicker.date;
+                    _dateTo = [_dateFrom dateByAddingTimeInterval:3600*24];
+
                     break;
                 default:
                     break;
             }
-            
+
             [alertController dismissViewControllerAnimated:YES completion:nil];
         }];
-        
+
         [alertController addAction:selectAction];
         [alertController addAction:cancelAction];
-        
+
         [self presentViewController:alertController animated:YES completion:nil];
         return NO;
     }
@@ -267,41 +231,28 @@
         _resultData = nil;
         [_resultTableView reloadData];
     }
-    
-    if (textField == _nameTf || textField == _phoneTf) {
-        textFieldSelected = -1;
-    }
 
     return YES;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
+
     if([string isEqualToString:@"\n"]) {
         [textField resignFirstResponder];
         return NO;
     }
-    if (textField == _phoneTf) {
-        _phone = _phoneTf.text;
-    }
+
     return YES;
 }
 
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     [_resultTableView setHidden:YES];
-    if (textField == _phoneTf) {
-        _phone = _phoneTf.text;
-    }
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
     [_resultTableView setHidden:YES];
     return YES;
-}
-
-- (void)textFieldDidChange:(UITextField *)textField {
-    [_fetcher sourceTextHasChanged:textField.text];
 }
 
 #pragma mark - UITableViewDelegate Methods
@@ -335,6 +286,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (textFieldSelected == TEXT_FIELD_PLACE_TO || textFieldSelected == TEXT_FIELD_PLACE_FROM) {
         UITableViewCell *cell = [_resultTableView dequeueReusableCellWithIdentifier:@"resultCellId" forIndexPath:indexPath];
+        cell.textLabel.font = fontSearchCell;
         [cell.textLabel setText:[[_resultData objectAtIndex:indexPath.row].attributedFullText string]];
         return cell;
     }
@@ -364,7 +316,7 @@
                 break;
         }
         [self.view endEditing:YES];
-        
+
         [_resultTableView setHidden:YES];
         dispatch_async(dispatch_get_main_queue(), ^{
             GMSPlacesClient *placeClient = [GMSPlacesClient sharedClient];
@@ -394,20 +346,11 @@
                     }
                 }
             }];
-            
+
         });
     }
     else{
         switch (textFieldSelected) {
-                
-            case TEXT_FIELD_CAR_SIZE:
-                carSizeSelected = indexPath.row;
-                _carSizeTf.text = [carSizes objectAtIndex:carSizeSelected];
-                break;
-            case TEXT_FIELD_CAR_TYPE:
-                carTypeSelected = indexPath.row;
-                _carTypeTf.text = [carTypes objectAtIndex:carTypeSelected];
-                break;
             case TEXT_FIELD_CAR_HIRE_TYPE:
                 carHireTypeSelected = indexPath.row;
                 _hireTypeTf.text = [hireTypes objectAtIndex:carHireTypeSelected];
@@ -418,7 +361,6 @@
         [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
         [alertController dismissViewControllerAnimated:YES completion:nil];
     }
-    
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -429,23 +371,19 @@
 #pragma mark - Events
 - (IBAction)bookingBtnClick:(id)sender {
     if ([self checkInput]) {
-        
+
         _bookingBtn.enabled = NO;
-        
+
         double delayInSeconds = 5.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             _bookingBtn.enabled = YES;
         });
-        
-        [DataHelper POST:API_BOOKING params:@{@"name":_nameTf.text, @"phone":_phoneTf.text, @"car_from":_placeFromTf.text, @"car_to":_placeToTf.text, @"car_type":_carTypeTf.text, @"car_hire_type":_hireTypeTf.text, @"car_size":_carSizeTf.text, @"from_datetime":_dateFromTf.text, @"to_datetime":_dateToTf.text, @"lon1":[NSString stringWithFormat:@"%.6f",_locationFrom.longitude], @"lat1":[NSString stringWithFormat:@"%.6f",_locationFrom.latitude], @"lon2":[NSString stringWithFormat:@"%.6f",_locationTo.longitude], @"lat2":[NSString stringWithFormat:@"%.6f",_locationTo.latitude]} completion:^(BOOL success, id reseponseObject){
+        NSDictionary *userInfo = [[DataHelper getUserData] objectForKey:@"data"];
+        [DataHelper POST:API_BOOKING params:@{@"name":[userInfo objectForKey:@"name"], @"phone":[userInfo objectForKey:@"phone"], @"car_from":_placeFromTf.text, @"car_to":_placeToTf.text, @"car_type":[userInfo objectForKey:@"car_type"], @"car_hire_type":_hireTypeTf.text, @"car_size":[userInfo objectForKey:@"car_size"], @"from_datetime":_dateFromTf.text, @"to_datetime":[dateFormatter stringFromDate:_dateTo], @"lon1":[NSString stringWithFormat:@"%.6f",_locationFrom.longitude], @"lat1":[NSString stringWithFormat:@"%.6f",_locationFrom.latitude], @"lon2":[NSString stringWithFormat:@"%.6f",_locationTo.longitude], @"lat2":[NSString stringWithFormat:@"%.6f",_locationTo.latitude]} completion:^(BOOL success, id reseponseObject){
             if (success) {
                 if ([reseponseObject isEqualToString:@"1"]) {
-                    if (_userType == USER_TYPE_PASSENGER) {
-                        [DataHelper setUserData:@{@"data":@{@"name":_nameTf.text, @"phone":_phoneTf.text}, @"userType":[NSString stringWithFormat:@"%d", USER_TYPE_PASSENGER]}];
-                    }
-
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Đặt vé thành công" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Đăng chuyến thành công" message:@"" preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                         [self.delegate didBookingDone];
                     }];
@@ -458,27 +396,10 @@
 }
 
 - (BOOL)checkInput{
-    if ([self checkLength:_nameTf.text withAlert:@"Chưa nhập tên"] &&
-        [self checkLength:_phoneTf.text withAlert:@"Chưa nhập số điện thoại"] &&
-        [self checkLength:_hireTypeTf.text withAlert:@"Chưa chọn hình thức thuê"] &&
+    return ([self checkLength:_hireTypeTf.text withAlert:@"Chưa chọn hình thức thuê"] &&
         [self checkLength:_placeFromTf.text withAlert:@"Chưa nhập điểm đi"] &&
         [self checkLength:_placeToTf.text withAlert:@"Chưa nhập điểm đến"] &&
-        [self checkLength:_carTypeTf.text withAlert:@"Chưa chọn loại xe"] &&
-        [self checkLength:_carSizeTf.text withAlert:@"Chưa chọn số chỗ"] &&
-        [self checkLength:_dateFromTf.text withAlert:@"Chưa chọn ngày giờ đi"] &&
-        [self checkLength:_dateToTf.text withAlert:@"Chưa chọn ngày giờ về"]) {
-            if ([_dateFrom compare:_dateTo] == NSOrderedDescending) {
-                [self showAlertWithString:@"Ngày đi không thể sau ngày về"];
-                return NO;
-            }
-            else{
-                return YES;
-            }
-    }
-    else{
-        return NO;
-    }
-
+            [self checkLength:_dateFromTf.text withAlert:@"Chưa chọn ngày giờ đi"]);
 }
 
 - (BOOL)checkLength:(NSString *)string withAlert:(NSString *)message{
@@ -489,21 +410,17 @@
     return YES;
 }
 
-
-
 - (void)keyboardWillShowNoti:(NSNotification*)noti{
-    
     if (textFieldSelected != TEXT_FIELD_PLACE_FROM && textFieldSelected != TEXT_FIELD_PLACE_TO) {
         return;
     }
-    
+
     NSDictionary* keyboardInfo = [noti userInfo];
     NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
     CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
-    
-    
+
     UIView *tf;
-    
+
     switch (textFieldSelected) {
         case TEXT_FIELD_PLACE_FROM:
             tf = _placeFromTf;
@@ -514,34 +431,27 @@
         default:
             break;
     }
-    
+
     [_scrollView setContentOffset:CGPointMake(0, tf.frame.origin.y + tf.frame.size.height)];
     _resultTableView.frame = CGRectMake(0, tf.bounds.origin.y + tf.bounds.size.height, WIDTH_SCREEN, self.view.frame.size.height - keyboardFrameBeginRect.size.height - tf.bounds.origin.y - tf.bounds.size.height);
-    
+
     [_resultTableView setHidden:YES];
 }
 
 - (void)keyboardWillHideNoti:(NSNotification*)noti {
-    
+
     [_scrollView setScrollEnabled:YES];
 }
 
 #pragma mark - Custom Methods
+- (void)textFieldDidChange:(UITextField *)textField {
+    [_fetcher sourceTextHasChanged:textField.text];
+}
+
 - (void)getInfoCarFromServer{
     [DataHelper GET:API_GET_HIRE_TYPE_LIST params:@{} completion:^(BOOL success, id responseObject){
         hireTypes = [responseObject valueForKey:@"name"];
-    }];
-    
-    [DataHelper GET:API_GET_TYPE_LIST params:@{} completion:^(BOOL success, id responseObject){
-        if (success) {
-            carTypes = [responseObject valueForKey:@"name"];
-        }
-    }];
-    
-    [DataHelper GET:API_GET_SIZE_LIST params:@{} completion:^(BOOL success, id responseObject){
-        if (success) {
-            carSizes = [responseObject valueForKey:@"name"];
-        }
+        hireTypes = [hireTypes subarrayWithRange:NSMakeRange(3, 2)];
     }];
 }
 

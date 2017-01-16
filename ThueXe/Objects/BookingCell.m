@@ -78,8 +78,14 @@
                 _cancelBtn.hidden = YES;
                 _doneBtn.hidden = YES;
             }
-            
-            
+            break;
+        case USER_TYPE_PASSENGER_GET_DRIVER_BOOKING:
+            _nameLb.text = [NSString stringWithFormat:@"#%@",bookingObj.bookingId];
+            heightDoneBtnConstraint.constant = 0;
+            _doneBtn.hidden = YES;
+            _cancelBtn.hidden = YES;
+            heightCallBtnConstraint.constant = self.frame.size.width/5;
+            _completeImage.hidden = YES;
             break;
         default:
             break;

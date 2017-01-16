@@ -9,6 +9,7 @@
 #import "ItemCell.h"
 #import "DataHelper.h"
 #import "Config.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface ItemCell()
 {
@@ -21,6 +22,7 @@
     IBOutlet UILabel *phoneLb;
     IBOutlet UILabel *distanceLb;
     IBOutlet UIView *headerView;
+    IBOutlet UIImageView *carImage;
 }
 @end
 
@@ -58,7 +60,9 @@
     else{
         distanceLb.text = [NSString stringWithFormat:@"cách %.1f km", car.distance];
     }
-    
+
+    [carImage setImageWithURL:car.imageLink];
+
 }
 
 - (IBAction)callCar:(id)sender {

@@ -74,8 +74,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     getAroundNow = YES;
-    [[UIApplication sharedApplication] setStatusBarHidden:NO
-                                            withAnimation:UIStatusBarAnimationFade];
+//    [self prefersStatusBarHidden];
     
     if (!timerUpdateLocation) {
         timerUpdateLocation = [NSTimer scheduledTimerWithTimeInterval:TIME_UPDATE_LOCATE target:self selector:@selector(updateLocation) userInfo:nil repeats:YES];
@@ -98,11 +97,17 @@
     if (!userInfo) {
         return;
     }
+
+    currentMarker.position = currentLocation.coordinate;
+    camera = [GMSCameraPosition cameraWithTarget:currentLocation.coordinate zoom:15 bearing:0 viewingAngle:0];
+    [_mapView setCamera:camera];
+    [_mapView animateToLocation:currentLocation.coordinate];
+
     [DataHelper POST:API_LOCATE params:@{@"car_number":[userInfo objectForKey:@"car_number"], @"lon":[NSString stringWithFormat:@"%f", currentLocation.coordinate.longitude], @"lat":[NSString stringWithFormat:@"%f", currentLocation.coordinate.latitude], @"phone":[userInfo objectForKey:@"phone"], @"status":[NSString stringWithFormat:@"%d",carStatus]} completion:^(BOOL success, id responseObject){
         NSLog(@"locate: success: %d, response: %@", success, responseObject);
         if (success) {
             [DataHelper GET:API_GET_AROUND params:@{@"lon":[NSString stringWithFormat:@"%f", currentLocation.coordinate.longitude], @"lat":[NSString stringWithFormat:@"%f", currentLocation.coordinate.latitude]} completion:^(BOOL success, id responseObject){
-                NSLog(@"get around: success: %d, response: %@", success, responseObject);
+//                NSLog(@"get around: success: %d, response: %@", success, responseObject);
                 NSArray *otherCars = responseObject;
                 [_mapView clear];
                 for (NSDictionary *car in otherCars) {
@@ -133,16 +138,13 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RegisterViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"registerStoryboardId"];
     vc.isEdit = YES;
-    [self presentViewController:vc animated:YES completion:nil];
+//    [self presentViewController:vc animated:YES completion:nil];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
     currentLocation = locations.firstObject;
 //    NSLog(@"%@", currentLocation);
-    currentMarker.position = currentLocation.coordinate;
-    camera = [GMSCameraPosition cameraWithTarget:currentLocation.coordinate zoom:15 bearing:0 viewingAngle:0];
-    [_mapView setCamera:camera];
-    [_mapView animateToLocation:currentLocation.coordinate];
+
     if (getAroundNow) {
         getAroundNow = NO;
         [self updateLocation];
@@ -165,18 +167,6 @@
             break;
     }
 }
-
-- (IBAction)menuBtnClick:(id)sender {
-    NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại ";
-    NSURL *myWebsite = [NSURL URLWithString:@"http://thuexevn.com"];
-    
-    NSArray *objectsToShare = @[textToShare, myWebsite];
-    
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
-    
-    [self presentViewController:activityVC animated:YES completion:nil];
-}
-
 
 
 //-(BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker{

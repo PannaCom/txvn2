@@ -14,7 +14,7 @@
 #import "ListDataViewController.h"
 #import "Car.h"
 #import "FilterViewController.h"
-
+#import "BookingViewController.h"
 
 @interface MapPassengerViewController ()<CLLocationManagerDelegate, GMSMapViewDelegate, UITabBarControllerDelegate>
 {
@@ -66,8 +66,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self getListOnline];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO
-                                            withAnimation:UIStatusBarAnimationFade];
+//    [self prefersStatusBarHidden];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,6 +83,12 @@
     if (carSize.length > 1) {
         carSize = [carSize substringToIndex:[carSize rangeOfString:@" "].location];
     }
+
+    currentMarker.position = _currentLocation.coordinate;
+    camera = [GMSCameraPosition cameraWithTarget:_currentLocation.coordinate zoom:15 bearing:0 viewingAngle:0];
+    [_mapView setCamera:camera];
+    [_mapView animateToLocation:_currentLocation.coordinate];
+
     [DataHelper GET:API_GET_LIST_ONLINE params:@{@"lon":lon, @"lat":lat, @"car_made":[_filterData objectForKey:@"car_made"], @"car_model":[_filterData objectForKey:@"car_model"], @"car_size":carSize, @"car_type":[_filterData objectForKey:@"car_type"], @"order":@"0"} completion:^(BOOL success, id responseObject){
         if (success) {
 //            NSLog(@"list online: %@", responseObject);
@@ -126,10 +131,7 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
     _currentLocation = locations.firstObject;
     //    NSLog(@"%@", _currentLocation);
-    currentMarker.position = _currentLocation.coordinate;
-    camera = [GMSCameraPosition cameraWithTarget:_currentLocation.coordinate zoom:15 bearing:0 viewingAngle:0];
-    [_mapView setCamera:camera];
-    [_mapView animateToLocation:_currentLocation.coordinate];
+    
     
 }
 
@@ -142,34 +144,34 @@
     UIAlertController *menu = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *changeUser = [UIAlertAction actionWithTitle:LocalizedString(@"CHANGE_USER") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-       
         [DataHelper clearUserData];
         FirstViewController *firstViewController = (FirstViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"firstViewControllerStoryboardId"];
-        
-        [self presentViewController:firstViewController animated:YES completion:nil];
+
+        //        [self presentViewController:firstViewController animated:YES completion:nil];
+        [self.navigationController pushViewController:firstViewController animated:YES];
     }];
-    
+
     UIAlertAction *booking = [UIAlertAction actionWithTitle:@"Đặt xe" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         [self performSegueWithIdentifier:@"mapToBookingSegueId" sender:self];
     }];
     [menu addAction:booking];
-    
+
     UIAlertAction *share = [UIAlertAction actionWithTitle:@"Mời người sử dụng" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         NSString *textToShare = @"Bạn cần thuê xe hay bạn là tài xế/nhà xe/hãng xe có xe riêng, hãy dùng thử ứng dụng thuê xe  trên di động tại ";
         NSURL *myWebsite = [NSURL URLWithString:@"http://thuexevn.com"];
-        
+
         NSArray *objectsToShare = @[textToShare, myWebsite];
-        
+
         UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
-        
+
         [self presentViewController:activityVC animated:YES completion:nil];
     }];
     [menu addAction:share];
+
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:LocalizedString(@"CANCEL") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
         [menu dismissViewControllerAnimated:YES completion:nil];
     }];
     [menu addAction:changeUser];
-    
     [menu addAction:cancel];
     [self presentViewController:menu animated:YES completion:nil];
 }
@@ -179,6 +181,11 @@
         FilterViewController *viewController = [segue destinationViewController];
         viewController.filterData = [NSMutableDictionary dictionaryWithDictionary:_filterData];
     }
+
+    if ([[segue identifier] isEqualToString:@"mapToBookingSegueId"]) {
+        BookingViewController *vc = [segue destinationViewController];
+        vc.userType = USER_TYPE_PASSENGER;
+    }
 }
 
 - (IBAction)filterBtnClick:(id)sender {
@@ -186,7 +193,7 @@
     FilterViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"filterDataStoryboardId"];
     vc.filterData = [NSMutableDictionary dictionaryWithDictionary:_filterData];
     [self presentViewController:vc animated:YES completion:nil];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
-
 
 @end

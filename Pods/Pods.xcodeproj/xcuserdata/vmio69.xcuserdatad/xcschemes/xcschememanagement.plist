@@ -9,7 +9,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>DZNEmptyDataSet.xcscheme</key>
+		<key>HexColors.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>INTULocationManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>JVFloatLabeledTextField.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -24,6 +34,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SCLAlertView-Objective-C.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SVPullToRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -34,12 +49,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>UIFloatLabelTextField.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>UIFloatLabelTextView.xcscheme</key>
+		<key>TSMessages.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -47,42 +57,52 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>137C1D8A516662AD1C0020A30DB9BFE5</key>
+		<key>0983CE496C84571E346031D9C872DCFE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>15137C2FCD87E634A5BD7EC23A2C572B</key>
+		<key>16BBFC9EE842E41A26FE1D596E064375</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3307C9FE1728C60229E0AD3E8A16CCAD</key>
+		<key>2A4448146C785C426971111F117D773C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5437890023F30CA85DFCA260CA914D48</key>
+		<key>3E35EF5A1ADD2DEC60180DDA68F3431F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>586F2DFA9BDCC6675C2546793A69E5CC</key>
+		<key>41FA54D12162DAD51D02FC58A2CD5034</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9E033EDB5EC0819481B0546434FA577B</key>
+		<key>7E683DB16DC4643221505F9973C9BC36</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B6591CCB10E6DE95CD2D31729A65945C</key>
+		<key>A9FB3CE34324ABFB0595DA60EDF3F10F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BF0AD12285E0DC5880EE2E900A2A2D12</key>
+		<key>AB57EF7D8B23701455085EC663E5FA40</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CE730A28157380EA5A2494D54B58F4A2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CF671F7E57B92905F1CC91D036D6B4A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

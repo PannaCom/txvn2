@@ -3,18 +3,20 @@
 
 target 'ThueXe' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-  # use_frameworks!
+   use_frameworks!
 
   # Pods for ThueXe
 
-pod 'UIFloatLabelTextField'
-pod 'UIFloatLabelTextView'
 pod 'AFNetworking'
 pod 'GoogleMaps'
 pod 'GooglePlaces'
 pod 'SVPullToRefresh'
-pod 'DZNEmptyDataSet'
+#pod 'DZNEmptyDataSet'
 pod 'MBProgressHUD'
 pod 'SlideMenuControllerOC'
+pod 'JVFloatLabeledTextField'
+pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
+pod 'INTULocationManager'
+pod 'SCLAlertView-Objective-C'
 
 end

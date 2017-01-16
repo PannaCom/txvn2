@@ -1,48 +1,42 @@
 //
-//  BookingViewController.m
+//  DriverBookingViewController.m
 //  ThueXe
 //
 //  Created by VMio69 on 12/4/16.
 //  Copyright © 2016 VMio69. All rights reserved.
 //
 
-#import "BookingViewController.h"
+#import "DriverBookingViewController.h"
 #import "CAPSPageMenu.h"
 #import "MapBookingViewController.h"
-#import "InfoBookingViewController.h"
+#import "DriverBookingInfoViewController.h"
 #import "GetBookingViewController.h"
+#import "DriverMainViewController.h"
 
-@interface BookingViewController ()<CAPSPageMenuDelegate, BookingDelegate>
+@interface DriverBookingViewController ()<CAPSPageMenuDelegate, DriverBookingDelegate>
 {
     CAPSPageMenu *_pageMenu;
     IBOutlet UIView *_titleView;
-    InfoBookingViewController *infoVc;
+    DriverBookingInfoViewController *infoVc;
     MapBookingViewController *mapVc;
-    IBOutlet UIButton *_menuBtn;
 }
 @end
 
-@implementation BookingViewController
+@implementation DriverBookingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (_userType == USER_TYPE_DRIVER) {
-        [_menuBtn setHidden:YES];
-    }
-    else {
-        [_menuBtn setHidden:NO];
-    }
+
     NSMutableArray *controllers = [NSMutableArray new];
-    
-    infoVc = (InfoBookingViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"infoBoogkingStoryboardId"];
+
+    infoVc = (DriverBookingInfoViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"driverBoogkingInfoStoryboardId"];
     infoVc.title = @"Thông tin";
-    infoVc.userType = _userType;
     [controllers addObject:infoVc];
-    
+
     mapVc = (MapBookingViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"mapBoogkingStoryboardId"];
     mapVc.title = @"Bản đồ";
     [controllers addObject:mapVc];
-    
+
     NSDictionary *parameters = @{
                                  CAPSPageMenuOptionScrollMenuBackgroundColor: [UIColor colorWithRed:200/255.0 green:200/255.0 blue:0/255.0 alpha:1.0],
                                  CAPSPageMenuOptionViewBackgroundColor: [UIColor whiteColor],
@@ -72,21 +66,13 @@
 }
 
 - (IBAction)backBtnClick:(id)sender {
-    switch (_userType) {
-        case USER_TYPE_PASSENGER:
-            [self performSegueWithIdentifier:@"fromPassengerBookingToListdataUnwindSegueId" sender:self];
-            break;
-        case USER_TYPE_DRIVER:
-            [self.navigationController popViewControllerAnimated:YES];
-            break;
-        default:
-            break;
-    }
+//    DriverMainViewController *mainVc = [self.storyboard instantiateViewControllerWithIdentifier:@"driverMainStoryboardId"];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)menuBtnClick:(id)sender {
     UIAlertController *menuAlert = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *itemMenu = [UIAlertAction actionWithTitle:@"Danh sách xe đã đặt" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+    UIAlertAction *itemMenu = [UIAlertAction actionWithTitle:@"Danh sách xe đã đăng" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         [self performSegueWithIdentifier:@"getPassengerBookingSegueId" sender:self];
     }];
     UIAlertAction *itemCancel = [UIAlertAction actionWithTitle:@"Hủy" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
@@ -124,27 +110,13 @@
             [self presentViewController:alert animated:YES completion:nil];
             return NO;
         }
-        
+
     }
     return YES;
 }
 
 - (void)didBookingDone{
-    switch (_userType) {
-        case USER_TYPE_PASSENGER:
-            [self performSegueWithIdentifier:@"getPassengerBookingSegueId" sender:self];
-            break;
-        case USER_TYPE_DRIVER:
-            [self.navigationController popViewControllerAnimated:YES];
-            break;
-        default:
-            break;
-    }
-
-}
-
--(IBAction)unwindToBooking:(UIStoryboardSegue*)sender{
-
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
