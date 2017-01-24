@@ -14,7 +14,7 @@
 #import "ListDataViewController.h"
 #import "DriverMainViewController.h"
 #import "FirstViewController.h"
-#import "ActiveViewController.h"
+//#import "ActiveViewController.h"
 #import <UserNotifications/UserNotifications.h>
 #import "PassengerTabBarController.h"
 
@@ -54,19 +54,19 @@
                 userType = REG_ID_FOR_DRIVER;
                 UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
 //                if ([[userInfo objectForKey:@"wasActived"] boolValue]) {
-                    NSDate *dateNeedActive = [userInfo objectForKey:@"dateNeedActive"];
-                    if ([[NSDate date] compare:dateNeedActive] == NSOrderedDescending) {
-                        ActiveViewController *controller = (ActiveViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"activeStoryboardId"];
-                        controller.isActiveBuyCode = YES;
-//                        _window.rootViewController = controller;
-                        [self changeRootViewController:controller];
-                    }
-                    else{
+               /*
+                Bỏ chức năng active ngày sử dụng
+                */
+//                    NSDate *dateNeedActive = [userInfo objectForKey:@"dateNeedActive"];
+//                    if ([[NSDate date] compare:dateNeedActive] == NSOrderedDescending) {
+//                        ActiveViewController *controller = (ActiveViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"activeStoryboardId"];
+//                        controller.isActiveBuyCode = YES;
+//                        [self changeRootViewController:controller];
+//                    }
+//                    else{
                         DriverMainViewController *controller = (DriverMainViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"driverMainStoryboardId"];
-                        
-//                        _window.rootViewController = controller;
                         [self changeRootViewController:controller];
-                    }
+//                    }
                 /*
                  Bỏ chức năng active sms khi đăng ký tài khoản
                  */
@@ -157,7 +157,8 @@
         if (success && [responseObject[@"resultCount"] integerValue] == 1){
             NSString* appStoreVersion = responseObject[@"results"][0][@"version"];
             NSString* currentVersion = infoDictionary[@"CFBundleShortVersionString"];
-            if ([currentVersion compare:appStoreVersion] == NSOrderedAscending) {
+//            if ([currentVersion compare:appStoreVersion] != NSOrderedSame) {
+            if ([self isNeedUpdate:currentVersion storeVersion:appStoreVersion]) {
                 NSLog(@"Need to update [%@ != %@]", appStoreVersion, currentVersion);
                 UIAlertController *alertUpdate = [UIAlertController alertControllerWithTitle:@"Ứng dụng đã có phiên bản mới hơn" message:@"Cập nhật ứng dụng ngay." preferredStyle:UIAlertControllerStyleAlert];
                 [alertUpdate addAction:[UIAlertAction actionWithTitle:@"Cập nhật" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
@@ -233,6 +234,17 @@ forRemoteNotification:(NSDictionary *)notification completionHandler:(void(^)())
 {
     NSLog(@"Received push notification: %@, identifier: %@", notification, identifier); // iOS 8
     completionHandler();
+}
+
+- (BOOL)isNeedUpdate:(NSString *)currentVersion storeVersion:(NSString*)storeVersion {
+    NSArray *current = [currentVersion componentsSeparatedByString:@"."];
+    NSArray *store = [storeVersion componentsSeparatedByString:@"."];
+    for (int i = 0; i < 3; i ++) {
+        if ([current[i] intValue] < [store[i] intValue]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end
