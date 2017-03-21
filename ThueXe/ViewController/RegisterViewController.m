@@ -520,24 +520,14 @@
         [DataHelper POST:API_REGISTER params:params completion:^(BOOL success, id responseObject){
             if (success) {
                 if ([responseObject intValue] > 0) {
-//                    if (_isEdit) {
-                        // đăng ký thành công, lưu thông tin người dùng ...
+                    // đăng ký thành công, lưu thông tin người dùng ...
+                    if (!_isEdit) {
                         [params setValue:[NSString stringWithFormat:@"%@", responseObject] forKey:@"id"];
-                        [DataHelper setUserData:@{@"data":params, @"userType":[NSString stringWithFormat:@"%d", USER_TYPE_DRIVER], @"wasActived":@"YES"}];
-                        
-                        [self performSegueWithIdentifier:@"gotoDriverMainSegueId" sender:self];
-                    /*
-                     Bỏ chức năng active sms khi đăng ký tài khoản
-                     */
-//                    }
-//                    else{
-//                        // đăng ký thành công, lưu thông tin người dùng ...
-//                        [params setValue:[NSString stringWithFormat:@"%@", responseObject] forKey:@"id"];
-//                        [DataHelper setUserData:@{@"data":params, @"userType":[NSString stringWithFormat:@"%d", USER_TYPE_DRIVER]}];
-//                        
-//                        ActiveViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"activeStoryboardId"];
-//                        [self presentViewController:vc animated:YES completion:nil];
-//                    }
+                    }
+                    [DataHelper setUserData:@{@"data":params, @"userType":[NSString stringWithFormat:@"%d", USER_TYPE_DRIVER], @"wasActived":@"YES"}];
+                    
+                    [self performSegueWithIdentifier:@"gotoDriverMainSegueId" sender:self];
+                    
                 }
                 else{
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:LocalizedString(@"REGISTER_ERROR") message:@"" preferredStyle:UIAlertControllerStyleAlert];

@@ -12,6 +12,7 @@
 #import "DriverBookingInfoViewController.h"
 #import "GetBookingViewController.h"
 #import "DriverMainViewController.h"
+#import "DataHelper.h"
 
 @interface DriverBookingViewController ()<CAPSPageMenuDelegate, DriverBookingDelegate>
 {
@@ -73,7 +74,7 @@
 - (IBAction)menuBtnClick:(id)sender {
     UIAlertController *menuAlert = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *itemMenu = [UIAlertAction actionWithTitle:@"Danh sách xe đã đăng" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        [self performSegueWithIdentifier:@"getPassengerBookingSegueId" sender:self];
+        [self performSegueWithIdentifier:@"getDriverBookingSegueId" sender:self];
     }];
     UIAlertAction *itemCancel = [UIAlertAction actionWithTitle:@"Hủy" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){
         [menuAlert dismissViewControllerAnimated:YES completion:nil];
@@ -89,15 +90,16 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([[segue identifier] isEqualToString:@"getPassengerBookingSegueId"]) {
+    if ([[segue identifier] isEqualToString:@"getDriverBookingSegueId"]) {
         GetBookingViewController *getBookingVc = (GetBookingViewController*)[segue destinationViewController];
-        getBookingVc.phone = infoVc.phone;
+        NSDictionary *userData = [[DataHelper getUserData] objectForKey:@"data"];
+        getBookingVc.phone = [userData objectForKey:@"phone"];
         getBookingVc.userType = USER_TYPE_PASSENGER;
     }
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
-    if ([identifier isEqualToString:@"getPassengerBookingSegueId"]) {
+    if ([identifier isEqualToString:@"getDriverBookingSegueId"]) {
         if ([infoVc.phone stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length > 0) {
             return YES;
         }

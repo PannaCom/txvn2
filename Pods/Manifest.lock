@@ -14,19 +14,20 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - GoogleMaps (2.1.1):
-    - GoogleMaps/Maps (= 2.1.1)
-  - GoogleMaps/Base (2.1.1)
-  - GoogleMaps/Maps (2.1.1):
+  - GoogleMaps (2.2.0):
+    - GoogleMaps/Maps (= 2.2.0)
+  - GoogleMaps/Base (2.2.0)
+  - GoogleMaps/Maps (2.2.0):
     - GoogleMaps/Base
-  - GooglePlaces (2.1.1):
-    - GoogleMaps/Base (= 2.1.1)
+  - GooglePlaces (2.2.0):
+    - GoogleMaps/Base (= 2.2.0)
+  - Harpy (4.0.11)
   - HexColors (2.3.0)
   - INTULocationManager (4.2.0)
   - JVFloatLabeledTextField (1.1.1)
   - MBProgressHUD (1.0.0)
-  - SCLAlertView-Objective-C (1.1.0)
-  - SlideMenuControllerOC (1.0.1)
+  - SCLAlertView-Objective-C (1.1.1)
+  - SlideMenuControllerOC (1.0.2)
   - SVPullToRefresh (0.4.1)
   - TSMessages (0.9.13):
     - HexColors (~> 2.3.0)
@@ -35,6 +36,7 @@ DEPENDENCIES:
   - AFNetworking
   - GoogleMaps
   - GooglePlaces
+  - Harpy
   - INTULocationManager
   - JVFloatLabeledTextField
   - MBProgressHUD
@@ -49,22 +51,23 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   TSMessages:
-    :commit: 949e7559c60a8863f33c5fd2cbc55e8efbb4b53f
+    :commit: dd843df9a04a756210b2ed51caf1f2b9aafee508
     :git: https://github.com/KrauseFx/TSMessages.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
-  GooglePlaces: 35636d86e5020cba3856eb988c09a5491de0a65a
+  GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
+  GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
+  Harpy: 4afe4976f2bcf61bd25969ecb266dd17043d065a
   HexColors: 6ad3947c3447a055a3aa8efa859def096351fe5f
   INTULocationManager: 73f8254b3d05c897c56bb13c190e5b7c648c0998
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  SCLAlertView-Objective-C: 349a894d4e1d1dbf14d443da784c6ca1e92c78d2
-  SlideMenuControllerOC: c0527642a48fa16602bb08257c1ffed0e1bd09b7
+  SCLAlertView-Objective-C: d397ae2b52bae7dedf7188fa1616fcb89200b33a
+  SlideMenuControllerOC: e5b1cdc1ff4e1c0eca58c0a64967ab25d95bf85f
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   TSMessages: eb3cf27b6900684a21bad4fe9ea426e287b8c839
 
-PODFILE CHECKSUM: 35165bda95559459886cc60d3a8f4a16f2baa71c
+PODFILE CHECKSUM: 70e030e19f50bcae6b41ebef6021949157ec8a9a
 
-COCOAPODS: 1.2.0.beta.3
+COCOAPODS: 1.2.0

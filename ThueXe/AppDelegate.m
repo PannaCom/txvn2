@@ -17,7 +17,7 @@
 //#import "ActiveViewController.h"
 #import <UserNotifications/UserNotifications.h>
 #import "PassengerTabBarController.h"
-
+#import "Harpy.h"
 
 @import GoogleMaps;
 @import GooglePlaces;
@@ -37,12 +37,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [GMSServices provideAPIKey:GOOGLE_MAP_API_KEY];
     [GMSPlacesClient provideAPIKey:GOOGLE_MAP_API_KEY];
-    [self updateVersionApp];
-//    [self.window.rootViewController prefersStatusBarHidden];
     [self registerForRemoteNotifications];
     
     NSDictionary *userInfo = [DataHelper getUserData];
-//    NSLog(@"%@", userInfo);
     userType = @"";
     if (!userInfo) {
         _window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
@@ -53,29 +50,8 @@
             {
                 userType = REG_ID_FOR_DRIVER;
                 UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-//                if ([[userInfo objectForKey:@"wasActived"] boolValue]) {
-               /*
-                Bỏ chức năng active ngày sử dụng
-                */
-//                    NSDate *dateNeedActive = [userInfo objectForKey:@"dateNeedActive"];
-//                    if ([[NSDate date] compare:dateNeedActive] == NSOrderedDescending) {
-//                        ActiveViewController *controller = (ActiveViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"activeStoryboardId"];
-//                        controller.isActiveBuyCode = YES;
-//                        [self changeRootViewController:controller];
-//                    }
-//                    else{
-                        DriverMainViewController *controller = (DriverMainViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"driverMainStoryboardId"];
-                        [self changeRootViewController:controller];
-//                    }
-                /*
-                 Bỏ chức năng active sms khi đăng ký tài khoản
-                 */
-//                }
-//                else{
-//                    ActiveViewController *controller = (ActiveViewController*)[mainStoryboard instantiateViewControllerWithIdentifier:@"activeStoryboardId"];
-//                    controller.isActiveBuyCode = NO;
-//                    _window.rootViewController = controller;
-//                }
+                DriverMainViewController *controller = (DriverMainViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"driverMainStoryboardId"];
+                [self changeRootViewController:controller];
             }
                 break;
             case USER_TYPE_PASSENGER:
@@ -110,6 +86,11 @@
     UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0,[UIScreen mainScreen].bounds.size.width, 20)];
     view.backgroundColor=[UIColor colorWithRed:1/255. green:156/255. blue:160/255. alpha:1.];
     [self.window.rootViewController.view addSubview:view];
+    
+    [[Harpy sharedInstance] setPresentingViewController:_window.rootViewController];
+    [[Harpy sharedInstance] setAlertType:HarpyAlertTypeForce];
+    [[Harpy sharedInstance] setForceLanguageLocalization:HarpyLanguageVietnamese];
+    [[Harpy sharedInstance] checkVersion];
     return YES;
 }
 
@@ -137,10 +118,12 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    [[Harpy sharedInstance] checkVersion];
 }
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    [[Harpy sharedInstance] checkVersionDaily];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
 }
@@ -148,27 +131,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
--(void) updateVersionApp{
-    NSDictionary* infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    
-    [DataHelper GET:LINK_CHECK_VERSION params:nil completion:^(BOOL success, id responseObject){
-        if (success && [responseObject[@"resultCount"] integerValue] == 1){
-            NSString* appStoreVersion = responseObject[@"results"][0][@"version"];
-            NSString* currentVersion = infoDictionary[@"CFBundleShortVersionString"];
-//            if ([currentVersion compare:appStoreVersion] != NSOrderedSame) {
-            if ([self isNeedUpdate:currentVersion storeVersion:appStoreVersion]) {
-                NSLog(@"Need to update [%@ != %@]", appStoreVersion, currentVersion);
-                UIAlertController *alertUpdate = [UIAlertController alertControllerWithTitle:@"Ứng dụng đã có phiên bản mới hơn" message:@"Cập nhật ứng dụng ngay." preferredStyle:UIAlertControllerStyleAlert];
-                [alertUpdate addAction:[UIAlertAction actionWithTitle:@"Cập nhật" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:LINK_APP_STORE]];
-                    exit(0);
-                }]];
-                [self.window.rootViewController presentViewController:alertUpdate animated:YES completion:nil];
-            }
-        }
-    }];
 }
 
 - (void)registerForRemoteNotifications {

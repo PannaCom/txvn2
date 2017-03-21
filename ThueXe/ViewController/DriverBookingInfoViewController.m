@@ -91,7 +91,6 @@
                                                                        coordinate:southWestBoundsCorner];
     // Set up the autocomplete filter.
     GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
-//    filter.type = kGMSPlacesAutocompleteTypeFilterEstablishment;
     filter.country = @"VN";
     // Create the fetcher.
     _fetcher = [[GMSAutocompleteFetcher alloc] initWithBounds:bounds
@@ -439,7 +438,7 @@
 }
 
 - (void)keyboardWillHideNoti:(NSNotification*)noti {
-
+    [_scrollView setContentOffset:CGPointMake(0, 0)];
     [_scrollView setScrollEnabled:YES];
 }
 
